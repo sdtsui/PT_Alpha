@@ -1,0 +1,119 @@
+extends layout-checkout
+
+block content
+    // session variables -> placeholders
+    - var states = {user_logged_in : true}
+    - var edit_event = false
+
+    include templates/checkout/header
+    
+    .row.collapse
+        .columns.large-10.large-centered
+            
+            br
+            
+            #payments-wrap
+                span.security-label
+                    img(src='assets/images/image.png')
+                    | 256 Bit Encrypted and SSL Secured
+                .row.collapse
+                    //payment form
+                    .columns.large-8
+                        //credit card
+                        .creditcard-wrap
+                            img.right(src='assets/images/image.png')
+                            h5 Payment
+                            .row
+                                .columns.large-7
+                                    label Credit Card Number
+                                        input(type='text', placeholder='')
+                                .columns.large-5
+                                    img(src='assets/images/creditcard.png')
+                                    img(src='assets/images/creditcard.png')
+                                    img(src='assets/images/creditcard.png')
+                                    img(src='assets/images/creditcard.png')
+                            .row
+                                .columns.large-3
+                                    label Month
+                                        select
+                                            option(value='1') January
+                                            option(value='2') February
+                                            option(value='3') March
+                                            option(value='4') April
+                                            option(value='5') May
+                                            option(value='6') June
+                                            option(value='7') July
+                                            option(value='8') August
+                                            option(value='9') September
+                                            option(value='10') October
+                                            option(value='11') November
+                                            option(value='12') December
+                                .columns.large-3
+                                    label Year
+                                        select
+                                            option(value='2015') 2015
+                                            option(value='2016') 2016
+                                            option(value='2017') 2017
+                                            option(value='2018') 2018
+                                            option(value='2019') 2019
+                                            option(value='2020') 2020                             
+                                .columns.large-3
+                                    label CVC
+                                        span (3 digits)
+                                        input(type='text')
+                                
+                                .columns.large-4
+                        //billing address
+                        .billing-wrap
+                            h5 Billing Address
+                            .row
+                                .columns.large-6
+                                    label First Name
+                                        input(type='text', placeholder='eg Jimmy')
+                                .columns.large-6
+                                    lable Last Name
+                                        input(type='text', placeholder='eg Joe')
+                            .row
+                                .columns.large-6
+                                    label Street Address
+                                        input(type='text', placeholder='eg 1101 Flower Street')
+                                .columns.large-6
+                                    lable Apt / Suite Number
+                                        input(type='text', placeholder='eg 1183b')
+                            .row
+                                .columns.large-7
+                                    label City
+                                        input(type='text', placeholder='eg Glendale')
+                                .columns.large-2
+                                    lable State
+                                        select
+                                            option(value='alabama') AL
+                                            option(value='california') CA
+                                .columns.large-3
+                                    label Zip
+                                        input(type='text', placeholder='eg 91208')
+                            .row
+                                .columns.large-12
+                                    input(type='checkbox' id='term-agree')
+                                    label(for='term-agree') I agree the to Cancellation Policy, House Rule and Terms of Service.
+                            .row
+                                .columns.large-7.large-centered
+                                    input(type='radio' id='pay-full', name='pay', value='100')
+                                    label(for='pay-full') Pay full amount: $2,400
+                                    input(type='radio' id='pay-deposit', name='pay', value='50')
+                                    label(for='pay-deposit') Pay 50%
+                                
+                                    button.clean-button-inverse.large.expand  Submit Payment
+                                    .text-center
+                                        img(src='assets/images/image.png')
+                                        div
+                                        | This for is SSL sercured and 256-bit encrypted.
+                                        div
+                                        | You are safe to continue.
+                                    
+
+                    //summary
+                    .columns.large-4
+                        include templates/mp-event-itemization
+    
+    

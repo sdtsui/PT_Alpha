@@ -1,0 +1,42 @@
+extends layout
+
+block content
+
+    .page-wrapper(data-equalizer)
+        
+        .left-col.left(style='background-color:#fff;width:75%;min-height:500px',data-equalizer-watch)
+            
+            // session variables -> placeholders
+            - var states = {user_logged_in : false}
+            - var edit_event = false
+            
+            include templates/header-marketplace
+            
+            .main-filter(style='padding:12px 0;background-color:#f4f4f4')
+                
+                include templates/marketplace-filter
+            
+            .search-results(style='background-color:#fff;min-height:300px;border-top:1px solid #ddd;padding: 30px 0 60px')
+                include templates/marketplace-search-results
+                
+            .footer
+                
+                include templates/footer
+
+        .right-col.right(style='background-color:#333;width:25%;',data-equalizer-watch)
+            
+            .row
+                .columns.large-12.large-centered
+                        
+                    include templates/marketplace-welcome-login
+
+               
+
+                
+    
+        
+        
+
+
+
+    

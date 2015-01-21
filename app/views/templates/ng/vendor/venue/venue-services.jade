@@ -1,0 +1,51 @@
+.clean-button.right Remove Service
+.clean-button.right New Service
+
+
+.row.collapse
+    .columns.large-3
+        .menu-wrap
+            label
+                input(type='text',placeholder='search')
+            hr
+            ul
+                li Premium Open Bar
+                li Valet
+                li Cork Service
+                li Chef's Station
+                li Cake Service
+    
+    .columns.large-9
+        .row
+            h4 SERVICES 
+                small General Setup Information
+            .columns.large-4
+                label Service Name
+                    input(type='search', placeholder='eg Premium Open Bar')
+
+                label Description
+                textarea(name="service-description", cols="30", rows="3")
+
+
+                label Service is currently 
+
+                    b active
+                .switch.round.tiny
+                    input(type="checkbox",id='includeTaxGratuity', checked)
+                    label(for="includeTaxGratuity")
+
+
+
+            .columns.large-4
+                label Unit Pricing Method
+                    select
+                        option(value="head") $ per guest
+                        option(value="item") $ per item
+                        option(value="event") $ per event
+                        option(value="time") $ per hour
+                        option(value="over-time") $ per hour over
+                        option(value="dozen") $ per 12 items
+                label Unit Rate
+                    input(type="text", placeholder='$')
+
+            .columns.large-4

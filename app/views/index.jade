@@ -1,5 +1,14 @@
-extends layout
+extends layout-off-canvas
 
 block content
-  h1= title
-  p Welcome to #{title}
+    .page-wrapper
+        include templates/header-vendor
+
+        .content-wrapper
+
+            include templates/calendar-nav-month
+
+
+
+    
+    

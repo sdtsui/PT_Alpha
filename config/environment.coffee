@@ -1,27 +1,18 @@
 path     = require 'path'
 rootPath = path.normalize __dirname + '/..'
+extend = require('util')._extend
 env      = process.env.NODE_ENV || 'development'
 
 config =
-  development:
+  defaults:
     root: rootPath
     app:
       name: 'privatetable'
     port: 3000
     db: 'mongodb://localhost/pt_dev'
 
-  test:
-    root: rootPath
-    app:
-      name: 'privatetable'
-    port: 3000
-    db: 'mongodb://localhost/privatetable-test'
+  development: require('./env/development')
+  test: require('./env/test')
+  production: require('./env/production')
 
-  production:
-    root: rootPath
-    app:
-      name: 'privatetable'
-    port: 3000
-    db: 'mongodb://localhost/privatetable-production'
-
-module.exports = config[env]
+module.exports = extend(config[env], config.defaults)

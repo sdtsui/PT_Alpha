@@ -1,0 +1,22 @@
+// main view for prospects
+
+#prospects
+    .row
+        .columns.small-12.medium-11.medium-centered.large-12
+        
+            // filter and table
+            #prospect-ranking
+                .row.collapse
+                    //filter
+                    .columns.small-2
+                        .filter-wrap(style='min-height:600px;background-color:#ddd;')
+                            div(style='padding:12px')
+                                
+                                include prospects-filter
+
+                    //table
+                    .columns.small-10
+                        .filter-wrap(style='min-height:600px;background-color:#fff')
+                            #ranking    
+                                
+                                include prospects-ranking-expanded

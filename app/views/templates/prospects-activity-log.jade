@@ -1,0 +1,148 @@
+.clean-button.right close
+#activity-log(style='height:576px; overflow:scroll')    
+    table.message-list(width='100%', style='margin:0;border:none;')
+        //thread id 1
+        tr.new.selected(style='background-color:#fff')
+            td(width='32', valign='top') 
+                .profile-wrap-circle.left(style='overflow:hidden; border-radius:40px;width:32px;height:32px')
+                    img(src='/assets/images/faces/nina.jpg', width='32', height='32')
+            td(width='') 
+                h6(style='margin:0') 
+                    span.name 
+                        b Annie Yang 
+                    br
+                    span.event-name NatureBox Marketing Holiday Dinner
+                h6.subheader(style='margin:0') 
+                    span.event-date anticipated event date: Nov 5, 2015
+    hr
+
+    p.text-center(style='margin: 0')
+        small 23 events
+
+    .row.collapse
+        .columns.large-10.large-centered(style='background-color:#fff;')
+            table.message-list(width='100%', style='margin:0;border:none;')
+
+                //event id 9
+                tr.new.selected(style='background-color:#fff')
+                    td(width='') 
+                        h6(style='margin:0') 
+                            img(src='/assets/images/bubble.png', width='16', height='16')
+                            span.topic 
+                                b message 
+                        p.message-string(style='margin:0;font-size:0.85em;color:#888') 
+                            span.actor Annie 
+                            span.action started a thread on 
+                            span.topic #payment.
+                    td(width='60', valign='top')
+                        p.time-stamp.text-right(style='margin:0') 
+                            small 34m ago &nbsp;&nbsp;
+
+                //key event id 6
+                tr.new.selected(style='background-color:#fff')
+                    td(width='') 
+                        h6(style='margin:0') 
+                            img(src='/assets/images/piechart.png', width='16', height='16')
+                            span.topic 
+                                b poll
+                        p.message-string(style='margin:0;font-size:0.85em;color:#888')
+                            span.actor Annie 
+                            span.action created a poll for 
+                            span.event NatureBox Marketing Holiday Dinner. 
+                            span.description Sent to 24 people. 
+                    td(width='60', valign='top')
+                        p.time-stamp.text-right(style='margin:0') 
+                            small 1h ago &nbsp;&nbsp;
+
+                //key event id 5
+                tr.new.selected(style='background-color:#fff')
+                    td(width='') 
+                        h6(style='margin:0') 
+                            img(src='/assets/images/note.png', width='16', height='16')
+                            span.topic 
+                                b design 
+                        p.message-string(style='margin:0;font-size:0.85em;color:#888')
+                            span.actor Annie 
+                            span.action designed an experience for 
+                            span.event NatureBox Marketing Holiday Dinner.
+                        p.activity(style='margin:0;font-size:0.85em;color:#888')
+                            span.room
+                                img(src='/assets/images/door.png', width='12', height='12') 
+                                | &nbsp;
+                            span.layout
+                                img(src='/assets/images/layout.png', width='12', height='12') 
+                                | &nbsp;
+                            span.menu
+                                img(src='/assets/images/menu.png', width='12', height='12')
+                                | &nbsp;
+                            span.services
+                                img(src='/assets/images/service.png', width='12', height='12')
+                    td(width='60', valign='top')
+                        p.time-stamp.text-right(style='margin:0') 
+                            small 1h ago &nbsp;&nbsp;
+
+                //event id 5
+                tr.new.selected(style='background-color:#fff')
+                    td(width='') 
+                        p.message-string(style='margin:0;font-size:0.85em;color:#888') 
+                            span.actor Annie 
+                            span.action viewed a  
+                            span.topic #menu. 
+                            span.description Sophia Room
+                    td(width='60', valign='top')
+                        p.time-stamp.text-right(style='margin:0') 
+                            small 2h ago &nbsp;&nbsp;
+
+                //event id 4
+                tr.new.selected(style='background-color:#fff')
+                    td(width='') 
+                        p.message-string(style='margin:0;font-size:0.85em;color:#888') 
+                            span.actor Annie 
+                            span.action viewed a  
+                            span.topic #layout. 
+                            span.description Sophia Room
+                    td(width='60', valign='top')
+                        p.time-stamp.text-right(style='margin:0') 
+                            small 2h ago &nbsp;&nbsp;
+
+                //event id 3
+                tr.new.selected(style='background-color:#fff')
+                    td(width='') 
+                        p.message-string(style='margin:0;font-size:0.85em;color:#888')
+                            span.actor Annie 
+                            span.action viewed a  
+                            span.topic #room. 
+                            span.description Sophia Room
+                    td(width='60', valign='top')
+                        p.time-stamp.text-right(style='margin:0') 
+                            small 2h ago &nbsp;&nbsp;
+
+                //key event id 2
+                tr.new.selected(style='background-color:#fff')
+                    td(width='') 
+                        h6(style='margin:0') 
+                            img(src='/assets/images/openmail.png', width='16', height='16')
+                            span.topic 
+                                b prospect email 
+                        p.message-string(style='margin:0;font-size:0.85em;color:#888')
+                            span.actor Annie 
+                            span.action opened 
+                            span.topic prospect email.
+                    td(width='60', valign='top')
+                        p.time-stamp.text-right(style='margin:0') 
+                            small 1d ago &nbsp;&nbsp;
+
+                //event id 1
+                tr.new.selected(style='background-color:#fff')
+                    td(width='') 
+                        h6(style='margin:0') 
+                            img(src='/assets/images/paperplane.png', width='16', height='16')
+                            span.topic 
+                                b prospect email 
+                        p.message-string(style='margin:0;font-size:0.85em;color:#888') 
+                            span.actor System 
+                            span.action delivered 
+                            span.topic prospect email.
+                    td(width='60', valign='top')
+                        p.time-stamp.text-right(style='margin:0') 
+                            small 1d ago &nbsp;&nbsp;

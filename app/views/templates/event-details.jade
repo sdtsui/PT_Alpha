@@ -1,0 +1,37 @@
+dl.tabs(data-tab='')
+    dd
+        a(href='#panel1') 
+            h6 Payments   
+    dd
+        a(href='#panel2') 
+            h6 BEO
+    dd.active
+        a(href='#panel3') 
+            h6 Floor Plan
+    dd
+        a(href='#panel4') 
+            h6 Menu
+.tabs-content
+    #panel1.content
+        
+        .row.collapse
+            .columns.large-7.large-centered
+                
+                include mp-event-itemization
+        
+    #panel2.content
+        
+        .row.collapse
+            .columns.large-10.large-centered
+                
+                include mp-event-beo
+        
+    #panel3.content.active
+        
+        .row.collapse
+            .columns.large-10.large-centered
+                
+                include mp-event-floorplan
+                
+    #panel4.content
+        p This is the fourth panel of the basic tab example. This is the fourth panel of the basic tab example.

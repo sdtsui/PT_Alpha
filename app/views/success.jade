@@ -1,0 +1,50 @@
+extends layout-checkout
+
+block content
+    // session variables -> placeholders
+    - var states = {user_logged_in : true}
+    - var edit_event = false
+
+    include templates/checkout/header
+    
+    .row.collapse
+        .columns.large-10.large-centered
+            
+            h4 Thank you for reserving the Sophia Room.
+            
+            #confirmation-wrap
+                .row.collapse
+                    //payment form
+                    .columns.large-8
+                        //credit card
+                        .thankyou-wrap
+                            h5 Your reservation has been successfully confirmed.
+                            ul(style='list-style:none')
+                                li The Clift Hotel
+                                li 695 Kearney
+                                li San Francisco, CA 90210
+                            ul(style='list-style:none')
+                                li Sophia Room
+                                li Thursday November 4, 2015
+                                li 7:00p to 10:00p
+                            h6 An email receipt has been sent to takeonechief@gmail.com
+                        .reservation-wrap.text-center
+                            .event-name NatureBox Marketing Holiday Dinner
+                            .event-date November 5, 2015
+                            .event-time 7:00p
+                            
+                            a.clean-button-inverse view your reservation
+                            
+                            .manager-message  Thank you for letting us have the opportunity to host you event. We are here t help you design a most memorable experience for you and your guests. Please do not hesitate to contact us.
+                            
+                            .img-wrap(style='border-radius:40px;overflow:hidden;width:36px;height:36px; margin:0 auto')
+                                img(src='assets/images/faces/craig.jpg')
+                            .manager-name Craig Smith
+                            .manager-title General Manager
+                            
+
+                    //summary
+                    .columns.large-4
+                        include templates/mp-event-itemization
+    
+    

@@ -1,0 +1,27 @@
+extends layout-off-canvas-ng
+
+block content
+    .page-wrapper
+        include templates/header-vendor
+
+        .content-wrapper
+
+            include templates/ng/vendor/venue/subnav
+
+            .row.collapse(data-equalizer)
+                .columns.large-3(data-equalizer-watch, style='background-color:#e4e4e4')
+                    .silo
+                        .menu-wrap
+                            include templates/ng/vendor/venue/vertical-nav
+
+
+                .columns.large-9(data-equalizer-watch, style='background-color:#fff')
+                    .silo
+                        .form-wrap
+                            include templates/ng/vendor/venue/room-revenue-management
+            
+
+
+
+
+    

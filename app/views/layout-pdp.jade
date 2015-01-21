@@ -1,13 +1,26 @@
 doctype html
-html
+html(ng-app="productApp")
     head
         title= title
         meta(name='viewport', content='width=device-width, user-scalable=no')
+        meta(charset='UTF-8')
         link(rel='stylesheet', href='/assets/stylesheets/app.css')
         script(src="/assets/js/modernizr.js")
         script(src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js")
         script(src="/assets/js/fastclick.js")
         script(src="/assets/js/foundation.min.js")
+        //angular
+        script(src="/assets/js/angular.js")
+        script(src="/assets/js/angular-route.js")
+        script(src="/assets/js/angular-animate.js")
+        //controllers & routes
+        script(src="/controllers/ng/productApp.js")
+        script(src="/controllers/ng/productController.js")
+        //side-comments
+        script(src='/assets/js/side-comments.js')
+        link(rel="stylesheet", href="/assets/stylesheets/side-comments.css")
+        link(rel="stylesheet", href="/assets/stylesheets/default-theme.css")
+        
     
     body
         // main content goes here
