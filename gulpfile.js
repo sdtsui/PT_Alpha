@@ -3,6 +3,7 @@ var gulp = require('gulp'),
     debug = require('debug')('app'),
     app = require('./app.js'),
     sass = require('gulp-ruby-sass'),
+    jade = require('gulp-jade'),
     autoprefixer = require('gulp-autoprefixer'),
     minifycss = require('gulp-minify-css'),
     jshint = require('gulp-jshint'),
@@ -144,6 +145,16 @@ gulp.task('images', function () {
         }));
 });
 
+gulp.task('templates', function() {
+  gulp.src('./client/views/**/*.jade')
+    .pipe(jade())
+    .pipe(gulp.dest('./public/assets/templates/'))
+    .pipe(livereload())
+    .pipe(notify({
+        message: 'templates task complete'
+    }));
+});
+
 // watch
 gulp.task('watch',function () {
     livereload.listen();
@@ -157,7 +168,7 @@ gulp.task('watch',function () {
     gulp.watch(['./client/assets/images/**/*'], ['images']);
     
     // Watch Images
-    gulp.watch(['./client/views/**/*'], ['copy']);
+    gulp.watch(['./client/views/**/*'], ['templates']);
     
     // Watch MVC + templates
     gulp.watch(['./client/**/*.*', '!./client/assets/{scss,js,images}/**/*.*'], ['copy']);
@@ -172,7 +183,7 @@ gulp.task('server:start', function () {
 });
 
 gulp.task('build', function () {
-    runSequence('clean', ['styles', 'scripts','images'], 'copy', 'watch',
+    runSequence('clean', ['styles', 'scripts','images', 'templates'], 'copy', 'watch',
         function () {
             console.log("Successfully built.");
         });
