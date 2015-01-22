@@ -1,0 +1,45 @@
+extends ../layout-off-canvas
+block content
+
+    table.message-list(width='100%', style='margin:24px 0 0;border:none;background-color:transparent')
+        tr.new.selected(style='background-color:transparent')
+            td(width='32', valign='top',style='background-color:transparent') 
+                .profile-wrap-circle.left(style='overflow:hidden; border-radius:40px;width:32px;height:32px')
+                    img(src='/assets/images/faces/craig.jpg', width='32', height='32')
+            td(width='',style='background-color:transparent') 
+                h6(style='color:#fff;') 
+                    span.name Craig Smith
+                p.message-string(style='font-size:0.85em;color:#ccc') Hello, I'm the General Manager of The Clift Hotel. Welcome to our private room design experience.
+                p(style='font-size:0.85em;color:#ccc') Explore our rooms, menus and services at your convenience. If you have any questions, simply click or tap on the message icon 
+                    img(src='assets/images/bubble-f77.png', height='12', width='12') 
+                    &nbsp; and send us your questions.
+        
+        tr(style='background-color:rgba(255,255,255,0.2)')
+            td(width='32', valign='top',style='background-color:transparent') 
+                i.fi-torso.fi-icon(style='font-size:32px;margin-right:8px;color:#f77;margin-right:8px')
+            td(width='',style='background-color:transparent') 
+                h6(style='color:#ccc;') 
+                    span.name You 
+                p.message-string(style='font-size:0.85em;color:#ccc') 
+                    span(style='color:#fff') Sign up 
+                    |or log in to start designing your experience and message with the event manager.
+        
+    .row
+        .columns.large-12.large-centered
+            .button.expand Sign Up via Facebook &nbsp;&nbsp;
+                i.fi-social-facebook.fi-icon(style='font-size:24px;margin-right:8px;color:#f77;margin-right:8px')
+    hr
+    .row
+        .columns.large-12.large-centered
+            h6.text-center Create Account
+            label Email
+                input(type='text', placeholder='eg joe@email.com')
+            label Password
+                input(type='text')
+            .button.expand Sign Up
+        hr
+        h6 Forgot password. 
+
+                
+        
+            
