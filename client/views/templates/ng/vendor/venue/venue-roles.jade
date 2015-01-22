@@ -1,0 +1,45 @@
+h4 ROLES 
+    small Craig Smith
+    .row
+
+        .columns.large-4
+            label Name
+                input(type='search', placeholder='eg My Hotel')
+
+            label Role
+                input(type="text", placeholder='')
+
+            label Email
+                input(type="text", placeholder='eg joe@name.com')
+
+            label Phone Number
+                input(type="text", placeholder='5555555555')
+            
+            label Role is currently Active
+            .switch.round.tiny
+                input(type="checkbox",id='role', checked)
+                label(for="role")
+
+            hr
+            
+            h5 NOTIFICATION
+            table(width='100%')
+                thead
+                    tr
+                        th(id='event') event
+                        th(width='40', id='email') email
+                        th(width='40', id='phone') phone
+                tbody
+                    tr
+                        th(id='event1', header='event') new prospect
+                        td(headers='event1 email')
+                        td(headers='event1 phone')
+                    tr
+                        th(id='event1', header='event') new message
+                        td(headers='event1 email')
+                        td(headers='event1 phone')
+            
+        .columns.large-4
+            
+        .columns.large-4
+            

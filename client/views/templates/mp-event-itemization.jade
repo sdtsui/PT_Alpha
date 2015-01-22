@@ -1,0 +1,218 @@
+table.design(style='margin:0;', width='100%')
+    tr(style='border-bottom:1px solid #ddd;')
+        td(style='padding-right:0;background-color:#333;padding: 2px 0',colspan=3)
+            h6.text-center(style='color:#fff') NatureBox Marketing Holiday Dinner
+            
+    tr(style='border-bottom:1px solid #ddd;background-color:transparent')
+        td(width='24px', valign='top', style='padding-right:0;border:0px solid #ddd')
+            img(src='assets/images/door.png', width='16', height='16')
+        td(width='80px', valign='top') 
+            span.type Room
+        td(valign='top')
+            // edit control
+            img.right(src='assets/images/pencil.png', width='12', height='12')
+            span.room Sophia Room
+            
+    tr(style='border-bottom:1px solid #ddd; background-color:transparent')
+        td(width='24px', valign='top', style='padding-right:0;border:0px solid #ddd')
+            img(src='assets/images/calendar.png', width='16', height='16')
+        td(width='80px', valign='top') 
+            span.type Event
+        td(valign='top')  
+            // edit control
+            img.right(src='assets/images/pencil.png', width='12', height='12')
+            span.date Thursday November 5, 2015
+            h6(style='margin:0')
+                span.time 7:00 - 10:00p
+                br
+                span.product Banquet
+                br
+                span.guest-count 24
+    
+    tr(style='border-bottom:1px solid #ddd; background-color:transparent')
+        td(width='24px', valign='top', style='padding-right:0;border:0px solid #ddd')
+            img(src='assets/images/layout.png', width='16', height='16')
+        td(width='80px', valign='top') 
+            span.type Layout
+        td(valign='top')  
+            // edit control
+            img.right(src='assets/images/pencil.png', width='12', height='12')
+            span.layout Royal Theater Layout
+
+    tr(style='border-bottom:1px solid #ddd; background-color:transparent')
+        td(width='24px', valign='top', style='padding-right:0;border:0px solid #ddd')
+            img(src='assets/images/service.png', width='16', height='16')
+        td(width='80px', valign='top') 
+            span.type Services
+        td(valign='top')  
+            // edit control
+            img.right(src='assets/images/pencil.png', width='12', height='12')
+            span.services 3 selected
+            h6(style='margin:0')
+                span.service-item open premium bar, cork fee, cake fee
+                
+    tr(style='border-bottom:1px solid #ddd; background-color:transparent')
+        td(width='24px', valign='top', style='padding-right:0;border:0px solid #ddd')
+            img(src='assets/images/menu.png', width='16', height='16')
+        td(width='80px', valign='top') 
+            span.type Menu
+        td(valign='top')  
+            // edit control
+            img.right(src='assets/images/pencil.png', width='12', height='12')
+            span.date Three Course Seafood Menu
+            h6(style='margin:0')
+                span.price-per-guest $100 per guest
+
+// itemized list
+table.itemized(style='margin:0;', width='100%')
+    tr(style='border-bottom:1px solid #ddd;')
+        td(style='padding-right:0;background-color:#333;padding: 2px 0',colspan=3)
+            h6.text-center(style='color:#fff') Summary
+            
+    tr(style='border-bottom:1px solid #ddd; background-color:transparent')
+        td( valign='top', width='24px', style='padding-right:0;border-bottom:1px solid #ddd;padding: 2px 0px 0px 8px')
+            img(src='assets/images/door.png', width='16', height='16')
+        td(valign='top', style='padding: 2px 8px')
+            // edit control
+            h6
+                //tooltip
+                span.type.has-tip(data-tooltip='hover_delay: 0', aria-haspopup='true', title='Fee assessed for groups less than 50') Staff Labor Fee &nbsp;
+                    img(src='assets/images/question.png', width='12', height='12')
+        td(valign='top',width='80px',style='padding: 2px 8px')
+            h6.text-right
+                span.price $100
+    
+    tr(style='border-bottom:1px solid #ddd; background-color:transparent')
+        td( valign='top', width='24px', style='padding-right:0;border-bottom:1px solid #ddd;padding: 2px 0px 0px 8px')
+            img(src='assets/images/menu.png', width='16', height='16')
+        td(valign='top', style='padding: 2px 8px')
+            // edit control
+            h6
+                span.type Three course seafood menu @
+                span.price-per-guest $100 per guest
+        td(valign='top',width='80px',style='padding: 2px 8px')
+            h6.text-right
+                span.price $2,400
+    
+    tr(style='border-bottom:1px solid #ddd; background-color:transparent')
+        td( valign='top', width='24px', style='padding-right:0;border-bottom:1px solid #ddd;padding: 2px 0px 0px 8px')
+            img(src='assets/images/service.png', width='16', height='16')
+        td(valign='top', style='padding: 2px 8px')
+            // edit control
+            h6
+                span.type Premium Open Bar @
+                span.price-per-guest $50 per guest
+        td(valign='top',width='80px',style='padding: 2px 8px')
+            h6.text-right
+                span.price $1,200
+                
+    tr(style='border-bottom:1px solid #ddd; background-color:transparent')
+        td( valign='top', width='24px', style='padding-right:0;border-bottom:1px solid #ddd;padding: 2px 0px 0px 8px')
+            img(src='assets/images/service.png', width='16', height='16')
+        td(valign='top', style='padding: 2px 8px')
+            // edit control
+            h6
+                span.type Cork Fee @
+                span.price-per-guest $5 per bottle
+        td(valign='top',width='80px',style='padding: 2px 8px')
+            h6.text-right
+                span.price $150
+                
+    tr(style='border-bottom:1px solid #ddd; background-color:transparent')
+        td( valign='top', width='24px', style='padding-right:0;border-bottom:1px solid #ddd;padding: 2px 0px 0px 8px')
+            img(src='assets/images/service.png', width='16', height='16')
+        td(valign='top', style='padding: 2px 8px')
+            // edit control
+            h6
+                span.type Cake Fee @
+                span.price-per-guest $5 per guest
+        td(valign='top',width='80px',style='padding: 2px 8px')
+            h6.text-right
+                span.price $120
+    
+    tr(style='border-bottom:1px solid #ddd; background-color:transparent')
+        td( valign='top', width='24px', style='padding-right:0;border-bottom:1px solid #ddd;padding: 2px 0px 0px 8px')
+            
+        td(valign='top', style='padding: 2px 8px')
+            // edit control
+            h6(style='margin-bottom:0')
+                span.type
+                    b Total
+            h6.subheader(style='margin-top:0')
+                small Taxes and gratuity included.
+        td(valign='top',width='80px',style='padding: 2px 8px')
+            h6.text-right
+                span.total
+                    b $2,400
+    
+    // rules
+    tr(style='border-bottom:1px solid #ddd;')
+        td(style='padding-right:0;background-color:#333;padding: 2px 0',colspan=3)
+            h6.text-center(style='color:#fff') Rules and Policy
+    
+    tr(style='border-bottom:1px solid #ddd; background-color:#f4f4f4')
+        td( valign='top', width='24px', style='padding-right:0;border-bottom:1px solid #ddd;padding: 2px 0px 0px 8px')
+        
+        td(valign='top', style='padding: 2px 8px')
+            // edit control
+            h6(style='margin-bottom:0')
+                //tooltip
+                span.type.has-tip(data-tooltip='hover_delay: 0', aria-haspopup='true', title='Fee assessed for groups less than 50') Cancellation & Refund Policies &nbsp;
+                    img(src='assets/images/question.png', width='12', height='12')
+            h6.subheader(style='margin-top:0')
+                small
+                    a(href='#') read more
+        td(valign='top',width='80px',style='padding: 2px 8px')
+            h6.text-right
+                span.type
+                    b Strict
+                    
+    tr(style='border-bottom:1px solid #ddd; background-color:#f4f4f4')
+        td( valign='top', width='24px', style='padding-right:0;border-bottom:1px solid #ddd;padding: 2px 0px 0px 8px')
+        
+        td(valign='top', style='padding: 2px 8px')
+            // edit control
+            h6(style='margin-bottom:0')
+                //tooltip
+                span.type.has-tip(data-tooltip='hover_delay: 0', aria-haspopup='true', title='Fee assessed for groups less than 50') House Rules &nbsp;
+                    img(src='assets/images/question.png', width='12', height='12')
+            h6.subheader(style='margin-top:0')
+                small
+                    a(href='#') read more
+        td(valign='top',width='80px',style='padding: 2px 8px')
+            h6.text-right
+                span.type
+                    b Strict
+                    
+    // Payment
+    tr(style='border-bottom:1px solid #ddd;')
+        td(style='padding-right:0;background-color:#333;padding: 2px 0',colspan=3)
+            h6.text-center(style='color:#fff') Payment
+    
+    tr(style='border-bottom:1px solid #ddd; background-color:transparent')
+        td( valign='top', width='24px', style='padding-right:0;border-bottom:1px solid #ddd;padding: 2px 0px 0px 8px')
+            //card image
+            img(src='assets/images/card-amex.png', width='16', height='16')
+        td(valign='top', style='padding: 2px 8px')
+            h6(style='margin-bottom:0')
+                span.type American Epxress  
+                span.card-4-digits ...7777
+            h6.subheader(style='margin-top:0')
+                small Paid on September 24, 2015
+        td(valign='top',width='80px',style='padding: 2px 8px')
+            h6.text-right
+                span.type $1,200
+                    
+    tr(style='border-bottom:1px solid #ddd; background-color:transparent')
+        td( valign='top', width='24px', style='padding-right:0;border-bottom:1px solid #ddd;padding: 2px 0px 0px 8px')
+        
+        td(valign='top', style='padding: 2px 8px')
+            h6(style='margin-bottom:0')
+                span.type Balance  
+            h6.subheader(style='margin-top:0')
+                small Due on October 29, 2015
+        td(valign='top',width='80px',style='padding: 2px 8px')
+            h6.text-right
+                span.type $1,200
+                
+        

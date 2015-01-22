@@ -1,0 +1,137 @@
+// second column for message.jade view
+// user interface for displaying a list of newest chat messages
+
+// filter by user role
+table.message-list(width='100%', style='margin:0;border:none;')
+    //message id 1
+    tr.new.selected(style='background-color:#fff')
+        td(width='15%', valign='top') 
+            .profile-wrap-circle.right(style='overflow:hidden; border-radius:40px; margin-right:8px;')
+                img(src='/assets/images/faces/nina.jpg', width='32', height='32')
+        td(width='65%') 
+            h6(style='margin:0') 
+                span.name 
+                    b Annie Yang 
+                span.message-action replied to 
+                // 2 types of message-action -> replied to | started
+                |a thread on 
+                span.topic 
+                    b #layout
+            p.message-string.truncate(style='margin:0;font-size:0.85em;color:#888') Can we slightly modify the layout to include just 1 more person?  I love this layout and room but we have 1 more than what your capacity allows.
+        td(width='20%', valign='top')
+            p.time-stamp.text-right(style='margin:0') 
+                small 1d ago &nbsp;&nbsp;
+                img(src='/assets/images/arrow-right.png', width='16', height='16')
+    
+    //message id 2
+    tr.new(style='background-color:#f8f8f8')
+        td(width='15%', valign='top') 
+            .profile-wrap-circle.right(style='overflow:hidden; border-radius:40px; margin-right:8px;')
+                img(src='/assets/images/faces/craig.jpg', width='32', height='32')
+        td(width='65%') 
+            h6(style='margin:0') 
+                span.name 
+                    b You 
+                | replied to a thread on 
+                span.topic 
+                    b #menu
+            p.message-string(style='margin:0;font-size:0.85em;color:#888') Can we slightly modify the layout to include just 1 more person?  I love this layout and room but we have 1 more than what your capacity allows.
+        td(width='20%', valign='top')
+            p.time-stamp.text-right(style='margin:0') 
+                small 1d ago &nbsp;&nbsp;
+                img(src='/assets/images/arrow-right-aaa.png', width='16', height='16')
+    
+    //message id 3
+    tr.new(style='background-color:#f8f8f8')
+        td(width='15%', valign='top') 
+            .profile-wrap-circle.right(style='overflow:hidden; border-radius:40px; margin-right:8px;')
+                img(src='/assets/images/faces/oxana.jpg', width='32', height='32')
+        td(width='65%') 
+            h6(style='margin:0') 
+                span.name 
+                    b Oxana L. 
+                | started a thread on 
+                span.topic 
+                    b #payment
+            p.message-string(style='margin:0;font-size:0.85em;color:#888') Can we slightly modify the layout to include just 1 more person?  I love this layout and room but we have 1 more than what your capacity allows.
+        td(width='20%', valign='top')
+            p.time-stamp.text-right(style='margin:0') 
+                small 1d ago &nbsp;&nbsp;
+                img(src='/assets/images/arrow-right-aaa.png', width='16', height='16')
+    
+    //message id 4
+    tr(style='background-color:transparent')
+        td(width='15%', valign='top') 
+            .profile-wrap-circle.right(style='overflow:hidden; border-radius:40px; margin-right:8px;')
+                img(src='/assets/images/faces/oxana.jpg', width='32', height='32')
+        td(width='65%') 
+            h6(style='margin:0') 
+                span.name 
+                    b Oxana L. 
+                | replied to a thread on 
+                span.topic 
+                    b #layout
+            p.message-string(style='margin:0;font-size:0.85em;color:#888') Can we slightly modify the layout to include just 1 more person?  I love this layout and room but we have 1 more than what your capacity allows.
+        td(width='20%', valign='top')
+            p.time-stamp.text-right(style='margin:0') 
+                small 1d ago &nbsp;&nbsp;
+                img(src='/assets/images/arrow-right-aaa.png', width='16', height='16')
+                
+    //message id 5
+    tr(style='background-color:transparent')
+        td(width='15%', valign='top') 
+            .profile-wrap-circle.right(style='overflow:hidden; border-radius:40px; margin-right:8px;')
+                img(src='/assets/images/faces/sean.jpg', width='32', height='32')
+        td(width='65%') 
+            h6(style='margin:0') 
+                span.name 
+                    b Sean
+                | replied to a thread on 
+                span.topic 
+                    b #room
+            p.message-string(style='margin:0;font-size:0.85em;color:#888') Can we slightly modify the layout to include just 1 more person?  I love this layout and room but we have 1 more than what your capacity allows.
+        td(width='20%', valign='top')
+            p.time-stamp.text-right(style='margin:0') 
+                small 1d ago &nbsp;&nbsp;
+                img(src='/assets/images/arrow-right-aaa.png', width='16', height='16')
+    
+    //message id 6
+    tr(style='background-color:transparent')
+        td(width='15%', valign='top') 
+            .profile-wrap-circle.right(style='overflow:hidden; border-radius:40px; margin-right:8px;')
+                img(src='/assets/images/faces/armando.jpg', width='32', height='32')
+        td(width='65%') 
+            h6(style='margin:0') 
+                span.name 
+                    b Armando 
+                | replied to a thread on 
+                span.topic 
+                    b #menu
+            p.message-string(style='margin:0;font-size:0.85em;color:#888') Can we slightly modify the layout to include just 1 more person?  I love this layout and room but we have 1 more than what your capacity allows.
+        td(width='20%', valign='top')
+            p.time-stamp.text-right(style='margin:0') 
+                small 1d ago &nbsp;&nbsp;
+                img(src='/assets/images/arrow-right-aaa.png', width='16', height='16')
+                
+    //message id 7
+    tr(style='background-color:transparent')
+        td(width='15%', valign='top') 
+            .profile-wrap-circle.right(style='overflow:hidden; border-radius:40px; margin-right:8px;')
+                img(src='/assets/images/faces/craig.jpg', width='32', height='32')
+        td(width='65%') 
+            h6(style='margin:0') 
+                span.name 
+                    b You 
+                | replied to a thread on 
+                span.topic 
+                    b #menu
+            p.message-string(style='margin:0;font-size:0.85em;color:#888') Can we slightly modify the layout to include just 1 more person?  I love this layout and room but we have 1 more than what your capacity allows.
+        td(width='20%', valign='top')
+            p.time-stamp.text-right(style='margin:0') 
+                small 1d ago &nbsp;&nbsp;
+                img(src='/assets/images/arrow-right-aaa.png', width='16', height='16')
+    
+    
+                
+                
+                
