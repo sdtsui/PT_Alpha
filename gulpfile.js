@@ -15,7 +15,10 @@ var gulp = require('gulp'),
     cache = require('gulp-cache'),
     livereload = require('gulp-livereload'),
     runSequence = require('run-sequence'),
-    rimraf = require('rimraf');
+    rimraf = require('rimraf'),
+    include        = require('gulp-include'),
+    gutil = require('gulp-util'),
+    coffee = require('gulp-coffee');
 
 // start server 
 function startExpress() {
@@ -52,6 +55,7 @@ gulp.task('clean', function (cb) {
 });
 
 // Copies user-created files and Foundation assets
+// TODO: should remove from gulp in future
 gulp.task('copy', function () {
     var dirs = [
             './client/**/*.*',
@@ -98,6 +102,27 @@ gulp.task('styles', function () {
         }));
 });
 
+gulp.task('coffee', function(done) {
+  var dirs = [
+          './client/coffee/app.coffee',
+          './client/coffee/**/*.*'
+        ];
+  // gulp.src('./client/coffee/**/*.coffee')
+    gulp.src(dirs)
+      .pipe( include() )
+      // .pipe( coffee() )
+      .pipe(coffee({bare: true}).on('error', gutil.log))
+      // .pipe(uglify())
+      .pipe(concat('application.js'))
+      // .pipe(uglify())
+      .pipe(gulp.dest('./public/assets/js'))
+      .pipe(livereload())
+      .pipe(notify({
+        message: 'Coffee task complete'
+      }))
+      .on('end', done)
+});
+
 // Scripts
 gulp.task('scripts', function () {
     gulp.src(foundationJS)
@@ -114,20 +139,20 @@ gulp.task('scripts', function () {
             message: 'Scripts for Angular task complete'
         }));
     
-    return gulp.src('./client/assets/js/app.js')
-        .pipe(jshint('.jshintrc'))
-        .pipe(jshint.reporter('default'))
-        .pipe(concat('app.js'))
-        .pipe(gulp.dest('./public/assets/js'))
-        .pipe(rename({
-            suffix: '.min'
-        }))
-        .pipe(uglify())
-        .pipe(gulp.dest('./public/assets/js'))
-        .pipe(livereload())
-        .pipe(notify({
-            message: 'Scripts task complete'
-        }));    
+    // return gulp.src('./client/assets/js/app.js')
+    //     .pipe(jshint('.jshintrc'))
+    //     .pipe(jshint.reporter('default'))
+    //     .pipe(concat('app.js'))
+    //     .pipe(gulp.dest('./public/assets/js'))
+    //     .pipe(rename({
+    //         suffix: '.min'
+    //     }))
+    //     .pipe(uglify())
+    //     .pipe(gulp.dest('./public/assets/js'))
+    //     .pipe(livereload())
+    //     .pipe(notify({
+    //         message: 'Scripts task complete'
+    //     }));    
 });
 
 // Images
@@ -146,7 +171,7 @@ gulp.task('images', function () {
 });
 
 gulp.task('templates', function() {
-  gulp.src('./client/views/**/*.jade')
+  gulp.src('./client/templates/**/*.jade')
     .pipe(jade())
     .pipe(gulp.dest('./public/assets/templates/'))
     .pipe(livereload())
@@ -168,7 +193,10 @@ gulp.task('watch',function () {
     gulp.watch(['./client/assets/images/**/*'], ['images']);
     
     // Watch Images
-    gulp.watch(['./client/views/**/*'], ['templates']);
+    gulp.watch(['./client/templates/**/*'], ['templates']);
+    
+    // Watch Images
+    gulp.watch(['./client/coffee/**/*'], ['coffee']);
     
     // Watch MVC + templates
     gulp.watch(['./client/**/*.*', '!./client/assets/{scss,js,images}/**/*.*'], ['copy']);
@@ -183,7 +211,7 @@ gulp.task('server:start', function () {
 });
 
 gulp.task('build', function () {
-    runSequence('clean', ['styles', 'scripts','images', 'templates'], 'copy', 'watch',
+    runSequence('clean', ['styles', 'coffee', 'scripts', 'images', 'templates'], 'copy', 'watch',
         function () {
             console.log("Successfully built.");
         });
