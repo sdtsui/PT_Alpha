@@ -9,6 +9,17 @@
   "dependencies": {
     "foundation": "~5.5.0",
     "angularjs": "~1.3.10",
-    "angular": "~1.3.10"
+    "angular": "~1.3.10",
+    "side-comments": "~0.0.3",
+    "fastclick": "~1.0.3",
+    "hammerjs": "~2.0.4",
+    "jquery": "~2.1.3",
+    "modernizr": "~2.8.3",
+    "angular-animate": "~1.3.10",
+    "angular-route": "~1.3.10",
+    "angular-touch": "~1.3.10",
+    "foundation-icon-fonts": "*",
+    "tether": "~0.6.5",
+    "ui-router": "~0.2.13"
   }
 }
