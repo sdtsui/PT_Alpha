@@ -3,7 +3,8 @@ require('coffee-script/register');
 var express = require('express'),
   config = require('./config/environment'),
   glob = require('glob'),
-  mongoose = require('mongoose');
+  mongoose = require('mongoose'),
+  passport = require('passport');
 
 mongoose.connect(config.db);
 var db = mongoose.connection;
@@ -17,6 +18,7 @@ models.forEach(function (model) {
 });
 var app = express();
 
-require('./config/express')(app, config);
+require('./config/passport')(passport, config);
+require('./config/express')(app, config, passport);
 
 module.exports = app;

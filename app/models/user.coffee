@@ -126,4 +126,9 @@ UserSchema.methods =
     return ~oAuthTypes.indexOf(this.provider)
 
 
+UserSchema.statics =
+  load: (options, cb)->
+    options.select = options.select || 'name email'
+    this.findOne(options.criteria).select(options.select).exec(cb)
+
 mongoose.model 'User', UserSchema

@@ -8,7 +8,7 @@ bodyParser = require 'body-parser'
 compress = require 'compression'
 methodOverride = require 'method-override'
 
-module.exports = (app, config) ->
+module.exports = (app, config, passport) ->
   app.set 'views', config.root + '/app/views'
   app.set 'view engine', 'jade'
 
@@ -22,6 +22,10 @@ module.exports = (app, config) ->
   app.use compress()
   app.use express.static config.root + '/public'
   app.use methodOverride()
+
+  app.use passport.initialize()
+  app.use passport.session()
+
 
   controllers = glob.sync config.root + '/app/controllers/**/*.coffee'
   controllers.forEach (controller) ->
