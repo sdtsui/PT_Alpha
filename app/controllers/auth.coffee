@@ -41,5 +41,17 @@ module.exports = (app, passport) ->
     req.logout()
     res.redirect('/')
 
-  router.get '/login', (req, res)->
-    res.render 'landing', title: 'Login'
+  router.get '/signup', (req, res)->
+    res.render 'landing', 
+      title: 'Sign Up'
+      user: new User({email: '', name: ''})
+
+  router.post '/signup', (req, res)->
+    user = new User(req.body)
+    user.provider = 'local'
+    user.save (err)->
+      if err
+        return res.render 'landing', 
+          error: err.errors
+          user: user,
+          title: 'Sign Up'

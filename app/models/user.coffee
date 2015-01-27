@@ -56,6 +56,22 @@ UserSchema.virtual('password')
 .get ()->
   return this._password
 
+
+UserSchema.virtual('venue')
+.set (venue)->
+  this._venue = venue
+.get ()->
+  return this._venue
+
+
+UserSchema.virtual('venueUrl')
+.set (venueUrl)->
+  this._venueUrl = venueUrl
+.get ()->
+  return this._venueUrl
+
+
+
 validatePresenceOf = (value)->
   return value && value.length
 
