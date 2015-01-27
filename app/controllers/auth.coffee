@@ -40,3 +40,6 @@ module.exports = (app, passport) ->
   router.get '/logout', (req, res)->
     req.logout()
     res.redirect('/')
+
+  router.get '/login', (req, res)->
+    res.render 'landing', title: 'Login'

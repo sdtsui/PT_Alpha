@@ -1,0 +1,42 @@
+doctype html
+html(ng-app="productApp")
+    head
+        title= title
+        meta(name='viewport', content='width=device-width, user-scalable=no')
+        meta(charset='UTF-8')
+        link(rel='stylesheet', href='/assets/stylesheets/app.css')
+        script(src="/assets/js/modernizr.js")
+        script(src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js")
+        script(src="/assets/js/fastclick.js")
+        script(src="/assets/js/foundation.min.js")
+        
+    .row.collapse
+        .columns.large-8
+            p test
+        .columns.large-4
+            .form-wrap(style='height:700px;background-color:#fff;width:100%')
+                .row.collapse
+                    .columns.large-centered.large-10
+                        img(src='/assets/images/logo.png', width='100', height='24')
+                        h6 We help increase the conversion rate of your inbound private events inquiries at amazing speed.
+                        br
+                        
+                        .button.expand.large Sign Up With Facebook
+                        
+                        
+                        form
+                            label Venue Name
+                                input(type='text', placeholder='test')
+                            label URL
+                                input(type='text', placeholder='')
+                            label Full Name
+                                input(type='text', placeholder='')
+                            label Job Title
+                                input(type='text', placeholder='')
+                            label Email
+                                input(type='text', placeholder='')
+                            label Password
+                                input(type='text', placeholder='')
+                            button Get Started
+                                
+                    
