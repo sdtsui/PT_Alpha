@@ -1,12 +1,17 @@
 express = require 'express'
+session = require('express-session')
 glob = require 'glob'
-
+cookieSession = require('cookie-session')
+flash = require('connect-flash')
 favicon = require 'serve-favicon'
 logger = require 'morgan'
 cookieParser = require 'cookie-parser'
 bodyParser = require 'body-parser'
 compress = require 'compression'
 methodOverride = require 'method-override'
+
+mongoStore = require('connect-mongo')(session)
+pkg = require('../package.json')
 
 module.exports = (app, config, passport) ->
   app.set 'views', config.root + '/app/views'
@@ -20,6 +25,19 @@ module.exports = (app, config, passport) ->
   )
   app.use cookieParser()
   app.use compress()
+
+  app.use(cookieSession({ secret: 'secretkey' }))
+  app.use session(
+    resave: true
+    saveUninitialized: true
+    secret: pkg.name
+    store: new mongoStore(
+      url: config.db
+      collection : 'expresssessions'
+    )
+  )
+
+
   app.use express.static config.root + '/public'
   app.use methodOverride()
 
@@ -27,34 +45,3 @@ module.exports = (app, config, passport) ->
   app.use passport.session()
 
 
-  controllers = glob.sync config.root + '/app/controllers/**/*.coffee'
-  controllers.forEach (controller) ->
-    require(controller)(app, passport);
-
-  # catch 404 and forward to error handler
-  app.use (req, res, next) ->
-    err = new Error 'Not Found'
-    err.status = 404
-    next err
-
-  # error handlers
-
-  # development error handler
-  # will print stacktrace
-  
-  if app.get('env') == 'development'
-    app.use (err, req, res, next) ->
-      res.status err.status || 500
-      res.render 'error',
-        message: err.message
-        error: err
-        title: 'error'
-
-  # production error handler
-  # no stacktraces leaked to user
-  app.use (err, req, res, next) ->
-    res.status err.status || 500
-    res.render 'error',
-      message: err.message
-      error: {}
-      title: 'error'
