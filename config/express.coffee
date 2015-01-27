@@ -29,7 +29,7 @@ module.exports = (app, config, passport) ->
 
   controllers = glob.sync config.root + '/app/controllers/**/*.coffee'
   controllers.forEach (controller) ->
-    require(controller)(app);
+    require(controller)(app, passport);
 
   # catch 404 and forward to error handler
   app.use (req, res, next) ->

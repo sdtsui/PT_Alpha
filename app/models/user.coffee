@@ -4,8 +4,9 @@ crypto = require('crypto')
 mongoose = require 'mongoose'
 Schema   = mongoose.Schema
 
-AUTH_TYPES = 
-  FACEBOOK: 'facebook'
+AUTH_TYPES = [
+  'facebook'
+]
 
 UserSchema = new Schema(
   # auth attributes
@@ -23,7 +24,7 @@ UserSchema = new Schema(
 
   provider:
     type: String
-    enum: _.values(AUTH_TYPES)
+    enum: AUTH_TYPES
 
   # profile attributes
   name:
@@ -123,7 +124,7 @@ UserSchema.methods =
 
 
   skipValidation: ()->
-    return ~oAuthTypes.indexOf(this.provider)
+    return ~AUTH_TYPES.indexOf(this.provider)
 
 
 UserSchema.statics =
