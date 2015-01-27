@@ -5,7 +5,7 @@ User  = mongoose.model 'User'
 
 login = (req, res)->
   console.log 'login......'
-  console.log req
+  console.log req.user
   redirectTo = 
     if req.session.returnTo 
       req.session.returnTo 
@@ -36,3 +36,7 @@ module.exports = (app, passport) ->
   router.get '/facebook/callback',
     passport.authenticate 'facebook', failureRedirect: '/login'
   , login
+
+  router.get '/logout', (req, res)->
+    req.logout()
+    res.redirect('/')

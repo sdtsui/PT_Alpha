@@ -13,6 +13,7 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     notify = require('gulp-notify'),
     cache = require('gulp-cache'),
+    nodemon = require('gulp-nodemon'),
     livereload = require('gulp-livereload'),
     runSequence = require('run-sequence'),
     rimraf = require('rimraf'),
@@ -20,13 +21,13 @@ var gulp = require('gulp'),
     gutil = require('gulp-util'),
     coffee = require('gulp-coffee');
 
-// start server 
-function startExpress() {
-    app.set('port', process.env.PORT || 3000);
-    var server = app.listen(app.get('port'), function () {
-        debug('Express server listening on port ' + server.address().port);
-    });
-}
+// // start server 
+// function startExpress() {
+//     app.set('port', process.env.PORT || 3000);
+//     var server = app.listen(app.get('port'), function () {
+//         debug('Express server listening on port ' + server.address().port);
+//     });
+// }
 
 // These files include Foundation for Apps and its dependencies
 var foundationJS = [
@@ -205,13 +206,27 @@ gulp.task('watch',function () {
 
 });
 
-// Starts a test server, which you can view at http://localhost:8080
-gulp.task('server:start', function () {
-    startExpress();
+// // Starts a test server, which you can view at http://localhost:8080
+// gulp.task('server:start', function () {
+//     startExpress();
+// });
+
+gulp.task('develop', function () {
+  livereload.listen();
+  nodemon({
+    script: './bin/www',
+    ext: 'js coffee jade',
+    ignore: ['./public/**'],
+    nodeArgs: ['--debug=9999'] 
+  }).on('restart', function () {
+    setTimeout(function () {
+      livereload.changed();
+    }, 500);
+  });
 });
 
 gulp.task('build', function () {
-    runSequence('clean', ['styles', 'coffee', 'scripts', 'images', 'templates'], 'copy', 'watch',
+    runSequence('clean', ['styles', 'coffee', 'scripts', 'images', 'templates'], 'copy',
         function () {
             console.log("Successfully built.");
         });
@@ -219,8 +234,8 @@ gulp.task('build', function () {
 
 
 // launch gulp tasks
-gulp.task('default', ['build'], function () {
-    startExpress();
+gulp.task('default', ['build', 'develop', 'watch'], function () {
+    // startExpress();
     console.log('**************\nserver listening @ 3000\n**************');
 
 });
