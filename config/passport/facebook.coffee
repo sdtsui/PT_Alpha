@@ -13,6 +13,8 @@ facebook = new FacebookStrategy(
     options =
       criteria: { 'facebook.id': profile.id }
 
+    console.log JSON.stringify(profile._json)
+
     User.load options, (err, user)->
       if (err) 
         return done(err)

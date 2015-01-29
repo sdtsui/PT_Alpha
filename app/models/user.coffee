@@ -26,6 +26,8 @@ UserSchema = new Schema(
     type: String
     enum: AUTH_TYPES
 
+  facebook: {}
+  
   # profile attributes
   name:
     type: String

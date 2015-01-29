@@ -208,8 +208,8 @@ gulp.task('develop', function () {
         './client/**',
         './client/coffee/pt.coffee'
     ],
-    ext: 'js jade',
-    // ext: 'js coffee jade',
+    // ext: 'js jade',
+    ext: 'js coffee jade',
     nodeArgs: ['--debug=9999']
   }).on('restart', function () {
     setTimeout(function () {
