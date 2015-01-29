@@ -36,13 +36,9 @@ var foundationJS = [
     'public/components/fastclick/lib/fastclick.js',
     'public/components/viewport-units-buggyfill/viewport-units-buggyfill.js',
     'public/components/tether/tether.js',
-    'public/components/angular/angular.js',
-    'public/components/angular-route/angular-route.js',
-    'public/components/angular-animate/angular-animate.js',
-    'public/components/angular-touch/angular-touch.js',
-    'public/components/ui-router/release/angular-ui-router.js',
+    'public/components/underscore/underscore-min.js',
+    'public/components/backbone/backbone.js',
     'public/components/side-comments/release/side-comments.js'
-
 ];
 
 // these files are css from plugins

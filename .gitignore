@@ -3,3 +3,5 @@ public/components
 public/assets
 .sass-cache
 npm-debug.log
+.ruby-version
+.ruby-gemset
