@@ -21,13 +21,7 @@ var gulp = require('gulp'),
     gutil = require('gulp-util'),
     coffee = require('gulp-coffee');
 
-// // start server 
-// function startExpress() {
-//     app.set('port', process.env.PORT || 3000);
-//     var server = app.listen(app.get('port'), function () {
-//         debug('Express server listening on port ' + server.address().port);
-//     });
-// }
+
 
 // These files include Foundation for Apps and its dependencies
 var foundationJS = [
@@ -99,10 +93,10 @@ gulp.task('styles', function () {
         }));
 });
 
-gulp.task('coffee', function(done) {
+gulp.task('coffeeTask', function(done) {
   var dirs = [
-          './client/coffee/app.coffee',
-          './client/coffee/**/*.*'
+          './client/coffee/pt.coffee',
+          // './client/coffee/**/*.*'
         ];
   // gulp.src('./client/coffee/**/*.coffee')
     gulp.src(dirs)
@@ -116,8 +110,8 @@ gulp.task('coffee', function(done) {
       .pipe(livereload())
       .pipe(notify({
         message: 'Coffee task complete'
-      }))
-      .on('end', done)
+      }));
+      // .on('end', done)
 });
 
 // Scripts
@@ -181,39 +175,42 @@ gulp.task('templates', function() {
 gulp.task('watch',function () {
     livereload.listen();
     // Watch Sass
-    gulp.watch(['./client/assets/scss/**/*'], ['styles']);
+    gulp.watch(['./client/assets/scss/**/*.*'], ['styles']);
 
     // Watch JavaScript
-    gulp.watch(['./client/assets/js/**/*'], ['scripts']);
+    gulp.watch(['./client/assets/js/**/*.*'], ['scripts']);
     
     // Watch Images
-    gulp.watch(['./client/assets/images/**/*'], ['images']);
+    gulp.watch(['./client/assets/images/**/*.*'], ['images']);
     
     // Watch Images
-    gulp.watch(['./client/templates/**/*'], ['templates']);
+    gulp.watch(['./client/templates/**/*.*'], ['templates']);
     
-    // Watch Images
-    gulp.watch(['./client/coffee/**/*'], ['coffee']);
+    // Watch coffee
+    gulp.watch(['./client/coffee/**/*.*'], ['coffeeTask']);
     
-    // Watch MVC + templates
-    gulp.watch(['./client/**/*.*', '!./client/assets/{scss,js,images}/**/*.*'], ['copy']);
+    // // Watch MVC + templates
+    // gulp.watch(['./client/**/*.*', '!./client/assets/{scss,js,images,coffee}/**/*.*'], ['copy']);
 
     // Watch any files in build/, reload on change
 
 });
 
-// // Starts a test server, which you can view at http://localhost:8080
-// gulp.task('server:start', function () {
-//     startExpress();
-// });
 
 gulp.task('develop', function () {
   livereload.listen();
   nodemon({
     script: './bin/www',
-    ext: 'js coffee jade',
-    ignore: ['./public/**'],
-    nodeArgs: ['--debug=9999'] 
+    verbose: true,
+    watch: './app/**',
+    ignore: [
+        './public/**',
+        './client/**',
+        './client/coffee/pt.coffee'
+    ],
+    ext: 'js jade',
+    // ext: 'js coffee jade',
+    nodeArgs: ['--debug=9999']
   }).on('restart', function () {
     setTimeout(function () {
       livereload.changed();
@@ -222,7 +219,7 @@ gulp.task('develop', function () {
 });
 
 gulp.task('build', function () {
-    runSequence('clean', ['styles', 'coffee', 'scripts', 'images', 'templates'], 'copy',
+    runSequence('clean', ['styles', 'coffeeTask', 'scripts', 'images', 'templates'], 'copy',
         function () {
             console.log("Successfully built.");
         });
