@@ -4,6 +4,9 @@ window.PrivateTable =
   Routers: {}
   Views: {}
   Helpers: {}
+  init: ()->
+    window.venueRouter = new PrivateTable.Routers.VenueRouter()
+    Backbone.history.start()
 
 # require app.js
 #= require_tree ./libs/

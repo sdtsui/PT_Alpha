@@ -6,4 +6,4 @@ class PrivateTable.Routers.VenueRouter extends Backbone.Router
     ""                      : "index"
   
   index: ->
-  	alert 'index backbonejs here'
+  	alert 'I am backbonejs'
