@@ -93,7 +93,7 @@ gulp.task('styles', function () {
         }));
 });
 
-gulp.task('coffeeTask', function(done) {
+gulp.task('coffees', function() {
   var dirs = [
           './client/coffee/pt.coffee',
           // './client/coffee/**/*.*'
@@ -187,7 +187,7 @@ gulp.task('watch',function () {
     gulp.watch(['./client/templates/**/*.*'], ['templates']);
     
     // Watch coffee
-    gulp.watch(['./client/coffee/**/*.*'], ['coffeeTask']);
+    gulp.watch(['./client/coffee/**/*.*'], ['coffees']);
     
     // // Watch MVC + templates
     // gulp.watch(['./client/**/*.*', '!./client/assets/{scss,js,images,coffee}/**/*.*'], ['copy']);
@@ -219,7 +219,7 @@ gulp.task('develop', function () {
 });
 
 gulp.task('build', function () {
-    runSequence('clean', ['styles', 'coffeeTask', 'scripts', 'images', 'templates'], 'copy',
+    runSequence('clean', ['styles', 'coffees', 'scripts', 'images', 'templates'], 'copy',
         function () {
             console.log("Successfully built.");
         });
