@@ -7,9 +7,8 @@ module.exports = (app) ->
   app.use '/', router
 
 router.get '/', (req, res, next) ->
-  console.log 'req.user-----------'
   console.log req.user
-  res.render('index',
+  res.render('home',
     title: 'HandleRoR MVC'
   )
 

@@ -649,6 +649,7 @@ $anchor-font-color: #f77;
 // We use these to style the labels in different ways
 // $form-label-pointer: pointer;
 // $form-label-font-size: rem-calc(14);
+$form-label-font-size: rem-calc(11);
 // $form-label-font-weight: $font-weight-normal;
 // $form-label-line-height: 1.5;
 // $form-label-font-color: scale-color($black, $lightness: 30%);
@@ -657,6 +658,7 @@ $anchor-font-color: #f77;
 // $input-font-family: inherit;
 // $input-font-color: rgba(0,0,0,0.75);
 // $input-font-size: rem-calc(14);
+$input-font-size: rem-calc(11);
 // $input-bg-color: $white;
 // $input-focus-bg-color: scale-color($white, $lightness: -2%);
 // $input-border-color: scale-color($white, $lightness: -20%);
@@ -1290,7 +1292,7 @@ $magellan-padding: 0px;
 // $switch-paddle-transition-speed: .15s;
 // $switch-paddle-transition-ease: ease-out;
 // $switch-active-color: $primary-color;
-$switch-active-color: $charcoal; 
+$switch-active-color: green; 
 
 // 30. Tables
 // - - - - - - - - - - - - - - - - - - - - - - - - -
