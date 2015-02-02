@@ -58,6 +58,12 @@ UserSchema.virtual('password')
 .get ()->
   return this._password
 
+UserSchema.virtual('passwordConfirmation')
+.set (passwordConfirmation)->
+  this._passwordConfirmation = passwordConfirmation
+.get ()->
+  return this._passwordConfirmation
+
 
 UserSchema.virtual('venue')
 .set (venue)->
@@ -77,15 +83,20 @@ UserSchema.virtual('venueUrl')
 validatePresenceOf = (value)->
   return value && value.length
 
+validateMatchPasswords = (value1, value2)->
+  return value1 && value2 && value1 == value2
 
 UserSchema.pre 'save', (next)->
   if !this.isNew 
     return next()
 
   if !validatePresenceOf(this.password) && !this.skipValidation()
-    next(new Error('Invalid password'))
-  else
-    next()
+    return next(new Error('Invalid password'))
+
+  if !validateMatchPasswords(this.password, this.passwordConfirmation) && !this.skipValidation()
+    return next(new Error('Not matched password'))
+
+  return next()
 
 
 UserSchema.path('name').validate( (name)->
