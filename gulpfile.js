@@ -32,6 +32,7 @@ var foundationJS = [
     'public/components/tether/tether.js',
     'public/components/underscore/underscore-min.js',
     'public/components/backbone/backbone.js',
+    'public/components/mustache/mustache.min.js',
     'public/components/side-comments/release/side-comments.js'
 ];
 
@@ -190,7 +191,7 @@ gulp.task('watch',function () {
     gulp.watch(['./client/coffee/**/*.*'], ['coffees']);
     
     // // Watch MVC + templates
-    // gulp.watch(['./client/**/*.*', '!./client/assets/{scss,js,images,coffee}/**/*.*'], ['copy']);
+    gulp.watch(['./client/**/*.*', '!./client/assets/{scss,js,images,coffee}/**/*.*'], ['copy']);
 
     // Watch any files in build/, reload on change
 

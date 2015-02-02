@@ -6,4 +6,6 @@ class PrivateTable.Routers.VenueRouter extends Backbone.Router
     ""                      : "index"
   
   index: ->
-  	alert 'I am backbonejs'
+    alert 'I am backbonejs'
+    view = new PrivateTable.Views.Auths.SignupView()
+    console.log view.render()

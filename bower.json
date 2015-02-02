@@ -16,6 +16,8 @@
     "foundation-icon-fonts": "*",
     "tether": "~0.6.5",
     "ui-router": "~0.2.13",
-    "backbone": "~1.1.2"
+    "backbone": "~1.1.2",
+    "mustache": "~1.0.0",
+    "requirejs": "~2.1.15"
   }
 }
