@@ -1,0 +1,8 @@
+.clean-button-tiny.right add new role
+h6 Roles
+
+div(ng-controller="VenueController")
+    input(type='search', placeholder='find a manager', ng-model='query')
+    ul.menu-list
+        li.item(ng-repeat='item in data.roles | filter: query')
+            {{item.name}}

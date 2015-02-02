@@ -1,0 +1,8 @@
+.clean-button-tiny.right add new service
+h6 Services
+
+div(ng-controller="VenueController")
+    input(type='search', placeholder='find a service', ng-model='query')
+    ul.menu-list
+        li.item(ng-repeat='item in data.services | filter: query')
+            {{item.name}}

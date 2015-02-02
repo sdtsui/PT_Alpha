@@ -1,18 +1,20 @@
-h4 VENUE 
-    small settings
-    .row
+.row
+    .clean-button-tiny.top-cta.right 
+        &nbsp; save &nbsp;
+        i.fi-save
+    .clean-button-tiny.top-cta.right cancel
+    h4 SETTINGS 
+        small | Copy, Intros, Success
+    hr
+    .columns.large-6
+        label Intro Email Message
+            textarea(name="",rows="4",placeholder='')
 
-        .columns.large-4
-            label Intro Email Message
-                textarea(name="",rows="4",placeholder='')
+        label Marketplace Introduction Message
+            textarea(name="", rows="4",placeholder='')
 
-            label Marketplace Introduction Message
-                textarea(name="", rows="4",placeholder='')
-
-            label Intro Email Success Page Message
-                textarea(name="", rows="4",placeholder='')
+        label Intro Email Success Page Message
+            textarea(name="", rows="4",placeholder='')
 
 
-        .columns.large-4
-
-        .columns.large-4
+    .columns.large-6

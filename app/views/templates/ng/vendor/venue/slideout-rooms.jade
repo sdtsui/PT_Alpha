@@ -1,0 +1,9 @@
+div(ng-controller="VenueController")
+    .panel.clearfix
+        label Add new items
+            input(type='search', placeholder='search menu items', ng-model='query')
+        .clean-button-tiny.right add
+    ul.menu-list
+        li.item(ng-repeat='item in data.rooms | filter: query')
+            {{item.name}}
+            i.fi-plus.right

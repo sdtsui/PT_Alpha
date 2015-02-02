@@ -1,53 +1,77 @@
+.row.collapse(style='margin:0')
+    .columns.large-8
+        input(type="search", placeholder='search images', style='margin:0')
+    .columns.large-4
+        .clean-button.right upload images
+        .clean-button.right hide dropzone
+        
 .row.collapse
-    .columns.large-11
-        input(type="search", placeholder='search images')
-    .columns.large-1
-hr
+    .columns.large-12
+        .dropzone
+            h5.subheader DROPZONE
+            h6 Drag and Drop Images Here
 .row.collapse
-    .columns.large-11
+    .columns.large-12
         table(width='100%')
             thead
                 tr
                     th(scope='column', width='140') image
                     th(scope='column', width='200') name
-                    th(scope='column', width='') room tag
-                    th(scope='column', width='') layout tag
-                    th(scope='column', width='') menu item tag
+                    th(scope='column', width='') tags
+                    th(scope='column', width='') action
                 tr
                     td(valign='middle')
                         img(src="assets/images/image.png", alt="")
                     td(valign='middle')
                         h6 name of image
                     td(valign='middle')
-                        span.token private
-                            span.delete-token
-                                img(src="assets/images/image.png", alt="")
-                        span.token public
-                            span.delete-token
-                                img(src="assets/images/image.png", alt="")
-                        span.token semi-private
-                            span.delete-token
-                                img(src="assets/images/image.png", alt="")
+                        .token.left Sophia Room &nbsp;
+                            i.fi-x
+                        .token.left Theater Layout &nbsp;
+                            i.fi-x
+                    td
+                        .clean-button-tiny add tags
+                        | &nbsp;&nbsp;&nbsp;
+                        i.fi-trash
+                
+                tr
                     td(valign='middle')
-                        span.token private
-                            span.delete-token
-                                img(src="assets/images/image.png", alt="")
-                        span.token public
-                            span.delete-token
-                                img(src="assets/images/image.png", alt="")
-                        span.token semi-private
-                            span.delete-token
-                                img(src="assets/images/image.png", alt="")
+                        img(src="assets/images/image.png", alt="")
                     td(valign='middle')
-                        span.token private
-                            span.delete-token
-                                img(src="assets/images/image.png", alt="")
-                        span.token public
-                            span.delete-token
-                                img(src="assets/images/image.png", alt="")
-                        span.token semi-private
-                            span.delete-token
-                                img(src="assets/images/image.png", alt="")
-    .columns.large-1
+                        h6 name of image
+                    td(valign='middle')
+                        .token.left Sophia Room &nbsp;
+                            i.fi-x
+                        .token.left Theater Layout [sophia room] &nbsp;
+                            i.fi-x
+                    td
+                        .clean-button-tiny add tags
+                        | &nbsp;&nbsp;&nbsp;
+                        i.fi-trash
+                tr
+                    td(valign='middle')
+                        img(src="assets/images/image.png", alt="")
+                    td(valign='middle')
+                        h6 name of image
+                    td(valign='middle')
+                        .token.left Garlic Dungeness Crab &nbsp;
+                            i.fi-x                        
+                    td
+                        .clean-button-tiny add tags
+                        | &nbsp;&nbsp;&nbsp;
+                        i.fi-trash
+                tr
+                    td(valign='middle')
+                        img(src="assets/images/image.png", alt="")
+                    td(valign='middle')
+                        h6 name of image
+                    td(valign='middle')
+                        .token.left Velvet Room &nbsp;
+                            i.fi-x
+                    td
+                        .clean-button-tiny add tags
+                        | &nbsp;&nbsp;&nbsp;
+                        i.fi-trash
+    
                     
         

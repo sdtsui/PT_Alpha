@@ -1,45 +1,105 @@
-h4 ROLES 
-    small Craig Smith
-    .row
-
-        .columns.large-4
+.row
+    .clean-button-tiny.top-cta.right
+        | &nbsp; delete Craig Smith &nbsp;
+        i.fi-trash
+    .clean-button-tiny.top-cta.right 
+        | &nbsp; save &nbsp;
+        i.fi-save
+    .clean-button-tiny.top-cta.right cancel
+    h4 ROLE 
+        small Craig Smith
+    hr
+    .columns.large-4
             label Name
                 input(type='search', placeholder='eg My Hotel')
 
             label Role
-                input(type="text", placeholder='')
+                select
+                    option(value="event manager") event manager
+                    option(value="owner") owner
+                    option(value="event coordinator") event coordinator
+                    option(value="general manager") general manager
+                    option(value="partner") partner
 
             label Email
                 input(type="text", placeholder='eg joe@name.com')
 
             label Phone Number
-                input(type="text", placeholder='5555555555')
+                input(type="text", placeholder='555 555-5555')
+                
+            .row.collapse
+                .columns.large-3
+                    .switch.round.tiny
+                        input(type="checkbox",id='isActive', checked)
+                        label(for="isActive")
+                .columns.large-9
+                    h6.subheader Currently Active
             
-            label Role is currently Active
-            .switch.round.tiny
-                input(type="checkbox",id='role', checked)
-                label(for="role")
-
-            hr
-            
-            h5 NOTIFICATION
-            table(width='100%')
-                thead
-                    tr
-                        th(id='event') event
-                        th(width='40', id='email') email
-                        th(width='40', id='phone') phone
-                tbody
-                    tr
-                        th(id='event1', header='event') new prospect
-                        td(headers='event1 email')
-                        td(headers='event1 phone')
-                    tr
-                        th(id='event1', header='event') new message
-                        td(headers='event1 email')
-                        td(headers='event1 phone')
-            
-        .columns.large-4
-            
-        .columns.large-4
+        .columns.large-8
+            h6 NOTIFICATION
+                table.notification(width='100%')
+                    thead
+                        tr
+                            th(id='event') event
+                            th(width='110')
+                            th(width='40', id='email') email
+                            th(width='40', id='phone') phone
+                    tbody
+                        tr
+                            th(id='event1', header='event') new prospect
+                            td
+                                .row.collapse
+                                    .columns.large-7
+                                        .switch.round.tiny
+                                            input(type="checkbox",id='isActive1', checked)
+                                            label(for="isActive1")
+                                    .columns.large-5
+                                        h6.subheader Active
+                            td(headers='event1 email') 
+                                i.fi-mail.active
+                            td(headers='event1 phone') 
+                                i.fi-mobile.active
+                        tr
+                            th(id='event2', header='event') new message
+                            td
+                                .row.collapse
+                                    .columns.large-7
+                                        .switch.round.tiny
+                                            input(type="checkbox",id='isActive2', checked)
+                                            label(for="isActive2")
+                                    .columns.large-5
+                                        h6.subheader Active
+                            td(headers='event2 email')
+                                i.fi-mail
+                            td(headers='event2 phone')
+                                i.fi-mobile.active
+                        tr
+                            th(id='event2', header='event') new event
+                            td
+                                .row.collapse
+                                    .columns.large-7
+                                        .switch.round.tiny
+                                            input(type="checkbox",id='isActive3', checked)
+                                            label(for="isActive3")
+                                    .columns.large-5
+                                        h6.subheader Active
+                            td(headers='event3 email')
+                                i.fi-mail.active
+                            td(headers='event3 phone')
+                                i.fi-mobile.active
+                        tr
+                            th(id='event2', header='event') abandon cart
+                            td
+                                .row.collapse
+                                    .columns.large-7
+                                        .switch.round.tiny
+                                            input(type="checkbox",id='isActive4', checked)
+                                            label(for="isActive4")
+                                    .columns.large-5
+                                        h6.subheader Active
+                            td(headers='event4 email')
+                                i.fi-mail.active
+                            td(headers='event4 phone')
+                                i.fi-mobile        
+                        
             

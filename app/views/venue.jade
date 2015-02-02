@@ -5,21 +5,61 @@ block content
         include templates/header-vendor
 
         .content-wrapper
-
-            include templates/ng/vendor/venue/subnav
+            
+            .subnav
+                //include templates/ng/vendor/venue/subnav
 
             .row.collapse(data-equalizer)
-                .columns.large-3(data-equalizer-watch, style='background-color:#e4e4e4')
-                    .silo
-                        .menu-wrap
-                            include templates/ng/vendor/venue/vertical-nav
+                //.columns.large-3.left-col(data-equalizer-watch)
+                    .silo.verticalmenu
+                        .menu-wrap.menu-primary
+                            //include templates/ng/vendor/venue/vertical-nav
+                            //include templates/ng/vendor/venue/slideout-menuitems
+                            include templates/ng/vendor/venue/slideout-menus
+                
+                //.columns.large-3.left-col(data-equalizer-watch)
+                    .silo.verticalmenu
+                        .menu-wrap.menu-secondary
+                            //include templates/ng/vendor/venue/slideout-roles
+                            //include templates/ng/vendor/venue/slideout-services
 
-
-                .columns.large-9(data-equalizer-watch, style='background-color:#fff')
+                //.columns.large-9.right-col(data-equalizer-watch)
                     .silo
                         .form-wrap
-                            include templates/ng/vendor/venue/room-revenue-management
-            
+                            
+                            // venue
+                            include templates/ng/vendor/venue/venue-general
+                            
+                            // venue
+                            //include templates/ng/vendor/venue/venue-terminology-edit
+                            
+                            // venue
+                            //include templates/ng/vendor/venue/venue-services
+                            
+                            // venue
+                            //include templates/ng/vendor/venue/venue-roles
+                            
+                            // venue
+                            //include templates/ng/vendor/venue/venue-settings
+                            
+                            // menu items
+                            //include templates/ng/vendor/venue/menu-items
+                            
+                            // menus
+                            //include templates/ng/vendor/venue/menus
+                
+                // venue-terminology-edit
+                //.columns.large-3.left-col(data-equalizer-watch)
+                    .silo.verticalmenu
+                        .slideout-menu
+                            include templates/ng/vendor/venue/slideout
+                            
+                                
+                .columns.small-12
+                    .silo
+                        .form-wrap
+                            //include templates/ng/vendor/venue/images
+                            include templates/ng/vendor/venue/user-settings
 
 
 

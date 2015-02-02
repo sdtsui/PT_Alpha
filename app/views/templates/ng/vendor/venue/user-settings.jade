@@ -1,0 +1,193 @@
+.row
+    .clean-button-tiny.top-cta.right
+        &nbsp; delete account &nbsp;
+        i.fi-trash
+    .clean-button-tiny.top-cta.right 
+        &nbsp; save &nbsp;
+        i.fi-save
+    .clean-button-tiny.top-cta.right cancel
+    h4 USER SETTINGS 
+        small | Define Settings For Your Account
+    hr
+    .columns.large-3
+        h5 PROFILE
+        hr
+        label Name
+            input(type='text', placeholder='eg Joe Smith')
+     
+        label Address
+            input(type="text", placeholder='')
+
+        label Phone Number
+            input(type="text", placeholder='(555) 555-5555')
+
+        label Email
+            input(type="text", placeholder='eg joe@name.com')
+        
+        label Profile Image
+        .row
+            .columns.small-5
+                .placeholder-image(style='height:60px;width:60px;border:1px solid #aaa')
+            .columns.small-7
+                .clean-button-tiny choose file
+
+        h5 SECURITY
+        hr
+        label Password
+            input(type='password')
+        label New Password
+            input(type='password')
+        label Re-type NewPassword
+            input(type='password')
+        .clean-button-tiny Reset Password
+        
+        h5 GRAPHS
+        hr
+        h6.dietary Allergies
+        .ingredient-tokens.clearfix
+            .token.left seafood &nbsp;
+                i.fi-x
+            .token.left shell fish &nbsp;
+                i.fi-x
+            .token.left shrimp &nbsp;
+                i.fi-x
+            .token.left peanuts &nbsp;
+                i.fi-x
+        .clean-button-tiny edit Ingredients
+        
+        h6.dietary Dietary Preferences
+        .room-tokens.clearfix
+            .token.left vegan &nbsp;
+                i.fi-x
+            .token.left vegetarian &nbsp;
+                i.fi-x
+        .clean-button-tiny edit Dietary Preferences
+        
+
+
+    .columns.large-3
+        h5 NETWORKS & CONTACTS
+        hr
+        .row.collapse
+            .columns.large-3
+                i.fi-social-facebook.large
+            .columns.small-9
+                h6.nomargin Link Facebook
+                h6.subheader You have not linked Facebook.
+        
+        .row.collapse
+            .columns.large-3
+                i.fi-social-linkedin.large
+            .columns.small-9
+                h6.nomargin Link LinkedIn
+                h6.subheader You have not linked LinkedIn.
+        
+        .row.collapse
+            .columns.large-3
+                i.fi-social-twitter.large
+            .columns.small-9
+                h6.nomargin Link Twitter
+                h6.subheader You have not linked Twitter.
+                
+        .row.collapse
+            .columns.large-3
+                i.fi-social-google-plus.large
+            .columns.small-9
+                h6.nomargin Import Google Contacts
+                h6.subheader You have not imported from Google.
+        
+        .row.collapse
+            .columns.large-3
+                i.fi-social-google-plus.large
+            .columns.small-9
+                h6.nomargin Import Outlook Contacts
+                h6.subheader You have not imported from Outlook.
+        
+        
+        
+    .columns.large-6
+        h5 NOTIFICATIONS
+        table.notification(width='100%')
+            thead
+                tr
+                    th(id='event') event
+                    th(width='110')
+                    th(width='40', id='email') email
+                    th(width='40', id='phone') phone
+            tbody
+                tr
+                    th(id='event1', header='event') new message
+                    td
+                        .row.collapse
+                            .columns.large-7
+                                .switch.round.tiny
+                                    input(type="checkbox",id='isActive1', checked)
+                                    label(for="isActive1")
+                            .columns.large-5
+                                h6.subheader Active
+                    td(headers='event1 email') 
+                        i.fi-mail.active
+                    td(headers='event1 phone') 
+                        i.fi-mobile.active
+                tr
+                    th(id='event2', header='event') poll responses
+                    td
+                        .row.collapse
+                            .columns.large-7
+                                .switch.round.tiny
+                                    input(type="checkbox",id='isActive2', checked)
+                                    label(for="isActive2")
+                            .columns.large-5
+                                h6.subheader Active
+                    td(headers='event2 email')
+                        i.fi-mail
+                    td(headers='event2 phone')
+                        i.fi-mobile.active
+                tr
+                    th(id='event2', header='event') purchase confirmation
+                    td
+                        .row.collapse
+                            .columns.large-7
+                                .switch.round.tiny
+                                    input(type="checkbox",id='isActive3', checked)
+                                    label(for="isActive3")
+                            .columns.large-5
+                                h6.subheader Active
+                    td(headers='event3 email')
+                        i.fi-mail.active
+                    td(headers='event3 phone')
+                        i.fi-mobile.active
+                tr
+                    th(id='event2', header='event') promotional deals
+                    td
+                        .row.collapse
+                            .columns.large-7
+                                .switch.round.tiny
+                                    input(type="checkbox",id='isActive4', checked)
+                                    label(for="isActive4")
+                            .columns.large-5
+                                h6.subheader Active
+                    td(headers='event4 email')
+                        i.fi-mail.active
+                    td(headers='event4 phone')
+                        i.fi-mobile
+        
+        
+        h5 VENUE
+        hr
+        h6.subheader.nomargin If you own a hospitality establishment, you can create a venue and add your product to our marketplace.
+        .clean-button-inverse Create New Venue
+        br
+        .row.collapse
+            .columns.small-4
+                i.fi-magnifying-glass
+                | &nbsp; view &nbsp;&nbsp;
+                i.fi-trash
+                | &nbsp; delete &nbsp;&nbsp;
+            .columns.small-8
+                h5 The Clift Hotel &nbsp; &nbsp;
+    
+    
+script.
+    var isIncludeTaxChecked = $('#includeTaxGratuity').is(':checked')   
+        

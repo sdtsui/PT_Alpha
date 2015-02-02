@@ -1,0 +1,8 @@
+.clean-button-tiny.right add new menu
+h6 Menus
+
+div(ng-controller="VenueController")
+    input(type='search', placeholder='find a menu', ng-model='query')
+    ul.menu-list
+        li.item(ng-repeat='item in data.menuitems | filter: query')
+            {{item.name}}
