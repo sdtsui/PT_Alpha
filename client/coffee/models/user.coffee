@@ -1,10 +1,17 @@
-# coffee/models/user
+define([
+  'underscore'
+  'Backbone'
+], (_, Backbone)->
+  UserModel = Backbone.Model.extend(
+    defaults:
+      name: ''
 
-class PrivateTable.Models.User extends Backbone.Model
-  paramRoot: 'user'
+    initialize: (options)->
+      console.log 'new UserModel'
 
+    paramRoot: 'user'
+  )
 
-class PrivateTable.Models.UsersCollection extends Backbone.Collection
-  model: PrivateTable.Models.User
-  url: '/api/users'
+  return UserModel
 
+)

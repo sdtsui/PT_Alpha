@@ -1,9 +1,17 @@
-# coffee/models/venue
-class PrivateTable.Models.Venue extends Backbone.Model
-  paramRoot: 'venue'
+define([
+  'underscore'
+  'Backbone'
+], (_, Backbone)->
+	VenueModel = Backbone.Model.extend(
+		defaults:
+			name: ''
 
+		initialize: (options)->
+			console.log 'new VenueModel'
 
-class PrivateTable.Models.VenuesCollection extends Backbone.Collection
-  model: PrivateTable.Models.Venue
-  url: '/api/venues'
+		paramRoot: 'venue'
+	)
 
+	return VenueModel
+
+)
