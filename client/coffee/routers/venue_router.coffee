@@ -1,11 +1,23 @@
-class PrivateTable.Routers.VenueRouter extends Backbone.Router
-  
-  initialize: (options) ->
+define([
+  'jQuery'
+  'Underscore'
+  'Backbone'
+  'views/auths/signup'
+], ($, _, Backbone, SignupView)->
+  AppRouter = Backbone.Router.extend(
+    routes:
+      ''  : 'index'
 
-  routes:
-    ""                      : "index"
-  
-  index: ->
-    alert 'I am backbonejs'
-    view = new PrivateTable.Views.Auths.SignupView()
-    console.log view.render()
+    index: ->
+      view = new SignupView({})
+      view.render()
+      alert('I am backbonejs')
+
+  )
+  return{
+    initialize: (options)->
+      appRoute = new AppRouter()
+      Backbone.history.start()
+  }
+
+)

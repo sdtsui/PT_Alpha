@@ -1,16 +1,14 @@
-window.PrivateTable =
-  Models: {}
-  Collections: {}
-  Routers: {}
-  Views: {}
-  Helpers: {}
-  init: ()->
-    window.venueRouter = new PrivateTable.Routers.VenueRouter()
-    Backbone.history.start()
+define([
+  'jquery'
+  'underscore'
+  'Backbone'
+  'routers/venue_router'
+], ($, _, Backbone, Router)->
+  initialize = ()->
+    Router.initialize()
 
-# require app.js
-#= require_tree ./libs/
-#= require_tree ./helpers/
-#= require_tree ./models/
-#= require_tree ./views/
-#= require_tree ./routers
+
+  return {
+    init: initialize
+  }
+)
