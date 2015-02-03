@@ -1,6 +1,6 @@
 define([
-  'jQuery'
-  'Underscore'
+  'jquery'
+  'underscore'
   'Backbone'
   'views/auths/signup'
 ], ($, _, Backbone, SignupView)->
@@ -11,9 +11,9 @@ define([
     index: ->
       view = new SignupView({})
       view.render()
-      alert('I am backbonejs')
-
+      $('#backbone-app').html(view.render())
   )
+
   return{
     initialize: (options)->
       appRoute = new AppRouter()

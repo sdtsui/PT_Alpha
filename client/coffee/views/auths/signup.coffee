@@ -2,21 +2,18 @@ define([
   'jquery'
   'underscore'
   'Backbone'
-  'text!templates/signup.html'
+  'text!templates/auths/signup.html'
 ], ($, _, Backbone, SignupTemplate)->
 
-	SignupView = Backbone.View.extend(
-		initialize: (options)->
-			console.log $
-			console.log _
-			console.log 'init SignupView'
+  SignupView = Backbone.View.extend(
+    className: 'row collapse'
+    initialize: (options)->
 
-		render: ->
-			tpl = _.template(SignupTemplate, {})
-			console.log tpl
-			@$el.html(tpl)
-	)
+    render: ->
+      tpl = _.template(SignupTemplate, {})
+      @$el.html(tpl)
+  )
 
-	return SignupView
+  return SignupView
 
 )
