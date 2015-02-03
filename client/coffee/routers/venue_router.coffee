@@ -11,7 +11,7 @@ define([
     index: ->
       view = new SignupView({})
       view.render()
-      $('#backbone-app').html(view.render())
+      $('#backbone-app').html(view.render().el)
   )
 
   return{
