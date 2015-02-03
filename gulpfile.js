@@ -34,6 +34,7 @@ var foundationJS = [
     'public/components/jquery/dist/jquery.js',
     'public/components/underscore/underscore.js',
     'public/components/backbone/backbone.js',
+    'public/components/backbone-validation/dist/backbone-validation.js',
     'public/components/mustache/mustache.min.js',
     'public/components/side-comments/release/side-comments.js'
 ];
