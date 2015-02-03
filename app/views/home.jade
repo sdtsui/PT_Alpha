@@ -1,8 +1,9 @@
 extends backbone-layout
 
 block content
+  div #{name}
   div#backbone-app
 
 
   script.
-    var PrivateTable = {config: {currentUser: JSON.parse('{}')}};
+    var PrivateTable = {config: {currentUser: JSON.parse("#{JSON.stringify(user)}")}};
