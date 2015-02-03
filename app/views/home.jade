@@ -1,32 +1,8 @@
 extends backbone-layout
 
 block content
-  .row.collapse
-    .columns.large-8
-      p test
-    .columns.large-4
-      .form-wrap(style='height:700px;background-color:#fff;width:100%')
-        .row.collapse
-          .columns.large-centered.large-10
-            img(src='/assets/images/logo.png', width='100', height='24')
-            h6 We help increase the conversion rate of your inbound private events inquiries at amazing speed.
-            br
-            
-            a.button.expand.large(href="/auth/facebook") Sign Up With Facebook
-            
-            
-            form
-              label Venue Name
-                input(type='text', placeholder='Venue Name')
-              label URL
-                input(type='text', placeholder='Venue Url')
-              label Full Name
-                input(type='text', placeholder='Full Name')
-              label Job Title
-                input(type='text', placeholder='Job Title')
-              label Email
-                input(type='text', placeholder='Email')
-              label Password
-                input(type='text', placeholder='Password')
-              button Get Started
-                
+  div#backbone-app
+
+
+  script.
+    var PrivateTable = {config: {currentUser: JSON.parse('{}')}};

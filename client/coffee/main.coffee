@@ -10,8 +10,8 @@ require.config(
 
 
 require([
-  'pt'
-], (App)->
-  App.init()
+  'pt_app'
+], (PtApp)->
+  PtApp.init()
 )
 
