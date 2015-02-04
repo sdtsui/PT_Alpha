@@ -1,3 +1,8 @@
+PrivateTable.setCurrentUser = (user)->
+  PrivateTable.config.currentUser = user
+PrivateTable.getCurrentUser = ()->
+  PrivateTable.config.currentUser
+
 require.config(
   baseUrl: '/assets/js/'
   paths:

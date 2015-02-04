@@ -26,6 +26,7 @@ UserSchema = new Schema(
   provider:
     type: String
     enum: AUTH_TYPES
+    required: true
 
   facebook: {}
   
