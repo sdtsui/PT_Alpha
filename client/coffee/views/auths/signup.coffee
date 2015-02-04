@@ -20,8 +20,15 @@ define([
 
     onFormSubmit: ()->
       console.log @model
-      console.log @model.isValid()
-      return false
+      if @model.isValid()
+        @model.url = '/api/auth/signup'
+        @model.save (e, resp)->
+          console.log 'saving.......'
+          console.log e
+          console.log resp
+        return false
+      else
+        return false
     onInputChange: (e)->
       console.log e
     
@@ -34,9 +41,9 @@ define([
       @$venueUrl.on 'keyup', => 
         @model.set venueUrl: @$venueUrl.val()
 
-      @$fullName = @$('input[name="fullName"]')
-      @$fullName.on 'keyup', => 
-        @model.set fullName: @$fullName.val()
+      @$name = @$('input[name="name"]')
+      @$name.on 'keyup', => 
+        @model.set name: @$name.val()
 
       @$jobTitle = @$('input[name="jobTitle"]')
       @$jobTitle.on 'keyup', => 
