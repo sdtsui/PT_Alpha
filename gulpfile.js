@@ -61,7 +61,7 @@ gulp.task('copy', function () {
     gulp.src(dirs, {
         base: './client/'
         })
-        .pipe(gulp.dest('./public/assets'))
+        .pipe(gulp.dest('./public/'))
         .pipe(livereload())
         .pipe(notify({
             message: 'Copy task complete'

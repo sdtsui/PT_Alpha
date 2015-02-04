@@ -11,6 +11,7 @@ define([
       ''  : 'index'
 
     index: ->
+      console.log PrivateTable.getCurrentUser()
       if PrivateTable.getCurrentUser()
         @dashboard()
       else
