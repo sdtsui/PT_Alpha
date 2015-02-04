@@ -20,6 +20,7 @@ define([
 
     onFormSubmit: ()->
       console.log @model
+      console.log @model.isValid()
       return false
     onInputChange: (e)->
       console.log e

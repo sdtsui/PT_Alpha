@@ -14,9 +14,25 @@ define([
     initialize: (options)->
 
     validate: (attrs, options)->
-      if ! attrs.venueName || !attrs.venueName.length < 1
-        return 'Venue can not be blank'
-      
+      requiredAttrs = ['venueName', 'email', 'password', 'fullName']
+
+      errors = {}
+      _.each requiredAttrs, (attrName)->
+        if !attrs[attrName]
+          errors[attrName] ||= []
+          errors[attrName].push 'can not be blank'
+
+      if ! attrs.email.toString().match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
+        errors['email'] ||= []
+        errors['email'].push('is invalid')
+
+      console.log errors
+      if _.keys(errors).length > 0
+        errors
+      else
+        true
+
+
     paramRoot: 'user'
   )
 
