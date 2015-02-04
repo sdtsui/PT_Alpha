@@ -26,11 +26,14 @@ define([
         errors['email'] ||= []
         errors['email'].push('is invalid')
 
-      console.log errors
+      if attrs.password.toString().length < 6
+        errors['password'] ||= []
+        errors['password'].push('is so simple')
+
       if _.keys(errors).length > 0
         errors
       else
-        true
+        false
 
 
     paramRoot: 'user'
