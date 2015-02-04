@@ -6,7 +6,7 @@ define([
     defaults:
       venueName: ''
       venueUrl: ''
-      fullName: ''
+      name: ''
       jobTitle: ''
       email: ''
       password: ''
@@ -14,7 +14,7 @@ define([
     initialize: (options)->
 
     validate: (attrs, options)->
-      requiredAttrs = ['venueName', 'email', 'password', 'fullName']
+      requiredAttrs = ['venueName', 'email', 'password', 'name']
 
       errors = {}
       _.each requiredAttrs, (attrName)->
@@ -34,9 +34,6 @@ define([
         errors
       else
         false
-
-
-    paramRoot: 'user'
   )
 
   return SignupModel

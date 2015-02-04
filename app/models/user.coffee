@@ -6,6 +6,7 @@ Schema   = mongoose.Schema
 
 AUTH_TYPES = [
   'facebook'
+  'local'
 ]
 
 UserSchema = new Schema(
@@ -65,11 +66,11 @@ UserSchema.virtual('passwordConfirmation')
   return this._passwordConfirmation
 
 
-UserSchema.virtual('venue')
-.set (venue)->
-  this._venue = venue
+UserSchema.virtual('venueName')
+.set (venueName)->
+  this._venueName = venueName
 .get ()->
-  return this._venue
+  return this._venueName
 
 
 UserSchema.virtual('venueUrl')
@@ -93,8 +94,8 @@ UserSchema.pre 'save', (next)->
   if !validatePresenceOf(this.password) && !this.skipValidation()
     return next(new Error('Invalid password'))
 
-  if !validateMatchPasswords(this.password, this.passwordConfirmation) && !this.skipValidation()
-    return next(new Error('Not matched password'))
+  # if !validateMatchPasswords(this.password, this.passwordConfirmation) && !this.skipValidation()
+  #   return next(new Error('Not matched password'))
 
   return next()
 
@@ -113,16 +114,35 @@ UserSchema.path('email').validate( (email)->
 
 UserSchema.path('email').validate( (email, fn)->
   User = mongoose.model('User')
+  console.log this.skipValidation()
+  console.log this.isNew
+  console.log this.isModified('email')
   if this.skipValidation()
     fn(true)
 
   if (this.isNew || this.isModified('email'))
     User.find({ email: email }).exec( (err, users)->
+      console.log users
       fn(!err && users.length == 0)
     )
   else 
     fn(true)
 , 'Email already exists')
+
+
+# UserSchema.path('venueName').validate( (venueName, fn)->
+#   Venue = mongoose.model('Venue')
+#   if this.skipValidation()
+#     fn(true)
+
+#   if (this.isNew || this.isModified('venueName'))
+#     Venue.count({ name: venueName }).exec( (err, num)->
+#       fn(!err && num == 0)
+#     )
+#   else
+#     fn(true)
+# , 'Venue already exists')
+
 
 
 UserSchema.path('hashed_password').validate( (hashed_password)->
@@ -153,7 +173,7 @@ UserSchema.methods =
 
 
   skipValidation: ()->
-    return ~AUTH_TYPES.indexOf(this.provider)
+    return this.provider != 'local'
 
 
 UserSchema.statics =
