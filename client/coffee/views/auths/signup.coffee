@@ -18,17 +18,25 @@ define([
       'submit form': 'onFormSubmit'
       'change input[type!="submit"]': 'onInputChange'
 
-    onFormSubmit: ()->
+    onFormSubmit: (e)->
+      e.preventDefault()
+      e.stopPropagation()    
+      $e = $(e.currentTarget)
       console.log @model
       if @model.isValid()
-        @model.url = '/api/auth/signup'
-        @model.save (e, resp)->
-          console.log 'saving.......'
-          console.log e
-          console.log resp
-        return false
-      else
-        return false
+        jsonData = @model.toJSON()
+        $.ajax
+          url: '/api/auth/signup'
+          type: 'POST'
+          data: jsonData
+          dataType: 'json'
+          success: (resp)->
+            console.log resp
+            if resp.errors
+            else
+              PrivateTable.setCurrentUser(resp)
+              window.location = "/#/"
+
     onInputChange: (e)->
       console.log e
     
