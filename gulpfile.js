@@ -216,6 +216,7 @@ gulp.task('develop', function () {
     ext: 'js coffee jade',
     nodeArgs: ['--debug=9999']
   }).on('restart', function () {
+    console.log('restarting server..........');
     setTimeout(function () {
       livereload.changed();
     }, 500);

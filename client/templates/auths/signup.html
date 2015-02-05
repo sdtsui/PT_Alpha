@@ -11,7 +11,7 @@
     </div>
     <div class="row">
       <div class="venueUrl">
-        <label class="venueUrl">URL<input type="text" name="venueUrl" placeholder="Venue Url" pattern="url"></label>
+        <label class="venueUrl">URL<input type="text" name="venueUrl" placeholder="Venue Url" pattern="(http(s?)\:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}((\S)*)$"></label>
       </div>
       
     </div>
@@ -30,18 +30,22 @@
     </div>
     <div class="row">
       <div class="email">
-        <label class="email">Email<input type="email" name="email" placeholder="Email" required pattern="email"></label>
+        <label class="email">Email<input type="email" name="email" placeholder="Email" required></label>
       </div>
       
     </div>
     <div class="row">
       <div class="password">
-        <label class="password">Password<input type="password" name="password" placeholder="Password" required></label>
+        <label class="password">Password<input type="password" name="password" placeholder="Password" required minLength="6"></label>
       </div>
       
     </div>
     <button>Get Started</button>
   </form>
+  <div>
+    <a href="/#/signin">Sign In</a>
+  </div>
+  
   </div>
 </div>
 </div>
