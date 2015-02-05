@@ -13,7 +13,7 @@ UserSchema = new Schema(
   # auth attributes
   email:
     type: String
-    required: true
+    # required: true
 
   hashed_password:
     type: String
@@ -91,7 +91,6 @@ validateMatchPasswords = (value1, value2)->
 UserSchema.pre 'save', (next)->
   if !this.isNew 
     return next()
-
   if !validatePresenceOf(this.password) && !this.skipValidation()
     return next(new Error('Invalid password'))
 
@@ -115,9 +114,6 @@ UserSchema.path('email').validate( (email)->
 
 UserSchema.path('email').validate( (email, fn)->
   User = mongoose.model('User')
-  console.log this.skipValidation()
-  console.log this.isNew
-  console.log this.isModified('email')
   if this.skipValidation()
     fn(true)
 
@@ -130,19 +126,52 @@ UserSchema.path('email').validate( (email, fn)->
     fn(true)
 , 'Email already exists')
 
+# validate venueName
+UserSchema.path('name').validate( (name, fn)->
+  that = this
+  Venue = mongoose.model('Venue')
+  if this.skipValidation()
+    return fn(true)
 
-# UserSchema.path('venueName').validate( (venueName, fn)->
-#   Venue = mongoose.model('Venue')
-#   if this.skipValidation()
-#     fn(true)
+  if that.isNew
+    if !that._venueName
+      that.invalidate('venueName', 'can not be blank')
+      return fn(true)
+    if that._venueName.length < 3
+      that.invalidate('venueName', 'must greater 3 chars')
+      return fn(true)
+    if that._venueName
+      Venue.count({ name: that._venueName }).exec( (err, num)->
+        if err || (num && num > 0)
+          that.invalidate('venueName', 'is already existed')
+      )
 
-#   if (this.isNew || this.isModified('venueName'))
-#     Venue.count({ name: venueName }).exec( (err, num)->
-#       fn(!err && num == 0)
-#     )
-#   else
-#     fn(true)
-# , 'Venue already exists')
+  fn(true)
+, null)
+
+# validate venueUrl
+UserSchema.path('name').validate( (name, fn)->
+  that = this
+  regx = /(http(s?)\:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}$/i
+  Venue = mongoose.model('Venue')
+  if this.skipValidation()
+    return fn(true)
+
+  if that.isNew
+    if !that._venueUrl
+      return fn(true)
+    url = that._venueUrl.match(regx)
+    if !url
+      that.invalidate('venueUrl', 'is invalid')
+      return fn(true)
+    url = url[0].toLowerCase()
+    Venue.count({ url: url.replace(/http(s?)/, '')}).exec( (err, num)->
+      if err || (num && num > 0)
+        that.invalidate('venueUrl', 'is already existed')
+    )
+
+  fn(true)
+, null)
 
 
 

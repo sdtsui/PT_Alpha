@@ -16,6 +16,8 @@ module.exports = (app, passport) ->
     user.provider = 'local'
     user.save (err)->
       console.log 'save.............'
+      console.log user.venueName
+      console.log user.venueUrl
       if err
         json = user.toJSON()
         json.errors = err.errors
