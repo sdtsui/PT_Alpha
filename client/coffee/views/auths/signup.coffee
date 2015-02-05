@@ -38,8 +38,7 @@ define([
               window.location = "/#/"
 
     onInputChange: (e)->
-      console.log e
-    
+      true    
     bindingDom: ->
       @$venueName = @$('input[name="venueName"]')
       @$venueName.on 'keyup', => 
