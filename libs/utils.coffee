@@ -24,3 +24,15 @@ exports.findByParam = (arr, obj, cb)->
   
   if (!~index && typeof cb == 'function')
     return cb('not found')
+
+
+exports.getFormatedUrl = (domain)->
+  regx = /(http(s?)\:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}((\S)*)$/i
+  if !domain
+    return null
+  domain = domain.toLowerCase()
+  url = domain.match(regx)
+  if !url
+    return null
+
+  return url[0]

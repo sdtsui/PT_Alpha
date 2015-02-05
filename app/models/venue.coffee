@@ -1,14 +1,21 @@
 mongoose = require 'mongoose'
 Schema   = mongoose.Schema
+ObjectId = Schema.ObjectId
 
 VenueSchema = new Schema(
+  creator: 
+    type: ObjectId
+    ref: 'User'
+    required: true
+    index: true
+    
   name:
     type: String
     required: true
 
   address:
     type: String
-    required: true
+    # required: true
 
   timeZone:
     type: String

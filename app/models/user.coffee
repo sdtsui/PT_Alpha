@@ -152,7 +152,7 @@ UserSchema.path('name').validate( (name, fn)->
 # validate venueUrl
 UserSchema.path('name').validate( (name, fn)->
   that = this
-  regx = /(http(s?)\:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}$/i
+  regx = /(http(s?)\:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}((\S)*)$/i
   Venue = mongoose.model('Venue')
   if this.skipValidation()
     return fn(true)
@@ -165,7 +165,7 @@ UserSchema.path('name').validate( (name, fn)->
       that.invalidate('venueUrl', 'is invalid')
       return fn(true)
     url = url[0].toLowerCase()
-    Venue.count({ url: url.replace(/http(s?)/, '')}).exec( (err, num)->
+    Venue.count({ url: url}).exec( (err, num)->
       if err || (num && num > 0)
         that.invalidate('venueUrl', 'is already existed')
     )

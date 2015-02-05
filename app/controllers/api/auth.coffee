@@ -2,6 +2,7 @@ express  = require 'express'
 router = express.Router()
 mongoose = require 'mongoose'
 User  = mongoose.model 'User'
+Venue = mongoose.model 'Venue'
 utils = require('../../../libs/utils')
 
 module.exports = (app, passport) ->
@@ -15,14 +16,13 @@ module.exports = (app, passport) ->
     user = new User(req.body)
     user.provider = 'local'
     user.save (err)->
-      console.log 'save.............'
-      console.log user.venueName
-      console.log user.venueUrl
       if err
         json = user.toJSON()
         json.errors = err.errors
         return res.json json
       
+      venue = new Venue({creator: user._id, name: user.venueName, url: utils.getFormatedUrl(user.venueUrl)})
+      venue.save()
       req.logIn user, (err)->
         if err
           json = user.toJSON()
