@@ -9,6 +9,7 @@ module.exports = (app, passport) ->
   app.use '/api/auth', router
 
   router.get '/logout', (req, res)->
+    console.log 'aaa logout'
     req.logout()
     res.redirect('/')
 
@@ -29,3 +30,14 @@ module.exports = (app, passport) ->
           json.errors = 'Sorry! We are not able to log you in!'
           return res.json(json)
         res.json(user.toJSON())
+
+  router.post '/login', (req, res)->
+    passport.authenticate( 'local', (err, user, info)->
+      if err || !user
+        return res.json({errors: "Email or password is not valid"})
+
+      req.logIn user, (err)->
+        if err
+          return res.json({errors: "Email or password is not valid"})
+        return res.json(user.toJSON())
+    )(req, res)

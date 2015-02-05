@@ -4,10 +4,12 @@ define([
   'Backbone'
   'views/dashboard'
   'views/auths/signup'
-], ($, _, Backbone, DashboardView, SignupView)->
+  'views/auths/signin'
+], ($, _, Backbone, DashboardView, SignupView, SigninView)->
   AppRouter = Backbone.Router.extend(
     routes:
       'signup': 'signup'
+      'signin': 'signin'
       ''  : 'index'
 
     index: ->
@@ -24,6 +26,11 @@ define([
 
     signup: ->
       view = new SignupView({})
+      view.render()
+      $('#backbone-app').html(view.render().el)
+
+    signin: ->
+      view = new SigninView({})
       view.render()
       $('#backbone-app').html(view.render().el)
 

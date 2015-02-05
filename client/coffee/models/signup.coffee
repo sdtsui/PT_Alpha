@@ -15,7 +15,8 @@ define([
 
     validate: (attrs, options)->
       requiredAttrs = ['venueName', 'email', 'password', 'name']
-
+      console.log 'options'
+      console.log options
       errors = {}
       _.each requiredAttrs, (attrName)->
         if !attrs[attrName]
