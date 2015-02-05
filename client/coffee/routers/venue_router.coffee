@@ -17,7 +17,7 @@ define([
       if PrivateTable.getCurrentUser()
         @dashboard()
       else
-        window.location = "/#/signup"
+        window.location = "/#/signin"
 
     dashboard: ->
       view = new DashboardView({})

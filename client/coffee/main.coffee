@@ -3,6 +3,18 @@ PrivateTable.setCurrentUser = (user)->
 PrivateTable.getCurrentUser = ()->
   PrivateTable.config.currentUser
 
+# PrivateTable.buildErrorMessages = (errors)->
+#   messages = []
+#   if errors
+#     if typeof(errors)=='string'
+#       messages.push(errors)
+#       return messages
+#     else
+#       if typeof(errors)=='object'
+#         if errors instanceof Array
+#           keys = Object.keys(messages)
+          
+
 require.config(
   baseUrl: '/assets/js/'
   paths:
