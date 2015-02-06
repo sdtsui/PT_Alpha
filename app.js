@@ -24,7 +24,6 @@ require('./config/express')(app, config, passport);
 var controllers = glob.sync(config.root + '/app/controllers/**/*.coffee');
 
 controllers.forEach(function(controller) {
-  console.log(controller);
   return require(controller)(app, passport);
 });
 
