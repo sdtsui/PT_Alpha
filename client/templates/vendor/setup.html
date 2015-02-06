@@ -1,0 +1,125 @@
+<div class="form-wrap">
+<!-- venue-->
+<div class="row">
+    <div class="clean-button-tiny top-cta right">&nbsp; delete venue &nbsp;<i class="fi-trash"></i>
+    </div>
+    <div class="clean-button-tiny top-cta right">
+        &nbsp; save &nbsp;<i class="fi-save"></i>
+    </div>
+    <div class="clean-button-tiny top-cta right">cancel</div>
+    <h4>VENUE <small>| General Setup Information</small></h4>
+    <hr>
+    <div class="columns large-4">
+        <label>Venue Name
+            <input type="search" placeholder="eg My Hotel" value="<%= venue.name %>">
+        </label>
+        <label>Address
+            <input type="text" placeholder=""  value="<%= venue.address %>">
+        </label>
+        <label>Phone Number
+            <input type="text" placeholder="(555) 555-5555" value="<%= venue.phone %>">
+        </label>
+        <label>Fax Number
+            <input type="text" placeholder="(555) 555-5555" value="<%= venue.fax %>">
+        </label>
+        <label>url
+            <input type="text" placeholder="eg www.name.com" value="<%= venue.url %>">
+        </label>
+        <label>Email
+            <input type="text" placeholder="eg joe@name.com" value="<%= venue.email %>">
+        </label>
+    </div>
+    <div class="columns large-4">
+        <div class="row collapse">
+            <div class="columns large-3">
+                <div class="switch round tiny">
+                    <input type="checkbox" id="includeTaxGratuity" checked>
+                    <label for="includeTaxGratuity"></label>
+                </div>
+            </div>
+            <div class="columns large-9">
+                <h6 class="subheader">Include Tax and Gratuity in Menu Price</h6>
+            </div>
+        </div>
+        <hr>
+        <div class="row collapse">
+            <div class="columns large-6">
+                <div class="padding1pxsides">
+                    <label>Tax Rate
+                        <div class="row collapse">
+                            <div class="columns large-8">
+                                <input type="number" placeholder="eg 9.00%" value="<%= venue.tax %>" max="100">
+                            </div>
+                            <div class="columns large-4"><span class="postfix">%</span>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="columns large-6">
+                <div class="padding1pxsides">
+                    <label>Gratuity
+                        <div class="row collapse">
+                            <div class="columns large-8">
+                                <input type="text" placeholder="eg 22.0" value="<%= venue.gratuity %>">
+                            </div>
+                            <div class="columns large-4"><span class="postfix">%</span>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row collapse">
+            <label>Business Hours</label>
+            <div class="columns large-6">
+                <div class="padding1pxsides">
+                    <select>
+                        <option value="5:00a">5:00a</option>
+                        <option value="6:00a">6:00a</option>
+                        <option value="7:00a">7:00a</option>
+                        <option value="8:00a">8:00a</option>
+                        <option value="9:00a">9:00a</option>
+                        <option value="10:00a">10:00a</option>
+                    </select>
+                </div>
+            </div>
+            <div class="columns large-6">
+                <div class="padding1pxsides">
+                    <select>
+                        <option value="7:00p">7:00p</option>
+                        <option value="8:00p">8:00p</option>
+                        <option value="9:00p">9:00p</option>
+                        <option value="10:00p">10:00p</option>
+                        <option value="11:00p">11:00p</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="columns large-4">
+        <label>Time Zone
+            <select>
+                <option value="pacific">Pacific Standard Time</option>
+                <option value="easter">Eastern Standard Time</option>
+                <option value="central">Central Standard Time</option>
+            </select>
+        </label>
+        <label>Currency
+            <select>
+                <option value="USD">US Dollars</option>
+            </select>
+        </label>
+        <label>Cuisine Type
+            <select>
+                <option value="american">American</option>
+                <option value="japanese">Japanese</option>
+                <option value="korean">Korean</option>
+            </select>
+        </label>
+    </div>
+</div>
+
+
+
+
