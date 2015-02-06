@@ -19,7 +19,7 @@ module.exports = (app, passport) ->
       res.json(json)
 
   router.put "/mine", (req, res)->
-    Venue.update {_id: req.body._id}, (e, venue)->
+    Venue.findOne {_id: req.body._id}, (e, venue)->
       if e || !venue
         return res.status(400).json({message: "Not found venue"})
 

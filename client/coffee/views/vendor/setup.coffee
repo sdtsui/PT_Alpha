@@ -3,8 +3,9 @@ define([
   'underscore'
   'Backbone'
   'models/venue'
+  'views/shared/alert_message'
   'text!templates/vendor/setup.html'
-], ($, _, Backbone, VenueModel, VendorSetupTemplate)->
+], ($, _, Backbone, VenueModel, AlertMessage, VendorSetupTemplate)->
 
   VendorSetupView = Backbone.View.extend(
     tagName: 'div'
@@ -27,13 +28,10 @@ define([
       console.log @venue.isNew()
       if @venue.isValid()
         @venue.save()
-      #   jsonData = @venue.toJSON()
-      #   $.ajax
-      #     url: '/api/venue/mine'
-      #     type: 'PUT'
-      #     data: jsonData
-      #     dataType: 'json'
-      #     success: (resp)->
+        @model = @venue.clone()
+      else
+        msg = new AlertMessage({messages: ["There are some errors"]})
+        @$el.prepend(msg.render().el)
 
     deleteVenue: (e)->
       e.preventDefault()
