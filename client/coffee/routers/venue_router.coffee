@@ -10,6 +10,8 @@ define([
     routes:
       'signup': 'signup'
       'signin': 'signin'
+      # default action
+      '/'  : 'index'
       ''  : 'index'
 
     index: ->
@@ -20,6 +22,9 @@ define([
         window.location = "/#/signin"
 
     dashboard: ->
+      $.get '/api/users/me', (result)->
+        console.log 'api/users/me'
+        console.log result
       view = new DashboardView({})
       view.render()
       $('#backbone-app').html(view.render().el)
