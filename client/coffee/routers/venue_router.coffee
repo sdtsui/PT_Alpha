@@ -2,32 +2,32 @@ define([
   'jquery'
   'underscore'
   'Backbone'
+  'views/authorized_layout'
   'views/dashboard'
   'views/auths/signup'
   'views/auths/signin'
-], ($, _, Backbone, DashboardView, SignupView, SigninView)->
+  'views/vendor/setup'
+], ($, _, Backbone, AuthorizedLayoutView, DashboardView, SignupView, SigninView, VendorSetupView)->
   AppRouter = Backbone.Router.extend(
     routes:
       'signup': 'signup'
       'signin': 'signin'
       # default action
+      'vendor/setup': 'vendorSetup'
       '/'  : 'index'
       ''  : 'index'
 
     index: ->
-      console.log PrivateTable.getCurrentUser()
       if PrivateTable.getCurrentUser()
         @dashboard()
       else
         window.location = "/#/signin"
 
     dashboard: ->
-      $.get '/api/users/me', (result)->
-        console.log 'api/users/me'
-        console.log result
-      view = new DashboardView({})
-      view.render()
-      $('#backbone-app').html(view.render().el)
+      @authorizeDom()
+      # view = new DashboardView({})
+      # view.render()
+      # $('#backbone-app').html(view.render().el)
 
     signup: ->
       view = new SignupView({})
@@ -36,8 +36,19 @@ define([
 
     signin: ->
       view = new SigninView({})
-      view.render()
       $('#backbone-app').html(view.render().el)
+
+    vendorSetup: ->
+      @authorizeDom()
+      view = new VendorSetupView()
+      $('.silo.vendorSetup').html view.render().el
+
+    authorizeDom: ->
+      if ! PrivateTable.getCurrentUser()
+        window.location = "/#/signin"
+        return
+      
+      $('#backbone-app').html(AuthorizedLayoutView.render().el)
 
   )
 
