@@ -1,12 +1,15 @@
 <div class="form-wrap">
 <!-- venue-->
 <div class="row">
-    <div class="clean-button-tiny top-cta right">&nbsp; delete venue &nbsp;<i class="fi-trash"></i>
+    <div class="clean-button-tiny top-cta right deleteVenue">
+        &nbsp; delete venue &nbsp;<i class="fi-trash"></i>
     </div>
-    <div class="clean-button-tiny top-cta right">
+    <div class="clean-button-tiny top-cta right updateVenue">
         &nbsp; save &nbsp;<i class="fi-save"></i>
     </div>
-    <div class="clean-button-tiny top-cta right">cancel</div>
+    <div class="clean-button-tiny top-cta right cancelVenue">
+        cancel
+    </div>
     <h4>VENUE <small>| General Setup Information</small></h4>
     <hr>
     <div class="columns large-4">
@@ -33,7 +36,7 @@
         <div class="row collapse">
             <div class="columns large-3">
                 <div class="switch round tiny">
-                    <input name="includeTax" type="checkbox" id="includeTaxGratuity" checked>
+                    <input name="taxInMenu" type="checkbox" id="includeTaxGratuity" <%= venue.taxInMenu ? 'checked' : ''%>>
                     <label for="includeTaxGratuity"></label>
                 </div>
             </div>
@@ -74,11 +77,11 @@
             <label>Business Hours</label>
             <div class="columns large-6">
                 <div class="padding1pxsides">
-                    <select name="businessHour.open">
+                    <select name="businessHourOpen">
                         <%
                             _.each(BUSINESS_HOURS.OPEN, function(v, k){
                         %>
-                            <option value="<%= k %>"><%= v %></option>
+                            <option value="<%= k %>" "<%= venue.businessHour.open == k ? 'selected' : '' %>" ><%= v %></option>
                         <%
                             })
                         %>
@@ -87,11 +90,11 @@
             </div>
             <div class="columns large-6">
                 <div class="padding1pxsides">
-                    <select name="businessHour.close">
+                    <select name="businessHourClose">
                         <%
                             _.each(BUSINESS_HOURS.CLOSE, function(v, k){
                         %>
-                            <option value="<%= k %>"><%= v %></option>
+                            <option value="<%= k %>" "<%= venue.businessHour.close == k ? 'selected' : '' %>" ><%= v %></option>
                         <%
                             })
                         %>

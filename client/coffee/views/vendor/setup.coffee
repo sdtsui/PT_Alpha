@@ -10,16 +10,43 @@ define([
     tagName: 'div'
     # className: 'sticky'
     events:
-      'click a.close': 'closeAlert'
+      'click .cancelVenue': 'cancelVenue'
+      'click .updateVenue': 'updateVenue'
+      'click .deleteVenue': 'deleteVenue'
 
-    closeAlert: (e)->
+    cancelVenue: (e)->
       e.preventDefault()
-      e.stopPropagation()    
+      e.stopPropagation()
+      @venue = @model.clone()
+      @buildHtml()
+
+    updateVenue: (e)->
+      e.preventDefault()
+      e.stopPropagation()
+      console.log @venue.isValid()
+      console.log @venue.isNew()
+      if @venue.isValid()
+        @venue.save()
+      #   jsonData = @venue.toJSON()
+      #   $.ajax
+      #     url: '/api/venue/mine'
+      #     type: 'PUT'
+      #     data: jsonData
+      #     dataType: 'json'
+      #     success: (resp)->
+
+    deleteVenue: (e)->
+      e.preventDefault()
+      e.stopPropagation()
+      console.log @venue.toJSON()
+      console.log @venue.isNew()
+
 
     initialize: (options={})->
       that = this
       that.options = options || {}
       that.venue = new VenueModel()
+      that.model = that.venue
       that.venue.url = '/api/venues/mine'
       @initConstant()
 
@@ -53,20 +80,82 @@ define([
         japanese: "Japanese"
         korean: "Korean"
 
+    bindingDom: ->
+      @$name = @$('input[name="name"]')
+      @$name.on 'blur', => 
+        @venue.set name: @$name.val()
+
+      @$address = @$('input[name="address"]')
+      @$address.on 'blur', => 
+        @venue.set address: @$address.val()
+
+      @$phone = @$('input[name="phone"]')
+      @$phone.on 'blur', => 
+        @venue.set phone: @$phone.val()
+
+      @$fax = @$('input[name="fax"]')
+      @$fax.on 'blur', => 
+        @venue.set fax: @$fax.val()
+
+      @$url = @$('input[name="url"]')
+      @$url.on 'blur', => 
+        @venue.set url: @$url.val()
+
+      @$email = @$('input[name="email"]')
+      @$email.on 'blur', => 
+        @venue.set email: @$email.val()
+
+      @$taxInMenu = @$('input[name="taxInMenu"]')
+      @$taxInMenu.on 'click', => 
+        @venue.set taxInMenu: @$taxInMenu.is(':checked')
+
+      @$tax = @$('input[name="tax"]')
+      @$tax.on 'blur', => 
+        @venue.set tax: @$tax.val()
+
+      @$gratuity = @$('input[name="gratuity"]')
+      @$gratuity.on 'blur', => 
+        @venue.set gratuity: @$gratuity.val()
+
+      @$businessHourOpen = @$('select[name="businessHourOpen"]')
+      @$businessHourOpen.on 'change', => 
+        @venue.set 'businessHour.open': @$businessHourOpen.val()
+
+      @$businessHourClose = @$('select[name="businessHourClose"]')
+      @$businessHourClose.on 'change', => 
+        @venue.set 'businessHour.close': @$businessHourClose.val()
+
+      @$timeZone = @$('input[name="timeZone"]')
+      @$timeZone.on 'blur', => 
+        @venue.set timeZone: @$timeZone.val()
+
+      @$cuisineType = @$('input[name="cuisineType"]')
+      @$cuisineType.on 'blur', => 
+        @venue.set cuisineType: @$cuisineType.val()
+
+      @$currency = @$('input[name="currency"]')
+      @$currency.on 'blur', => 
+        @venue.set currency: @$currency.val()
+
+    buildHtml: ()->
+      that = this
+      tpl = _.template(VendorSetupTemplate, 
+        _: _
+        venue: that.venue.toJSON()
+        BUSINESS_HOURS: that.BUSINESS_HOURS
+        TIME_ZONES: that.TIME_ZONES
+        CURRENCY: that.CURRENCY
+        CUISINE_TYPES: that.CUISINE_TYPES
+      )
+      that.$el.html(tpl)
+      @bindingDom()
+
     render: ()->
       that = this
       that.venue.fetch 
         success: (v, response, options)->
-          console.log that.venue
-          tpl = _.template(VendorSetupTemplate, 
-            _: _
-            venue: that.venue.toJSON()
-            BUSINESS_HOURS: that.BUSINESS_HOURS
-            TIME_ZONES: that.TIME_ZONES
-            CURRENCY: that.CURRENCY
-            CUISINE_TYPES: that.CUISINE_TYPES
-          )
-          that.$el.html(tpl)
+          that.model = that.venue.clone()
+          that.buildHtml()
       @
 
   )
