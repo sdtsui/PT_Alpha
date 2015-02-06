@@ -11,29 +11,29 @@
     <hr>
     <div class="columns large-4">
         <label>Venue Name
-            <input type="search" placeholder="eg My Hotel" value="<%= venue.name %>">
+            <input name="name" type="text" placeholder="eg My Hotel" value="<%= venue.name %>">
         </label>
         <label>Address
-            <input type="text" placeholder=""  value="<%= venue.address %>">
+            <input name="address" type="text" placeholder=""  value="<%= venue.address %>">
         </label>
         <label>Phone Number
-            <input type="text" placeholder="(555) 555-5555" value="<%= venue.phone %>">
+            <input name="phone" type="text" placeholder="(555) 555-5555" value="<%= venue.phone %>">
         </label>
         <label>Fax Number
-            <input type="text" placeholder="(555) 555-5555" value="<%= venue.fax %>">
+            <input name="fax" type="text" placeholder="(555) 555-5555" value="<%= venue.fax %>">
         </label>
         <label>url
-            <input type="text" placeholder="eg www.name.com" value="<%= venue.url %>">
+            <input name="url" type="text" placeholder="eg www.name.com" value="<%= venue.url %>">
         </label>
         <label>Email
-            <input type="text" placeholder="eg joe@name.com" value="<%= venue.email %>">
+            <input name="email" type="text" placeholder="eg joe@name.com" value="<%= venue.email %>">
         </label>
     </div>
     <div class="columns large-4">
         <div class="row collapse">
             <div class="columns large-3">
                 <div class="switch round tiny">
-                    <input type="checkbox" id="includeTaxGratuity" checked>
+                    <input name="includeTax" type="checkbox" id="includeTaxGratuity" checked>
                     <label for="includeTaxGratuity"></label>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                     <label>Tax Rate
                         <div class="row collapse">
                             <div class="columns large-8">
-                                <input type="number" placeholder="eg 9.00%" value="<%= venue.tax %>" max="100">
+                                <input name="tax" type="number" placeholder="eg 9.00%" value="<%= venue.tax %>" min="0" max="100">
                             </div>
                             <div class="columns large-4"><span class="postfix">%</span>
                             </div>
@@ -61,7 +61,7 @@
                     <label>Gratuity
                         <div class="row collapse">
                             <div class="columns large-8">
-                                <input type="text" placeholder="eg 22.0" value="<%= venue.gratuity %>">
+                                <input name="gratuity" type="number" placeholder="eg 22.0" value="<%= venue.gratuity %>" min="0">
                             </div>
                             <div class="columns large-4"><span class="postfix">%</span>
                             </div>
@@ -74,24 +74,27 @@
             <label>Business Hours</label>
             <div class="columns large-6">
                 <div class="padding1pxsides">
-                    <select>
-                        <option value="5:00a">5:00a</option>
-                        <option value="6:00a">6:00a</option>
-                        <option value="7:00a">7:00a</option>
-                        <option value="8:00a">8:00a</option>
-                        <option value="9:00a">9:00a</option>
-                        <option value="10:00a">10:00a</option>
+                    <select name="businessHour.open">
+                        <%
+                            _.each(BUSINESS_HOURS.OPEN, function(v, k){
+                        %>
+                            <option value="<%= k %>"><%= v %></option>
+                        <%
+                            })
+                        %>
                     </select>
                 </div>
             </div>
             <div class="columns large-6">
                 <div class="padding1pxsides">
-                    <select>
-                        <option value="7:00p">7:00p</option>
-                        <option value="8:00p">8:00p</option>
-                        <option value="9:00p">9:00p</option>
-                        <option value="10:00p">10:00p</option>
-                        <option value="11:00p">11:00p</option>
+                    <select name="businessHour.close">
+                        <%
+                            _.each(BUSINESS_HOURS.CLOSE, function(v, k){
+                        %>
+                            <option value="<%= k %>"><%= v %></option>
+                        <%
+                            })
+                        %>
                     </select>
                 </div>
             </div>
@@ -99,22 +102,39 @@
     </div>
     <div class="columns large-4">
         <label>Time Zone
-            <select>
-                <option value="pacific">Pacific Standard Time</option>
-                <option value="easter">Eastern Standard Time</option>
-                <option value="central">Central Standard Time</option>
+            <select name="timeZone">
+                <%
+                    _.each(TIME_ZONES, function(v, k){
+                %>
+                    <option value="<%= k %>"><%= v %></option>
+                <%
+                    })
+                %>
+
             </select>
         </label>
         <label>Currency
-            <select>
-                <option value="USD">US Dollars</option>
+            <select name="currency">
+                <%
+                    _.each(CURRENCY, function(v, k){
+                %>
+                    <option value="<%= k %>"><%= v %></option>
+                <%
+                    })
+                %>
+
             </select>
         </label>
         <label>Cuisine Type
-            <select>
-                <option value="american">American</option>
-                <option value="japanese">Japanese</option>
-                <option value="korean">Korean</option>
+            <select name="cuisineType">
+                <%
+                    _.each(CUISINE_TYPES, function(v, k){
+                %>
+                    <option value="<%= k %>"><%= v %></option>
+                <%
+                    })
+                %>
+
             </select>
         </label>
     </div>

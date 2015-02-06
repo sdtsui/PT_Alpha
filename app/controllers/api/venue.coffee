@@ -14,5 +14,6 @@ module.exports = (app, passport) ->
     Venue.findOne {creator: req.user.id}, (e, venue)->
       if e || !venue
         return res.status(400).send({message: 'Not found venue'})
-
-      res.json(venue.toJSON())
+      json = venue.toJSON()
+      delete json.creator
+      res.json(json)
