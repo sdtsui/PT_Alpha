@@ -10,62 +10,7 @@
             <!-- main content goes here-->
             <div class="page-wrapper">
                 <div class="sticky">
-                    <nav data-topbar="" role="navigation" data-options="is_hover: true" class="top-bar">
-                        <ul class="title-area">
-                            <li class="name">
-                                <h1><a href="#" target="_self"><img src="/assets/images/logo.png" width="100" height="24"><span>Calendar</span></a></h1>
-                            </li>
-                            <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone-->
-                            <li class="toggle-topbar menu-icon"><a href="#" target="_self"><span>Menu</span></a>
-                            </li>
-                        </ul>
-                        <section class="top-bar-section">
-                            <!-- Right Nav Section-->
-                            <ul class="right">
-                                <li><a href="#" target="_self">+ Event</a>
-                                </li>
-                                <li><a href="#" target="_self">+ Prospect</a>
-                                </li>
-                                <li class="has-dropdown">
-                                    <a href="#" target="_self"><img src="/assets/images/faces/craig.jpg" width="30" height="30">
-                                    </a>
-                                    <ul class="dropdown">
-                                        <li><a href="#" target="_self">settings</a>
-                                        </li>
-                                        <li class="active"><a href="/auth/logout">logout</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <!--off canvas toggle class right-off-canvas-toggle -->
-                                <!--must have this toggle class for off canvas to work-->
-                                <!-- rest of the off canvas code is at layout-off-canvas.jade file-->
-                                <li>
-                                    <a href="#" target="_self" class="right-off-canvas-toggle"><img src="/assets/images/slide-left.png" width="16" height="16">
-                                    </a>
-                                </li>
-                            </ul>
-                            <!-- Left Nav Section-->
-                            <ul class="left">
-                                <li>
-                                    <a href="#"><img src="/assets/images/calendar.png" width="16" height="16">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#"><img src="/assets/images/users.png" width="16" height="16">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#"><img src="/assets/images/mail.png" width="16" height="16">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#"><img src="/assets/images/door.png" width="16" height="16">
-                                    </a>
-                                </li>
-                            </ul>
-                        </section>
-                    </nav>
-                    <hr style="margin:0">
+                
                 </div>
                 <div class="content-wrapper">
                     <div class="subnav">
@@ -82,180 +27,171 @@
                         </div>
                     </div>
                     <div data-equalizer class="row collapse">
-                        <div data-equalizer-watch class="columns large-1 left-col">
+                        <div data-equalizer-watch class="columns large-3 left-col">
                             <div class="silo verticalmenu">
-                                <div class="menu-wrap menu-primary">
-                                    <!--label//input#autocomplete(tabindex="1", type="search", placeholder="Search Docs: e.g. forms", autocomplete="off")-->
-                                    <!--hr-->
+                                <div class="menu-wrap">
+                                    <label>
+                                        <input id="autocomplete" tabindex="1" type="search" placeholder="Search Docs: e.g. forms" autocomplete="off">
+                                    </label>
+                                    <hr>
                                     <ul>
-                                        <li>
-                                            Venue</li>
-                                        <li>Terminology</li>
-                                        <li>Services</li>
                                         <li class="active">
-                                            Roles</li>
+                                            Venue</li>
+                                        <li>
+                                            Terminology</li>
+                                        <li>
+                                            Services</li>
+                                        <li>Roles</li>
                                         <li>
                                             Settings</li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
-                        <div data-equalizer-watch class="columns large-3 left-col">
-                            <div class="silo verticalmenu">
-                                <div class="menu-wrap menu-secondary">
-                                    <div class="clean-button-tiny right">add new role</div>
-                                    <h6>Roles</h6>
-                                    <div ng-controller="VenueController">
-                                        <input type="search" placeholder="find a manager" ng-model="query">
-                                        <ul class="menu-list">
-                                            <li ng-repeat="item in data.roles | filter: query" class="item">{{item.name}}</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div data-equalizer-watch class="columns large-8 right-col">
+                        <div data-equalizer-watch class="columns large-9 right-col">
                             <div class="silo">
                                 <div class="form-wrap">
                                     <!-- venue-->
-                                    <!--include templates/ng/vendor/venue/venue-general-->
-                                    <!-- venue-->
-                                    <!--include templates/ng/vendor/venue/venue-terminology-edit-->
-                                    <!-- venue-->
-                                    <!--include templates/ng/vendor/venue/venue-services-->
-                                    <!-- venue-->
                                     <div class="row">
-                                        <div class="clean-button-tiny top-cta right">&nbsp; delete Craig Smith &nbsp;<i class="fi-trash"></i>
+                                        <div class="clean-button-tiny top-cta right">&nbsp; delete venue &nbsp;<i class="fi-trash"></i>
                                         </div>
                                         <div class="clean-button-tiny top-cta right">
                                             &nbsp; save &nbsp;<i class="fi-save"></i>
                                         </div>
                                         <div class="clean-button-tiny top-cta right">cancel</div>
-                                        <h4>ROLE <small>Craig Smith</small></h4>
+                                        <h4>VENUE <small>| General Setup Information</small></h4>
                                         <hr>
                                         <div class="columns large-4">
-                                            <label>Name
+                                            <label>Venue Name
                                                 <input type="search" placeholder="eg My Hotel">
                                             </label>
-                                            <label>Role
-                                                <select>
-                                                    <option value="event manager">event manager</option>
-                                                    <option value="owner">owner</option>
-                                                    <option value="event coordinator">event coordinator</option>
-                                                    <option value="general manager">general manager</option>
-                                                    <option value="partner">partner</option>
-                                                </select>
+                                            <label>Address
+                                                <input type="text" placeholder="">
+                                            </label>
+                                            <label>Phone Number
+                                                <input type="text" placeholder="(555) 555-5555">
+                                            </label>
+                                            <label>Fax Number
+                                                <input type="text" placeholder="(555) 555-5555">
+                                            </label>
+                                            <label>url
+                                                <input type="text" placeholder="eg www.name.com">
                                             </label>
                                             <label>Email
                                                 <input type="text" placeholder="eg joe@name.com">
                                             </label>
-                                            <label>Phone Number
-                                                <input type="text" placeholder="555 555-5555">
-                                            </label>
+                                        </div>
+                                        <div class="columns large-4">
                                             <div class="row collapse">
                                                 <div class="columns large-3">
                                                     <div class="switch round tiny">
-                                                        <input type="checkbox" id="isActive" checked>
-                                                        <label for="isActive"></label>
+                                                        <input type="checkbox" id="includeTaxGratuity" checked>
+                                                        <label for="includeTaxGratuity"></label>
                                                     </div>
                                                 </div>
                                                 <div class="columns large-9">
-                                                    <h6 class="subheader">Currently Active</h6>
+                                                    <h6 class="subheader">Include Tax and Gratuity in Menu Price</h6>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row collapse">
+                                                <div class="columns large-6">
+                                                    <div class="padding1pxsides">
+                                                        <label>Tax Rate
+                                                            <div class="row collapse">
+                                                                <div class="columns large-8">
+                                                                    <input type="text" placeholder="eg 9.00%">
+                                                                </div>
+                                                                <div class="columns large-4"><span class="postfix">%</span>
+                                                                </div>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="columns large-6">
+                                                    <div class="padding1pxsides">
+                                                        <label>Gratuity
+                                                            <div class="row collapse">
+                                                                <div class="columns large-8">
+                                                                    <input type="text" placeholder="eg 22.0">
+                                                                </div>
+                                                                <div class="columns large-4"><span class="postfix">%</span>
+                                                                </div>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row collapse">
+                                                <label>Business Hours</label>
+                                                <div class="columns large-6">
+                                                    <div class="padding1pxsides">
+                                                        <select>
+                                                            <option value="5:00a">5:00a</option>
+                                                            <option value="6:00a">6:00a</option>
+                                                            <option value="7:00a">7:00a</option>
+                                                            <option value="8:00a">8:00a</option>
+                                                            <option value="9:00a">9:00a</option>
+                                                            <option value="10:00a">10:00a</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="columns large-6">
+                                                    <div class="padding1pxsides">
+                                                        <select>
+                                                            <option value="7:00p">7:00p</option>
+                                                            <option value="8:00p">8:00p</option>
+                                                            <option value="9:00p">9:00p</option>
+                                                            <option value="10:00p">10:00p</option>
+                                                            <option value="11:00p">11:00p</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="columns large-8">
-                                            <h6>NOTIFICATION<table width="100%" class="notification"><thead><tr><th id="event">event</th><th width="110"></th><th width="40" id="email">email</th><th width="40" id="phone">phone</th></tr></thead><tbody><tr><th id="event1" header="event">new prospect</th><td><div class="row collapse"><div class="columns large-7"><div class="switch round tiny"><input type="checkbox" id="isActive1" checked><label for="isActive1"></label></div></div><div class="columns large-5"><h6 class="subheader">Active</h6>
+                                        <div class="columns large-4">
+                                            <label>Time Zone
+                                                <select>
+                                                    <option value="pacific">Pacific Standard Time</option>
+                                                    <option value="easter">Eastern Standard Time</option>
+                                                    <option value="central">Central Standard Time</option>
+                                                </select>
+                                            </label>
+                                            <label>Currency
+                                                <select>
+                                                    <option value="USD">US Dollars</option>
+                                                </select>
+                                            </label>
+                                            <label>Cuisine Type
+                                                <select>
+                                                    <option value="american">American</option>
+                                                    <option value="japanese">Japanese</option>
+                                                    <option value="korean">Korean</option>
+                                                </select>
+                                            </label>
                                         </div>
                                     </div>
-                                    </td>
-                                    <td headers="event1 email"> <i class="fi-mail active"></i>
-                                    </td>
-                                    <td headers="event1 phone"> <i class="fi-mobile active"></i>
-                                    </td>
-                                    </tr>
-                                    <tr>
-                                        <th id="event2" header="event">new message</th>
-                                        <td>
-                                            <div class="row collapse">
-                                                <div class="columns large-7">
-                                                    <div class="switch round tiny">
-                                                        <input type="checkbox" id="isActive2" checked>
-                                                        <label for="isActive2"></label>
-                                                    </div>
-                                                </div>
-                                                <div class="columns large-5">
-                                                    <h6 class="subheader">Active</h6>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td headers="event2 email"><i class="fi-mail"></i>
-                                        </td>
-                                        <td headers="event2 phone"><i class="fi-mobile active"></i>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th id="event2" header="event">new event</th>
-                                        <td>
-                                            <div class="row collapse">
-                                                <div class="columns large-7">
-                                                    <div class="switch round tiny">
-                                                        <input type="checkbox" id="isActive3" checked>
-                                                        <label for="isActive3"></label>
-                                                    </div>
-                                                </div>
-                                                <div class="columns large-5">
-                                                    <h6 class="subheader">Active</h6>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td headers="event3 email"><i class="fi-mail active"></i>
-                                        </td>
-                                        <td headers="event3 phone"><i class="fi-mobile active"></i>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th id="event2" header="event">abandon cart</th>
-                                        <td>
-                                            <div class="row collapse">
-                                                <div class="columns large-7">
-                                                    <div class="switch round tiny">
-                                                        <input type="checkbox" id="isActive4" checked>
-                                                        <label for="isActive4"></label>
-                                                    </div>
-                                                </div>
-                                                <div class="columns large-5">
-                                                    <h6 class="subheader">Active</h6>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td headers="event4 email"><i class="fi-mail active"></i>
-                                        </td>
-                                        <td headers="event4 phone"><i class="fi-mobile">       </i>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                    </table>
-                                    </h6>
+                                    <script>
+                                        var isIncludeTaxChecked = $('#includeTaxGratuity').is(':checked')
+                                    </script>
+                                    <!-- venue-->
+                                    <!--include templates/ng/vendor/venue/venue-language-->
+                                    <!-- venue-->
+                                    <!--include templates/ng/vendor/venue/venue-services-->
+                                    <!-- venue-->
+                                    <!--include templates/ng/vendor/venue/venue-roles-->
+                                    <!-- venue-->
+                                    <!--include templates/ng/vendor/venue/venue-settings-->
+
+
+
+
+
                                 </div>
                             </div>
-                            <!-- venue-->
-                            <!--include templates/ng/vendor/venue/venue-settings-->
                         </div>
                     </div>
                 </div>
-                <!-- venue-terminology-edit-->
-                <!--.columns.large-3.left-col(data-equalizer-watch)-->
-                <!--    .silo.verticalmenu-->
-                <!--        .slideout-menu-->
-                <!--            include templates/ng/vendor/venue/slideout-->
-
-
-
-
-
             </div>
-        </div>
-    </div>
-    <!-- close the off-canvas menu-->
-    <a class="exit-off-canvas"></a>
+            <!-- close the off-canvas menu-->
+            <a class="exit-off-canvas"></a>
