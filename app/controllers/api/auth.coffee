@@ -22,7 +22,12 @@ module.exports = (app, passport) ->
         json.errors = err.errors
         return res.json json
       
-      venue = new Venue({creator: user._id, name: user.venueName, url: utils.getFormatedUrl(user.venueUrl)})
+      venue = new Venue(
+        email: user.email
+        creator: user._id
+        name: user.venueName
+        url: utils.getFormatedUrl(user.venueUrl)
+      )
       venue.save()
       req.logIn user, (err)->
         if err

@@ -17,34 +17,42 @@ VenueSchema = new Schema(
     type: String
     # required: true
 
-  timeZone:
-    type: String
-    # enum
-
   phone:
     type: String
 
   fax:
     type: String
 
-  email:
-    type: String
-
   url:
     type: String
 
-  businessHour:
-    openTime: String
-    closeTime: String
-
-  cuisineType:
+  email:
     type: String
+
+  taxInMenu:
+    type: Boolean
+    defaults: true
 
   tax:
     type: Number
 
   gratuity:
     type: Number
+
+  businessHour:
+    openTime: String
+    closeTime: String
+
+  timeZone:
+    type: String
+    # enum
+
+  cuisineType:
+    type: String
+
+  currency:
+    type: String
+    # enum:
 
 )
 
