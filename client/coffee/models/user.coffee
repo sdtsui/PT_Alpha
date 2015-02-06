@@ -3,6 +3,7 @@ define([
   'Backbone'
 ], (_, Backbone)->
   UserModel = Backbone.Model.extend(
+    idAttribute: "_id"
     defaults:
       name: ''
 
