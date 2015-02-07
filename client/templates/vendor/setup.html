@@ -81,7 +81,7 @@
                         <%
                             _.each(BUSINESS_HOURS.OPEN, function(v, k){
                         %>
-                            <option value="<%= k %>" "<%= venue.businessHour.open == k ? 'selected' : '' %>" ><%= v %></option>
+                            <option value="<%= k %>" "<%= venue.businessHour && venue.businessHour.openTime == k ? 'selected' : '' %>" ><%= v %></option>
                         <%
                             })
                         %>
@@ -94,7 +94,7 @@
                         <%
                             _.each(BUSINESS_HOURS.CLOSE, function(v, k){
                         %>
-                            <option value="<%= k %>" "<%= venue.businessHour.close == k ? 'selected' : '' %>" ><%= v %></option>
+                            <option value="<%= k %>" "<%= venue.businessHour && venue.businessHour.closeTime == k ? 'selected' : '' %>" ><%= v %></option>
                         <%
                             })
                         %>

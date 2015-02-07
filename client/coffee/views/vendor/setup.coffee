@@ -13,7 +13,7 @@ define([
     events:
       'click .cancelVenue': 'cancelVenue'
       'click .updateVenue': 'updateVenue'
-      'click .deleteVenue': 'deleteVenue'
+      # 'click .deleteVenue': 'deleteVenue'
 
     cancelVenue: (e)->
       e.preventDefault()
@@ -29,7 +29,10 @@ define([
       if @venue.isValid()
         @venue.save()
         @model = @venue.clone()
+        msg = new AlertMessage({type: 'success', messages: ["Venue was updated successfully."]})
+        @$el.prepend(msg.render().el)
       else
+        console.log @venue
         msg = new AlertMessage({messages: ["There are some errors"]})
         @$el.prepend(msg.render().el)
 
@@ -116,12 +119,16 @@ define([
         @venue.set gratuity: @$gratuity.val()
 
       @$businessHourOpen = @$('select[name="businessHourOpen"]')
-      @$businessHourOpen.on 'change', => 
-        @venue.set 'businessHour.open': @$businessHourOpen.val()
+      @$businessHourOpen.on 'change', =>
+        businessHour = @venue.get('businessHour') || {}
+        businessHour.openTime = @$businessHourOpen.val()
+        @venue.set 'businessHour': businessHour
 
       @$businessHourClose = @$('select[name="businessHourClose"]')
       @$businessHourClose.on 'change', => 
-        @venue.set 'businessHour.close': @$businessHourClose.val()
+        businessHour = @venue.get('businessHour') || {}
+        businessHour.closeTime = @$businessHourClose.val()
+        @venue.set 'businessHour': businessHour
 
       @$timeZone = @$('input[name="timeZone"]')
       @$timeZone.on 'blur', => 

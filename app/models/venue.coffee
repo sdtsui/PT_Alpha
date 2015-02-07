@@ -40,8 +40,8 @@ VenueSchema = new Schema(
     type: Number
 
   businessHour:
-    openTime: String
-    closeTime: String
+    openTime: Number
+    closeTime: Number
 
   timeZone:
     type: String

@@ -15,8 +15,8 @@ define([
       tax: ''
       gratuity: ''
       businessHour:
-        open: 5
-        close: 23
+        openTime: 5
+        closeTime: 23
       timeZone: ''
       cuisineType: ''
       currency: ''
@@ -37,7 +37,7 @@ define([
         errors['url'] ||= []
         errors['url'].push('is invalid')        
 
-      if attrs.email && attrs.email.toString().match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
+      if attrs.email && !attrs.email.toString().match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
         errors['email'] ||= []
         errors['email'].push('is invalid')
 
