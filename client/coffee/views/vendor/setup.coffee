@@ -4,163 +4,55 @@ define([
   'Backbone'
   'models/venue'
   'views/shared/alert_message'
+  'views/vendor/setup/venue'
+  'views/vendor/setup/terminology'
   'text!templates/vendor/setup.html'
-], ($, _, Backbone, VenueModel, AlertMessage, VendorSetupTemplate)->
+], ($, _, Backbone, VenueModel, AlertMessage, SetupVenueView, TerminologyView, VendorSetupTemplate)->
 
   VendorSetupView = Backbone.View.extend(
-    tagName: 'div'
+    # tagName: 'div'
     # className: 'sticky'
+    el: '#setupContent'
+
     events:
-      'click .cancelVenue': 'cancelVenue'
+      'click .menu-wrap ul li': 'navMenu'
       'click .updateVenue': 'updateVenue'
-      # 'click .deleteVenue': 'deleteVenue'
 
-    cancelVenue: (e)->
+  
+    navMenu: (e)->
       e.preventDefault()
       e.stopPropagation()
-      @venue = @model.clone()
-      @buildHtml()
-
-    updateVenue: (e)->
-      e.preventDefault()
-      e.stopPropagation()
-      console.log @venue.isValid()
-      console.log @venue.isNew()
-      if @venue.isValid()
-        @venue.save()
-        @model = @venue.clone()
-        msg = new AlertMessage({type: 'success', messages: ["Venue was updated successfully."]})
-        @$el.prepend(msg.render().el)
-      else
-        console.log @venue
-        msg = new AlertMessage({messages: ["There are some errors"]})
-        @$el.prepend(msg.render().el)
-
-    deleteVenue: (e)->
-      e.preventDefault()
-      e.stopPropagation()
-      console.log @venue.toJSON()
-      console.log @venue.isNew()
-
+      $e = $(e.currentTarget)
+      if $e.hasClass('active')
+        return
+      $e.closest('ul').find('li').removeClass('active')
+      $e.addClass('active')
+      console.log $e.data('nav')
+      switch $e.data('nav')
+        when 'venue'
+          @buildVenue()
+        when 'terminology'
+          @buildTerminology()
 
     initialize: (options={})->
-      that = this
-      that.options = options || {}
-      that.venue = new VenueModel()
-      that.model = that.venue
-      that.venue.url = '/api/venues/mine'
-      @initConstant()
+      @options = options
+ 
 
-    initConstant: ->
-      @BUSINESS_HOURS = 
-        OPEN: 
-          5: '5:00a'
-          6: '6:00a'
-          7: '7:00a'
-          8: '8:00a'
-          9: '9:00a'
-          10: '10:00a'
-        CLOSE:
-          19: '7:00p'
-          20: '8:00p'
-          21: '9:00p'
-          22: '10:00p'
-          23: '11:00p'
 
-      @TIME_ZONES =
-        pacific: "Pacific Standard Time"
-        easter: "Eastern Standard Time"
-        central: "Central Standard Time"
 
-      @CURRENCY =
-        USD: "US Dollars"
-        EUR: "Euro"
+    buildTerminology: ()->
+      view = new TerminologyView()
+      @$('.silo.vendorSetup').html view.render().el
 
-      @CUISINE_TYPES =
-        american: "American"
-        japanese: "Japanese"
-        korean: "Korean"
-
-    bindingDom: ->
-      @$name = @$('input[name="name"]')
-      @$name.on 'blur', => 
-        @venue.set name: @$name.val()
-
-      @$address = @$('input[name="address"]')
-      @$address.on 'blur', => 
-        @venue.set address: @$address.val()
-
-      @$phone = @$('input[name="phone"]')
-      @$phone.on 'blur', => 
-        @venue.set phone: @$phone.val()
-
-      @$fax = @$('input[name="fax"]')
-      @$fax.on 'blur', => 
-        @venue.set fax: @$fax.val()
-
-      @$url = @$('input[name="url"]')
-      @$url.on 'blur', => 
-        @venue.set url: @$url.val()
-
-      @$email = @$('input[name="email"]')
-      @$email.on 'blur', => 
-        @venue.set email: @$email.val()
-
-      @$taxInMenu = @$('input[name="taxInMenu"]')
-      @$taxInMenu.on 'click', => 
-        @venue.set taxInMenu: @$taxInMenu.is(':checked')
-
-      @$tax = @$('input[name="tax"]')
-      @$tax.on 'blur', => 
-        @venue.set tax: @$tax.val()
-
-      @$gratuity = @$('input[name="gratuity"]')
-      @$gratuity.on 'blur', => 
-        @venue.set gratuity: @$gratuity.val()
-
-      @$businessHourOpen = @$('select[name="businessHourOpen"]')
-      @$businessHourOpen.on 'change', =>
-        businessHour = @venue.get('businessHour') || {}
-        businessHour.openTime = @$businessHourOpen.val()
-        @venue.set 'businessHour': businessHour
-
-      @$businessHourClose = @$('select[name="businessHourClose"]')
-      @$businessHourClose.on 'change', => 
-        businessHour = @venue.get('businessHour') || {}
-        businessHour.closeTime = @$businessHourClose.val()
-        @venue.set 'businessHour': businessHour
-
-      @$timeZone = @$('input[name="timeZone"]')
-      @$timeZone.on 'blur', => 
-        @venue.set timeZone: @$timeZone.val()
-
-      @$cuisineType = @$('input[name="cuisineType"]')
-      @$cuisineType.on 'blur', => 
-        @venue.set cuisineType: @$cuisineType.val()
-
-      @$currency = @$('input[name="currency"]')
-      @$currency.on 'blur', => 
-        @venue.set currency: @$currency.val()
-
-    buildHtml: ()->
-      that = this
-      tpl = _.template(VendorSetupTemplate, 
-        _: _
-        venue: that.venue.toJSON()
-        BUSINESS_HOURS: that.BUSINESS_HOURS
-        TIME_ZONES: that.TIME_ZONES
-        CURRENCY: that.CURRENCY
-        CUISINE_TYPES: that.CUISINE_TYPES
-      )
-      that.$el.html(tpl)
-      @bindingDom()
+    buildVenue: ()->
+      view = new SetupVenueView()
+      @$('.silo.vendorSetup').html view.render().el
 
     render: ()->
       that = this
-      that.venue.fetch 
-        success: (v, response, options)->
-          that.model = that.venue.clone()
-          that.buildHtml()
+      tpl = _.template(VendorSetupTemplate, {})
+      @$el.html(tpl)
+      @buildVenue()
       @
 
   )

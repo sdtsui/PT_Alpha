@@ -41,7 +41,7 @@ define([
     vendorSetup: ->
       @authorizeDom()
       view = new VendorSetupView()
-      $('.silo.vendorSetup').html view.render().el
+      view.render()
 
     authorizeDom: ->
       if ! PrivateTable.getCurrentUser()
@@ -49,7 +49,6 @@ define([
         return
       
       $('#backbone-app').html(AuthorizedLayoutView.render().el)
-
   )
 
   return{
