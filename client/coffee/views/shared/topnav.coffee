@@ -25,6 +25,6 @@ define([
       @      
 
   )
-  return TopnavView
+  return new TopnavView()
 
 )
