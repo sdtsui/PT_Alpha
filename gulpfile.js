@@ -113,7 +113,7 @@ gulp.task('coffees', function() {
       .pipe(gulp.dest('./public/assets/js'))
       .pipe(livereload())
       .pipe(notify({
-        message: 'Coffee task complete'
+        message: "Coffee task complete <%= file.relative %>!"
       }));
       // .on('end', done)
 });
@@ -171,7 +171,7 @@ gulp.task('templates', function() {
     .pipe(gulp.dest('./public/assets/js/templates/'))
     .pipe(livereload())
     .pipe(notify({
-        message: 'templates task complete'
+        message: "templates task complete <%= file.relative %>!"
     }));
 });
 
