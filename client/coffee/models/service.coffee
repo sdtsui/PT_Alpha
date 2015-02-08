@@ -12,8 +12,7 @@ define([
       isActive: true
       
     initialize: (options)->
-      console.log 'new ServiceModel'
- 
+      @options = options 
   )
 
   return ServiceModel

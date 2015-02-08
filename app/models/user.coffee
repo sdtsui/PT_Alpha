@@ -3,6 +3,7 @@ crypto = require('crypto')
 
 mongoose = require 'mongoose'
 Schema   = mongoose.Schema
+ObjectId = Schema.ObjectId
 
 AUTH_TYPES = [
   'facebook'
@@ -10,8 +11,11 @@ AUTH_TYPES = [
 ]
 
 ROLES =
-  OWNER: 'OWNER'
-  MANAGER: 'MANAGER'
+  EVENT_MANAGER: 'event manager'
+  OWNER: 'owner'
+  EVENT_COORDINATOR: 'event coordinator'
+  GENERAL_MANAGER: 'general manager'
+  PARTNER: 'partner'
 
 UserSchema = new Schema(
   venue: 

@@ -11,7 +11,7 @@ UNIT_METHODS =
   OVER_TIME: '$ per hour over'
   DOZEN: '$ per 12 items'
 
-VenueSchema = new Schema(
+ServiceSchema = new Schema(
   venue: 
     type: ObjectId
     ref: 'Venue'
@@ -36,6 +36,8 @@ VenueSchema = new Schema(
   isActive:
     type: Boolean
     default: true
+
+)
 
 
 mongoose.model 'Service', ServiceSchema
