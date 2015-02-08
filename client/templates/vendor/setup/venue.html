@@ -94,7 +94,7 @@
                         <%
                             _.each(BUSINESS_HOURS.CLOSE, function(v, k){
                         %>
-                            <option value="<%= k %>" "<%= venue.businessHour && venue.businessHour.closeTime == k ? 'selected' : '' %>" ><%= v %></option>
+                            <option value="<%= k %>" <%= venue.businessHour && venue.businessHour.closeTime == k ? 'selected' : '' %> ><%= v %></option>
                         <%
                             })
                         %>

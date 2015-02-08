@@ -9,7 +9,15 @@ AUTH_TYPES = [
   'local'
 ]
 
+ROLES =
+  OWNER: 'OWNER'
+  MANAGER: 'MANAGER'
+
 UserSchema = new Schema(
+  venue: 
+    type: ObjectId
+    ref: 'Venue'
+
   # auth attributes
   email:
     type: String
@@ -30,6 +38,9 @@ UserSchema = new Schema(
 
   facebook: {}
   
+  role:
+    type: String
+
   # profile attributes
   name:
     type: String
