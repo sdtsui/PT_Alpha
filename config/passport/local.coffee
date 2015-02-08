@@ -9,7 +9,6 @@ local = new LocalStrategy(
     options =
       criteria: { email: email }
       select: 'venue name email hashed_password salt'
-
     User.load options, (err, user)->
       if err
         return done(err)

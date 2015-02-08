@@ -223,7 +223,7 @@ UserSchema.methods =
 
 UserSchema.statics =
   load: (options, cb)->
-    options.select = options.select || 'name email'
+    options.select = options.select || 'venue name email'
     this.findOne(options.criteria).select(options.select).exec(cb)
 
 mongoose.model 'User', UserSchema
