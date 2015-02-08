@@ -24,6 +24,7 @@ module.exports = (app, passport) ->
         return res.status(400).json({message: "Not found venue"})
 
       delete req.body._id
+      delete req.body.creator
       venue = extend(venue, req.body)
       venue.save()
 
