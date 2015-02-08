@@ -31,7 +31,20 @@ define([
         e.preventDefault()
         e.stopPropagation()
         $e = $(e.currentTarget)
-        console.log 'saveService'
+        isNew = @formService.isNew()
+        if @formService.isValid()
+          if isNew
+            @formService.url = "/api/services/create"
+          else
+            @formService.url = "/api/services/update"
+
+          @formService.save
+            success: (model, response, options)->
+              console.log model
+              console.log response
+            error: (model, response, options)->
+              console.log 'errror'
+              console.log response
 
       deleteService: (e)->
         e.preventDefault()
@@ -62,6 +75,10 @@ define([
         @$description = @$('input[name="description"]')
         @$description.on 'blur', => 
           @formService.set description: @$description.val()
+
+        @$unitMethod = @$('input[name="unitMethod"]')
+        @$unitMethod.on 'change', => 
+          @formService.set unitMethod: @$unitMethod.val()
 
         @$unitRate = @$('input[name="unitRate"]')
         @$unitRate.on 'blur', => 

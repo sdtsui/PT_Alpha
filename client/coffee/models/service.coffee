@@ -7,7 +7,7 @@ define([
     defaults:
       name: ''
       description: ''
-      unitMethod: ''
+      unitMethod: 'HEAD'
       unitRate: ''
       isActive: true
       

@@ -17,11 +17,30 @@ module.exports = (app, passport) ->
 
       res.json(services)
 
-  router.post '/', (req, res)->
+  router.post '/create', (req, res)->
     delete req.body.venue
     service = new Service(req.body)
+    console.log req.user
+    service.venue = req.user.venue
+    console.log service
     service.save (e)->
       if e
-        return res.status(400).send({message: e})
+        return res.status(400).send({message: e.errors})
+
+      res.json(service.toJSON())
+
+  router.post '/update', (req, res)->
+
+    Service.findOne {_id: req.body._id}, (e, service)->
+      if e || !service
+        return res.status(400).send({message: "Not found service."})
+    delete req.body._id
+    delete req.body.venue
+
+    service = extend(service, req.body)
+
+    service.save (e)->
+      if e
+        return res.status(400).send({message: e.errors})
 
       res.json(service.toJSON())
