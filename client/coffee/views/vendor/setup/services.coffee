@@ -5,6 +5,7 @@ define([
   'models/service'
   'collections/services'
   'views/shared/alert_message'
+  'views/vendor/setup/form_service'
   'text!templates/vendor/setup/services.html'
 ], ($
     _
@@ -12,20 +13,32 @@ define([
     ServiceModel
     ServicesCollection
     AlertMessage
+    FormServiceView
     ServicesTemplate
   )->
 
     ServicesSetupView = Backbone.View.extend(
 
       tagName: 'div'
-      # className: 'sticky'
       events:
-        'click .cancelVenue': 'cancelVenue'
-        'click .updateVenue': 'updateVenue'
-        # 'click .deleteVenue': 'deleteVenue'
-    
+        'click .addNewService': 'addNewService'
+      
+      addNewService: (e)->
+        e.preventDefault()
+        e.stopPropagation()
+        $e = $(e.currentTarget)
+        @buildServiceForm()
+
+
+      # init
       initialize: (options)->
         @options = options
+        @services = new ServicesCollection()
+        @formService = new ServiceModel()
+
+      buildServiceForm: ()->
+        view = new FormServiceView(services: @services, formService: @formService)
+        @$('.form-wrap').html(view.render().el)
 
       render: ()->
         that = this
