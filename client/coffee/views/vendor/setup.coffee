@@ -25,7 +25,7 @@ define([
       el: '#setupContent'
 
       events:
-        'click .menu-wrap ul li': 'navMenu'
+        'click ul.setupMenu li': 'navMenu'
         'click .updateVenue': 'updateVenue'
 
     

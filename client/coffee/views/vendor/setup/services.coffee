@@ -2,13 +2,15 @@ define([
   'jquery'
   'underscore'
   'Backbone'
-  'models/venue'
+  'models/service'
+  'collections/services'
   'views/shared/alert_message'
   'text!templates/vendor/setup/services.html'
 ], ($
     _
     Backbone
-    VenueModel
+    ServiceModel
+    ServicesCollection
     AlertMessage
     ServicesTemplate
   )->
