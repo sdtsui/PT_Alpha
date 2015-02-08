@@ -28,7 +28,10 @@ module.exports = (app, passport) ->
         name: user.venueName
         url: utils.getFormatedUrl(user.venueUrl)
       )
-      venue.save()
+      venue.save (e)->
+        if !e
+          user.venue = venue._id
+          user.save()
       req.logIn user, (err)->
         if err
           json = user.toJSON()
