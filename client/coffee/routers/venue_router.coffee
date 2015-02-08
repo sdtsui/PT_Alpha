@@ -19,7 +19,7 @@ define([
 
     index: ->
       if PrivateTable.getCurrentUser()
-        @dashboard()
+        @vendorSetup()
       else
         window.location = "/#/signin"
 

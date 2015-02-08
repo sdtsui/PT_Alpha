@@ -54,10 +54,19 @@ define([
               that.$el.prepend(msg.render().el)
 
       deleteService: (e)->
+        that = this
         e.preventDefault()
         e.stopPropagation()
         $e = $(e.currentTarget)
-        @$('.form-wrap').html('')
+        @$el.remove()
+        isNew = @formService.isNew()
+        if !isNew
+          @formService.destroy
+            success: (model, response)->
+              that.services.remove that.formService
+
+            error: (model, response)->
+
 
       initialize: (options)->
         @services = options.services
