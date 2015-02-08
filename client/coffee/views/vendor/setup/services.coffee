@@ -7,6 +7,7 @@ define([
   'views/shared/alert_message'
   'views/vendor/setup/form_service'
   'text!templates/vendor/setup/services.html'
+  'text!templates/vendor/setup/item_service.html'
 ], ($
     _
     Backbone
@@ -15,6 +16,7 @@ define([
     AlertMessage
     FormServiceView
     ServicesTemplate
+    ItemServiceTemplate
   )->
 
     ServicesSetupView = Backbone.View.extend(
@@ -22,19 +24,40 @@ define([
       tagName: 'div'
       events:
         'click .addNewService': 'addNewService'
-      
+        'click .menu-list li.item': 'selectService'
+
       addNewService: (e)->
         e.preventDefault()
         e.stopPropagation()
         $e = $(e.currentTarget)
+        @formService = new ServiceModel()
         @buildServiceForm()
 
+      selectService: (e)->
+        e.preventDefault()
+        e.stopPropagation()
+        $e = $(e.currentTarget)
+        # if $e.hasClass('active')
+        #   return
+        # $e.closest('.menu-list').find('li.item').removeClass('active')
+        # $e.addClass('active')
+        @formService = @services.get($e.data('service_id'))
+        @buildServiceForm()
 
       # init
       initialize: (options)->
+        that = this
         @options = options
-        @services = new ServicesCollection()
         @formService = new ServiceModel()
+        @services = new ServicesCollection()
+        @services.url = "/api/services"
+        @services.fetch
+          success: (collections, response, options)->
+            that.buildServiceItems()
+
+      buildServiceItems: ()->
+        tpl = _.template(ItemServiceTemplate, {services: @services.toJSON()})
+        @$('.menu-list').html(tpl)
 
       buildServiceForm: ()->
         view = new FormServiceView(services: @services, formService: @formService)

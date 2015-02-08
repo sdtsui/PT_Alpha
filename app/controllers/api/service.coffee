@@ -9,7 +9,7 @@ api = require('../../../libs/authentication')
 module.exports = (app, passport) ->
   app.use '/api/services', api.requiresLogin, router
 
-  router.get '/', (req, resp)->
+  router.get '/', (req, res)->
     user = req.user
     Service.find {venue: user.venue}, (e, services)->
       if e
@@ -20,9 +20,7 @@ module.exports = (app, passport) ->
   router.post '/create', (req, res)->
     delete req.body.venue
     service = new Service(req.body)
-    console.log req.user
     service.venue = req.user.venue
-    console.log service
     service.save (e)->
       if e
         return res.status(400).send({message: e.errors})
