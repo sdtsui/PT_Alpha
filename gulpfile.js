@@ -54,7 +54,7 @@ gulp.task('clean', function (cb) {
 gulp.task('copy', function () {
     var dirs = [
             './client/**/*.*',
-            '!./client/assets/{scss,js,images}/**/*.*'
+            '!./client/assets/{scss,js,images,coffee}/**/*.*'
           ];
 
     // Everything in the client folder except templates, Sass, and JS
@@ -166,7 +166,7 @@ gulp.task('images', function () {
 });
 
 gulp.task('templates', function() {
-  gulp.src('./client/templates/**/*.*')
+  return gulp.src('./client/templates/**/*.*')
     // .pipe(jade())
     .pipe(gulp.dest('./public/assets/js/templates/'))
     .pipe(livereload())

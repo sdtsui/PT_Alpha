@@ -1,7 +1,7 @@
 <div data-equalizer-watch class="columns large-3">
     <div class="silo verticalmenu">
         <div class="menu-wrap menu-secondary">
-            <div class="clean-button-tiny right">add new service</div>
+            <div class="clean-button-tiny right addNewService">add new service</div>
             <h6>Services</h6>
             <div ng-controller="VenueController">
                 <input type="search" placeholder="find a service" ng-model="query">
@@ -15,58 +15,7 @@
 <div data-equalizer-watch class="columns large-9 right-col">
     <div class="silo">
         <div class="form-wrap">
-            <!-- venue-->
-            <!--include templates/ng/vendor/venue/venue-general-->
-            <!-- venue-->
-            <!--include templates/ng/vendor/venue/venue-terminology-edit-->
-            <!-- venue-->
-            <div class="row">
-                <div class="clean-button-tiny top-cta right">&nbsp; delete Premium Open Bar &nbsp;<i class="fi-trash"></i>
-                </div>
-                <div class="clean-button-tiny top-cta right">
-                    &nbsp; save &nbsp;<i class="fi-save"></i>
-                </div>
-                <div class="clean-button-tiny top-cta right">cancel</div>
-                <h4>SERVICES <small>| Premium Open Bar</small></h4>
-                <hr>
-                <div class="columns large-6">
-                    <label>Service Name
-                        <input type="search" placeholder="eg Premium Open Bar">
-                    </label>
-                    <label>Description</label>
-                    <textarea name="service-description" cols="30" rows="3"></textarea>
-                    <label>Unit Pricing Method
-                        <select>
-                            <option value="head">$ per guest</option>
-                            <option value="item">$ per item</option>
-                            <option value="event">$ per event</option>
-                            <option value="time">$ per hour</option>
-                            <option value="over-time">$ per hour over</option>
-                            <option value="dozen">$ per 12 items</option>
-                        </select>
-                    </label>
-                    <label>Unit Rate
-                        <input type="text" placeholder="$">
-                    </label>
-                </div>
-                <div class="columns large-6">
-                    <div class="row collapse">
-                        <div class="columns large-3">
-                            <div class="switch round tiny">
-                                <input type="checkbox" id="includeTaxGratuity" checked>
-                                <label for="includeTaxGratuity"></label>
-                            </div>
-                        </div>
-                        <div class="columns large-9">
-                            <h6 class="subheader">Currently Active</h6>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- venue-->
-            <!--include templates/ng/vendor/venue/venue-roles-->
-            <!-- venue-->
-            <!--include templates/ng/vendor/venue/venue-settings-->
+         
         </div>
     </div>
 </div>
