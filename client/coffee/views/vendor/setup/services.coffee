@@ -54,6 +54,9 @@ define([
         @services.fetch
           success: (collections, response, options)->
             that.buildServiceItems()
+        @services.on 'add', (s)->
+          console.log s
+          that.buildServiceItems()
 
       buildServiceItems: ()->
         tpl = _.template(ItemServiceTemplate, {services: @services.toJSON()})

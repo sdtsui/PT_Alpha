@@ -27,18 +27,19 @@ module.exports = (app, passport) ->
 
       res.json(service.toJSON())
 
-  router.post '/update', (req, res)->
+  router.put '/update', (req, res)->
 
     Service.findOne {_id: req.body._id}, (e, service)->
       if e || !service
         return res.status(400).send({message: "Not found service."})
-    delete req.body._id
-    delete req.body.venue
+  
+      delete req.body._id
+      delete req.body.venue
 
-    service = extend(service, req.body)
+      service = extend(service, req.body)
 
-    service.save (e)->
-      if e
-        return res.status(400).send({message: e.errors})
+      service.save (e)->
+        if e
+          return res.status(400).send({message: e.errors})
 
-      res.json(service.toJSON())
+        res.json(service.toJSON())

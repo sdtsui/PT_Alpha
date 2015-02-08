@@ -28,6 +28,7 @@ define([
         @$el.remove()
 
       saveService: (e)->
+        that = this
         e.preventDefault()
         e.stopPropagation()
         $e = $(e.currentTarget)
@@ -38,20 +39,25 @@ define([
           else
             @formService.url = "/api/services/update"
 
-          @formService.save
+          @formService.save @formService.toJSON(),
             success: (model, response, options)->
-              console.log model
-              console.log response
+              if isNew
+                that.services.add that.formService
+              
+              msg = new AlertMessage({type: 'success', messages: ["Service was saved successfully."]})
+              that.$el.prepend(msg.render().el)
+
             error: (model, response, options)->
               console.log 'errror'
               console.log response
+              msg = new AlertMessage({messages: ["There are some errors"]})
+              that.$el.prepend(msg.render().el)
 
       deleteService: (e)->
         e.preventDefault()
         e.stopPropagation()
         $e = $(e.currentTarget)
         @$('.form-wrap').html('')
-        console.log 'deleteService'
 
       initialize: (options)->
         @services = options.services
@@ -72,7 +78,7 @@ define([
         @$name.on 'blur', => 
           @formService.set name: @$name.val()
 
-        @$description = @$('input[name="description"]')
+        @$description = @$('textarea[name="description"]')
         @$description.on 'blur', => 
           @formService.set description: @$description.val()
 
