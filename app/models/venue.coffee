@@ -54,6 +54,11 @@ VenueSchema = new Schema(
     type: String
     # enum:
 
+  settings:
+    introEmail: String
+    marketIntro: String
+    emailSuccess: String
+  
 )
 
 mongoose.model 'Venue', VenueSchema
