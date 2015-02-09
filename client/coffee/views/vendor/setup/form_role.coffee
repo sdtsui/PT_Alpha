@@ -25,6 +25,19 @@ define([
         $e = $(e.currentTarget)
         @$el.remove()
 
+      saveRole: (e)->
+        e.preventDefault()
+        e.stopPropagation()
+        $e = $(e.currentTarget)
+        console.log 'saveRole'
+
+      deleteRole: (e)->
+        e.preventDefault()
+        e.stopPropagation()
+        $e = $(e.currentTarget)
+        console.log 'deleteRole'
+        @$el.remove()
+
       initialize: (options)->
         @options = options
 
