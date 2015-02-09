@@ -9,7 +9,7 @@ module.exports = (app) ->
 router.get '/', (req, res, next) ->
   console.log req.user
   res.render('home', {
-    title: 'HandleRoR MVC',
+    title: 'PrivateTable',
     user: req.user||null
   })
 

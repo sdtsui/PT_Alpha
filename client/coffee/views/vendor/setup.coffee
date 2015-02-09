@@ -7,6 +7,7 @@ define([
   'views/vendor/setup/venue'
   'views/vendor/setup/terminology'
   'views/vendor/setup/services'
+  'views/vendor/setup/roles'
   'text!templates/vendor/setup.html'
 ], ($
     _
@@ -16,6 +17,7 @@ define([
     SetupVenueView
     TerminologyView
     ServicesView
+    RolesView
     VendorSetupTemplate
   )->
 
@@ -45,10 +47,11 @@ define([
             @buildTerminology()
           when 'services'
             @buildServices()
+          when 'roles'
+            @buildRoles()
 
       initialize: (options={})->
         @options = options
-   
 
 
 
@@ -58,6 +61,10 @@ define([
         
       buildServices: ()->
         view = new ServicesView()
+        @$('.silo.vendorSetup').html view.render().el
+
+      buildRoles: ()->
+        view = new RolesView()
         @$('.silo.vendorSetup').html view.render().el
 
       buildVenue: ()->
