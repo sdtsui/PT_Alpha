@@ -26,6 +26,7 @@ var gulp = require('gulp'),
 // These files include Foundation for Apps and its dependencies
 var foundationJS = [
     'public/components/foundation/js/foundation.min.js',
+    'public/components/foundation/js/foundation/foundation.abide.js',
     'public/components/foundation/js/vendor/modernizr.js',
     'public/components/fastclick/lib/fastclick.js',
     'public/components/viewport-units-buggyfill/viewport-units-buggyfill.js',

@@ -8,5 +8,4 @@ block content
   script.
     var PrivateTable = {config: {currentUser: null}};
     PrivateTable.config.currentUser = !{JSON.stringify(user)}
-  script(src="/assets/js/require.min.js")
-  script(src="/assets/js/main.js")
+  script(src="/assets/js/require.min.js" data-main="/assets/js/main.js")
