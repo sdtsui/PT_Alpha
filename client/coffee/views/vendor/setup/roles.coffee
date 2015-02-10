@@ -16,6 +16,7 @@ define([
     RolesView = Backbone.View.extend(
 
       tagName: 'div'
+      className: 'row'
       events:
         'click .addNewRole': 'addNewRole'
 

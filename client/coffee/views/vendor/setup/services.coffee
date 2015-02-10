@@ -22,6 +22,7 @@ define([
     ServicesSetupView = Backbone.View.extend(
 
       tagName: 'div'
+      className: 'row'
       events:
         'click .addNewService': 'addNewService'
         'click .menu-list li.item': 'selectService'

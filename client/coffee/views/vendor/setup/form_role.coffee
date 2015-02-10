@@ -14,6 +14,7 @@ define([
     FormServiceSetupView = Backbone.View.extend(
 
       tagName: 'div'
+      className: 'role'
       events:
         'click .cancelRole': 'cancelRole'
         'click .saveRole': 'saveRole'
