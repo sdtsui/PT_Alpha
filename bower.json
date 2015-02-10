@@ -15,12 +15,12 @@
     "modernizr": "~2.8.3",
     "foundation-icon-fonts": "*",
     "tether": "~0.6.5",
-    "ui-router": "~0.2.13",
     "backbone": "~1.1.2",
     "mustache": "~1.0.0",
     "requirejs": "~2.1.15",
     "marionette": "~2.3.2",
     "backbone-validation": "~0.11.2",
-    "backbone.epoxy": "~1.3.1"
+    "backbone.epoxy": "~1.3.1",
+    "parsleyjs": "~2.0.7"
   }
 }

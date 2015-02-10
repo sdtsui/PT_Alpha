@@ -20,6 +20,7 @@ require.config(
   paths:
     jquery: 'jquery.min'
     foundation: 'foundation.min'
+    parsleyjs: 'parsley.min'
     underscore: 'underscore.min'
     Backbone: 'backbone.min'
     # 'backbone.validation': 'backbone-validation.min'
@@ -30,6 +31,8 @@ require.config(
       deps: ['jquery']
     'foundation.abide': 
       deps: ['foundation', 'jquery']
+    parsleyjs:
+      deps: ['jquery']
 
   wrapShim: true
 
