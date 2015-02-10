@@ -19,11 +19,20 @@ require.config(
   baseUrl: '/assets/js/'
   paths:
     jquery: 'jquery.min'
+    foundation: 'foundation.min'
     underscore: 'underscore.min'
     Backbone: 'backbone.min'
     # 'backbone.validation': 'backbone-validation.min'
     text: 'require-text.min'
     Templates: './templates'
+  shim:
+    foundation: 
+      deps: ['jquery']
+    'foundation.abide': 
+      deps: ['foundation', 'jquery']
+
+  wrapShim: true
+
   # shim:
   #   backbone: 
   #     deps: ['underscore', 'jquery']
