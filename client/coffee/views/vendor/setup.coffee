@@ -56,7 +56,6 @@ define([
 
       initialize: (options={})->
         @options = options
-        console.log $(document).foundation({})
 
 
       buildTerminology: ()->

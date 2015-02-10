@@ -24,9 +24,8 @@ define([
     updateVenue: (e)->
       e.preventDefault()
       e.stopPropagation()
-      console.log @venue.isValid()
-      console.log @venue.isNew()
       if @venue.isValid()
+        @venue.url = '/api/venues/mine'
         @venue.save()
         @model = @venue.clone()
         msg = new AlertMessage({type: 'success', messages: ["Venue was updated successfully."]})
