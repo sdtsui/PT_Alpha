@@ -47,6 +47,5 @@ module.exports = (app, passport) ->
 
       venue = extend(venue, {settings: req.body.settings})
       venue.save()
-      console.log venue
       res.json(req.body)
 

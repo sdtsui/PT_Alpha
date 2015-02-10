@@ -1,12 +1,12 @@
-<div data-equalizer-watch class="columns large-3 left-col">
+<div class="columns large-3">
     <div class="silo verticalmenu">
         <div class="menu-wrap menu-secondary">
             <div class="clean-button-tiny right addNewRole">add new role</div>
             <h6>Roles</h6>
-            <div ng-controller="VenueController">
-                <input type="search" placeholder="find a manager" ng-model="query">
+            <div>
+                <input type="search" placeholder="find a manager">
                 <ul class="menu-list">
-                    <li ng-repeat="item in data.roles | filter: query" class="item">{{item.name}}</li>
+                    <li class="item">{{item.name}}</li>
                 </ul>
             </div>
         </div>
