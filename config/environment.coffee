@@ -9,7 +9,7 @@ config =
     app:
       name: 'privatetable'
     port: 3000
-    db: 'mongodb://localhost/pt_dev'
+    db: process.env.MONGOLAB_URI || 'mongodb://localhost/pt_dev'
 
   development: require('./env/development')
   test: require('./env/test')
