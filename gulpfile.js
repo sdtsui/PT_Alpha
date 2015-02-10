@@ -28,6 +28,7 @@ var foundationJS = [
     'public/components/foundation/js/foundation.min.js',
     'public/components/foundation/js/foundation/foundation.abide.js',
     'public/components/foundation/js/vendor/modernizr.js',
+    'public/components/parsleyjs/dist/parsley.min.js',
     'public/components/fastclick/lib/fastclick.js',
     'public/components/viewport-units-buggyfill/viewport-units-buggyfill.js',
     'public/components/tether/tether.js',
