@@ -1,5 +1,5 @@
 define([
-  'jquery'
+  'jq'
   'underscore'
   'Backbone'
   'models/venue'
@@ -56,7 +56,7 @@ define([
 
       initialize: (options={})->
         @options = options
-
+        console.log $(document).foundation({})
 
 
       buildTerminology: ()->

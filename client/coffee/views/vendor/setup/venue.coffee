@@ -1,5 +1,5 @@
 define([
-  'jquery'
+  'jq'
   'underscore'
   'Backbone'
   'models/venue'
@@ -154,6 +154,16 @@ define([
       )
       that.$el.html(tpl)
       @bindingDom()
+      @jsValidate()
+      
+    jsValidate: ()->
+      $(document).foundation
+        abide:
+          live_validate : true
+          validate_on_blur : true
+          focus_on_invalid : true
+          error_labels: true
+          timeout : 1000        
 
     render: ()->
       that = this
