@@ -9,7 +9,7 @@ define([
 
   VenueSetupView = Backbone.View.extend(
     tagName: 'div'
-    # className: 'sticky'
+    className: 'row'
     events:
       'click .cancelVenue': 'cancelVenue'
       'click .updateVenue': 'updateVenue'
@@ -31,7 +31,6 @@ define([
         msg = new AlertMessage({type: 'success', messages: ["Venue was updated successfully."]})
         @$el.prepend(msg.render().el)
       else
-        console.log @venue
         msg = new AlertMessage({messages: ["There are some errors"]})
         @$el.prepend(msg.render().el)
 
