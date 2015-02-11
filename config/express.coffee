@@ -20,6 +20,8 @@ module.exports = (app, config, passport) ->
   # app.use(favicon(config.root + '/public/img/favicon.ico'));
   app.use logger 'dev'
   app.use bodyParser.json()
+  app.use bodyParser.json({type: 'application/vnd.api+json'})
+
   app.use bodyParser.urlencoded(
     extended: true
   )

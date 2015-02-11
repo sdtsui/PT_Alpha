@@ -14,6 +14,7 @@ module.exports = (app, passport) ->
     res.redirect('/')
 
   router.post '/signup', (req, res)->
+    console.log req.body
     user = new User(req.body)
     user.provider = 'local'
     user.save (err)->
