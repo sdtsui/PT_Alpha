@@ -6,7 +6,7 @@ define([
     idAttribute: "_id"
     defaults:
       name: ''
-      role: ''
+      role: 'EVENT_MANAGER'
       email: ''
       phone: ''
 

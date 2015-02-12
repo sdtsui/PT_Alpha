@@ -65,6 +65,9 @@ UserSchema = new Schema(
   address:
     type: String
 
+  isActive:
+    type: Boolean
+    default: true
 )
 
 UserSchema.virtual('password')
