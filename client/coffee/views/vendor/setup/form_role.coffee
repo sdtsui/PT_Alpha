@@ -31,6 +31,7 @@ define([
         e.stopPropagation()
         $e = $(e.currentTarget)
         console.log 'saveRole'
+        console.log @formRole.toJSON()
 
       deleteRole: (e)->
         e.preventDefault()
@@ -62,9 +63,9 @@ define([
         @$email.on 'change', => 
           @formRole.set email: @$email.val()
 
-        @$role = @$('input[name="role"]')
-        @$role.on 'click', => 
-          @formRole.set role: @$role.is(':checked')        
+        @$role = @$('select[name="role"]')
+        @$role.on 'change', => 
+          @formRole.set role: @$role.val()       
 
         @$phone = @$('input[name="phone"]')
         @$phone.on 'blur', => 
@@ -72,11 +73,72 @@ define([
 
         @$isActive = @$('input[name="isActive"]')
         @$isActive.on 'click', => 
-          @formRole.set isActive: @$isActive.is(':checked')        
+          @formRole.set isActive: @$isActive.is(':checked')
+
+        @$notificationsNewProspectEmail = @$('input[name="notificationsNewProspectEmail"]')
+        @$notificationsNewProspectEmail.on 'click', => 
+          notifications = @venue.get('notifications') || {}
+          notifications.newProspect ||= {}
+          notifications.newProspect.email = @$notificationsNewProspectEmail.is(':checked')
+          @formRole.set notifications: notifications
+
+        @$notificationsNewProspectPhone = @$('input[name="notificationsNewProspectPhone"]')
+        @$notificationsNewProspectPhone.on 'click', => 
+          notifications = @venue.get('notifications') || {}
+          notifications.newProspect ||= {}
+          notifications.newProspect.phone = @$notificationsNewProspectPhone.is(':checked')
+          @formRole.set notifications: notifications
+
+        @$notificationsNewMessageEmail = @$('input[name="notificationsNewMessageEmail"]')
+        @$notificationsNewMessageEmail.on 'click', => 
+          notifications = @venue.get('notifications') || {}
+          notifications.newMessage ||= {}
+          notifications.newMessage.phone = @$notificationsNewMessageEmail.is(':checked')
+          @formRole.set notifications: notifications
+
+        @$notificationsNewMessagePhone = @$('input[name="notificationsNewMessagePhone"]')
+        @$notificationsNewMessagePhone.on 'click', => 
+          notifications = @venue.get('notifications') || {}
+          notifications.newMessage ||= {}
+          notifications.newMessage.phone = @$notificationsNewMessagePhone.is(':checked')
+          @formRole.set notifications: notifications
+
+
+
+        @$notificationsNewEventEmail = @$('input[name="notificationsNewEventEmail"]')
+        @$notificationsNewEventEmail.on 'click', => 
+          notifications = @venue.get('notifications') || {}
+          notifications.newEvent ||= {}
+          notifications.newEvent.phone = @$notificationsNewEventEmail.is(':checked')
+          @formRole.set notifications: notifications
+
+        @$notificationsNewEventPhone = @$('input[name="notificationsNewEventPhone"]')
+        @$notificationsNewEventPhone.on 'click', => 
+          notifications = @venue.get('notifications') || {}
+          notifications.newEvent ||= {}
+          notifications.newEvent.phone = @$notificationsNewEventPhone.is(':checked')
+          @formRole.set notifications: notifications
+
+
+        @$notificationsAbandonCartEmail = @$('input[name="notificationsAbandonCartEmail"]')
+        @$notificationsAbandonCartEmail.on 'click', => 
+          notifications = @venue.get('notifications') || {}
+          notifications.abandonCart ||= {}
+          notifications.abandonCart.phone = @$notificationsAbandonCartEmail.is(':checked')
+          @formRole.set notifications: notifications
+
+        @$notificationsAbandonCartPhone = @$('input[name="notificationsAbandonCartPhone"]')
+        @$notificationsAbandonCartPhone.on 'click', => 
+          notifications = @venue.get('notifications') || {}
+          notifications.abandonCart ||= {}
+          notifications.abandonCart.phone = @$notificationsAbandonCartPhone.is(':checked')
+          @formRole.set notifications: notifications
+
 
       render: ()->
         tpl = _.template(FormRoleTemplate, {_: _, ROLES: @ROLES, role: @formRole.toJSON()})
         @$el.html(tpl)
+        @bindingDom()
         @                
     )
     return FormServiceSetupView

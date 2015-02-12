@@ -31,14 +31,14 @@
         </label>
         <label>
             Email
-            <input type="email" name="email"> placeholder="eg joe@name.com" value="<%= role.email %>"></label>
+            <input type="email" name="email" placeholder="eg joe@name.com" value="<%= role.email %>"></label>
         <label>
             Phone Number
-            <input type="text" name="phone"> placeholder="555 555-5555" value="<%= role.phone %>"></label>
+            <input type="text" name="phone" placeholder="555 555-5555" value="<%= role.phone %>"></label>
         <div class="row collapse">
             <div class="columns large-3">
                 <div class="switch round tiny">
-                    <input type="checkbox" name="isActive"> id="isActive" <%= role.isActive ? 'checked' : '' %> >
+                    <input type="checkbox" name="isActive" id="isActive" <%= role.isActive ? 'checked' : '' %> >
                     <label for="isActive"></label>
                 </div>
             </div>
@@ -63,7 +63,7 @@
                         <th id="event1" header="event">new prospect</th>
                         <td headers="event1 email">
                             <div class="switch round tiny">
-                                <input name="notificationsNewProspectEmail"> id="new-prospect-email" type="checkbox" <%= role.notifications.newProspect.email ? 'checked' : '' %>>
+                                <input name="notificationsNewProspectEmail" id="new-prospect-email" type="checkbox" <%= role.notifications.newProspect.email ? 'checked' : '' %>>
                                 <label for="new-prospect-email">
                                 </label>
                             </div>
