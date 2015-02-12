@@ -9,7 +9,8 @@ define([
       role: 'EVENT_MANAGER'
       email: ''
       phone: ''
-
+      isActive: true
+      
       notifications:
         newProspect:
           email: true
