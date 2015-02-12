@@ -2,12 +2,16 @@ define([
   'jquery'
   'underscore'
   'Backbone'
+  'collections/roles'
+  'models/role'
   'views/shared/alert_message'
   'views/vendor/setup/form_role'
   'text!templates/vendor/setup/roles.html'
 ], ($
     _
     Backbone
+    RolesCollection
+    RoleModel
     AlertMessage
     FormRoleView
     RolesTemplate
@@ -28,9 +32,11 @@ define([
 
       initialize: (options)->
         @options = options 
+        @roles = new RolesCollection()
+        @formRole = new RoleModel()
 
       buildForm: ()->
-        view = new FormRoleView()
+        view = new FormRoleView({roles: @roles, formRole: @formRole})
         @$('.form-wrap').html view.render().el
 
 

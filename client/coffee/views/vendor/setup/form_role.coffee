@@ -41,9 +41,21 @@ define([
 
       initialize: (options)->
         @options = options
+        @roles = options.roles
+        @formRole = options.formRole        
+        @initConstant()
+
+      initConstant: ()->
+        @ROLES =
+          EVENT_MANAGER: 'event manager'
+          OWNER: 'owner'
+          EVENT_COORDINATOR: 'event coordinator'
+          GENERAL_MANAGER: 'general manager'
+          PARTNER: 'partner'
+
 
       render: ()->
-        tpl = _.template(FormRoleTemplate, {})
+        tpl = _.template(FormRoleTemplate, {_: _, ROLES: @ROLES, role: @formRole.toJSON()})
         @$el.html(tpl)
         @                
     )

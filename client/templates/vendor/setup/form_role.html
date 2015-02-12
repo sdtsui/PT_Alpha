@@ -8,7 +8,7 @@
     <div class="clean-button-tiny top-cta right cancelRole">cancel</div>
     <h4>
         ROLE
-        <small>Craig Smith</small>
+        <small><%= role.name %></small>
     </h4>
     <hr></div>
 
@@ -16,27 +16,29 @@
     <div class="columns large-5">
         <label>
             Name
-            <input type="search" placeholder="eg My Hotel"></label>
+            <input type="search" placeholder="eg Craig Smith"></label>
         <label>
             Role
             <select>
-                <option value="event manager">event manager</option>
-                <option value="owner">owner</option>
-                <option value="event coordinator">event coordinator</option>
-                <option value="general manager">general manager</option>
-                <option value="partner">partner</option>
+                <%
+                    _.each(ROLES, function(v, r){
+                %>
+                    <option value="<%= r %>"><%= v %></option>
+                <%
+                    });
+                %>
             </select>
         </label>
         <label>
             Email
-            <input type="text" placeholder="eg joe@name.com"></label>
+            <input type="text" placeholder="eg joe@name.com" value="<%= role.email %>"></label>
         <label>
             Phone Number
-            <input type="text" placeholder="555 555-5555"></label>
+            <input type="text" placeholder="555 555-5555" value="<%= role.phone %>"></label>
         <div class="row collapse">
             <div class="columns large-3">
                 <div class="switch round tiny">
-                    <input type="checkbox" id="isActive" checked>
+                    <input type="checkbox" id="isActive" <%= role.isActive ? 'checked' : '' %> >
                     <label for="isActive"></label>
                 </div>
             </div>
