@@ -28,6 +28,7 @@ define([
         e.preventDefault()
         e.stopPropagation()
         $e = $(e.currentTarget)
+        @formRole = new RoleModel()
         @buildForm()
 
       initialize: (options)->

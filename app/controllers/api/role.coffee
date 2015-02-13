@@ -40,18 +40,17 @@ module.exports = (app, passport) ->
 
       res.json(role.roleJSON())
 
-  router.put '/:id', (req, res)->
-    delete req.body.venue
-
+  router.put '/update', (req, res)->
     cond = 
       provider: USER_CONFIG.PROVIDERS.LOCAL
       venue: req.user.venue
-      id: req.query('id')
-
+      _id: req.body._id
     User.findOne cond, (e, role)->
       if e || !role
         return res.status(400).send({message: 'not found'})
 
+      delete req.body.venue
+      delete req.body._id
       role = extend(role, req.body)
       role.save (err)->
         if err

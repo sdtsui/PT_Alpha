@@ -37,6 +37,8 @@ define([
           console.log 'save new role'
           @formRole.save()
         else
+          @formRole.url = '/api/roles/update'
+          @formRole.save()
           console.log 'update role'
 
 
