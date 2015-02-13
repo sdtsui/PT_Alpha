@@ -24,6 +24,8 @@ define([
         abandonCart:
           email: true
           phone: true
+    
+    url: '/api/roles'
 
     initialize: (options)->
       console.log 'new RoleModel'
