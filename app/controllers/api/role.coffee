@@ -29,7 +29,7 @@ module.exports = (app, passport) ->
   router.post '/', (req, res)->
     delete req.body.venue
     role = new User(req.body)
-    role.provider = USER_CONFIG.PROVIDERS.ROLE
+    role.provider = USER_CONFIG.PROVIDERS.LOCAL
     role.venue = req.user.venue
     role.password = utils.randomKey()
     role.save (e)->
@@ -43,7 +43,7 @@ module.exports = (app, passport) ->
     delete req.body.venue
 
     cond = 
-      provider: USER_CONFIG.PROVIDERS.ROLE
+      provider: USER_CONFIG.PROVIDERS.LOCAL
       venue: req.user.venue
       id: req.query('id')
 
