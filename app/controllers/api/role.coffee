@@ -32,6 +32,7 @@ module.exports = (app, passport) ->
     role.provider = USER_CONFIG.PROVIDERS.LOCAL
     role.venue = req.user.venue
     role.password = utils.randomKey()
+    role.isOwner = false
     role.save (e)->
       if e
         console.log e

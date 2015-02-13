@@ -109,11 +109,11 @@ UserSchema.virtual('venueUrl')
 
 
 
-validatePresenceOf = (value)->
-  return value && value.length
+# validatePresenceOf = (value)->
+#   return value && value.length
 
-validateMatchPasswords = (value1, value2)->
-  return value1 && value2 && value1 == value2
+# validateMatchPasswords = (value1, value2)->
+#   return value1 && value2 && value1 == value2
 
 # UserSchema.pre 'save', (next)->
 #   if !this.isNew 
@@ -157,7 +157,7 @@ UserSchema.path('email').validate( (email, fn)->
 UserSchema.path('name').validate( (name, fn)->
   that = this
   Venue = mongoose.model('Venue')
-  if this.skipPassword()
+  if this.skipPassword() || this.skipSignup()
     return fn(true)
 
   if that.isNew
@@ -181,7 +181,7 @@ UserSchema.path('name').validate( (name, fn)->
   that = this
   regx = /(http(s?)\:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}((\S)*)$/i
   Venue = mongoose.model('Venue')
-  if this.skipPassword()
+  if this.skipPassword() || this.skipSignup()
     return fn(true)
 
   if that.isNew
@@ -200,13 +200,6 @@ UserSchema.path('name').validate( (name, fn)->
   fn(true)
 , null)
 
-
-
-# UserSchema.path('hashedPassword').validate( (hashedPassword)->
-#   if this.skipPassword()
-#     return true
-#   return hashedPassword.length
-# , 'Password cannot be blank')
 
 
 UserSchema.path('hashedPassword').validate( (hashedPassword, fn)->
