@@ -77,28 +77,28 @@ define([
 
         @$notificationsNewProspectEmail = @$('input[name="notificationsNewProspectEmail"]')
         @$notificationsNewProspectEmail.on 'click', => 
-          notifications = @venue.get('notifications') || {}
+          notifications = @formRole.get('notifications') || {}
           notifications.newProspect ||= {}
           notifications.newProspect.email = @$notificationsNewProspectEmail.is(':checked')
           @formRole.set notifications: notifications
 
         @$notificationsNewProspectPhone = @$('input[name="notificationsNewProspectPhone"]')
         @$notificationsNewProspectPhone.on 'click', => 
-          notifications = @venue.get('notifications') || {}
+          notifications = @formRole.get('notifications') || {}
           notifications.newProspect ||= {}
           notifications.newProspect.phone = @$notificationsNewProspectPhone.is(':checked')
           @formRole.set notifications: notifications
 
         @$notificationsNewMessageEmail = @$('input[name="notificationsNewMessageEmail"]')
         @$notificationsNewMessageEmail.on 'click', => 
-          notifications = @venue.get('notifications') || {}
+          notifications = @formRole.get('notifications') || {}
           notifications.newMessage ||= {}
           notifications.newMessage.phone = @$notificationsNewMessageEmail.is(':checked')
           @formRole.set notifications: notifications
 
         @$notificationsNewMessagePhone = @$('input[name="notificationsNewMessagePhone"]')
         @$notificationsNewMessagePhone.on 'click', => 
-          notifications = @venue.get('notifications') || {}
+          notifications = @formRole.get('notifications') || {}
           notifications.newMessage ||= {}
           notifications.newMessage.phone = @$notificationsNewMessagePhone.is(':checked')
           @formRole.set notifications: notifications
@@ -107,14 +107,14 @@ define([
 
         @$notificationsNewEventEmail = @$('input[name="notificationsNewEventEmail"]')
         @$notificationsNewEventEmail.on 'click', => 
-          notifications = @venue.get('notifications') || {}
+          notifications = @formRole.get('notifications') || {}
           notifications.newEvent ||= {}
           notifications.newEvent.phone = @$notificationsNewEventEmail.is(':checked')
           @formRole.set notifications: notifications
 
         @$notificationsNewEventPhone = @$('input[name="notificationsNewEventPhone"]')
         @$notificationsNewEventPhone.on 'click', => 
-          notifications = @venue.get('notifications') || {}
+          notifications = @formRole.get('notifications') || {}
           notifications.newEvent ||= {}
           notifications.newEvent.phone = @$notificationsNewEventPhone.is(':checked')
           @formRole.set notifications: notifications
@@ -122,14 +122,14 @@ define([
 
         @$notificationsAbandonCartEmail = @$('input[name="notificationsAbandonCartEmail"]')
         @$notificationsAbandonCartEmail.on 'click', => 
-          notifications = @venue.get('notifications') || {}
+          notifications = @formRole.get('notifications') || {}
           notifications.abandonCart ||= {}
           notifications.abandonCart.phone = @$notificationsAbandonCartEmail.is(':checked')
           @formRole.set notifications: notifications
 
         @$notificationsAbandonCartPhone = @$('input[name="notificationsAbandonCartPhone"]')
         @$notificationsAbandonCartPhone.on 'click', => 
-          notifications = @venue.get('notifications') || {}
+          notifications = @formRole.get('notifications') || {}
           notifications.abandonCart ||= {}
           notifications.abandonCart.phone = @$notificationsAbandonCartPhone.is(':checked')
           @formRole.set notifications: notifications
