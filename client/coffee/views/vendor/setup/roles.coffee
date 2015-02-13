@@ -33,6 +33,8 @@ define([
       initialize: (options)->
         @options = options 
         @roles = new RolesCollection()
+        @roles.url = '/api/roles'
+        @roles.fetch()
         @formRole = new RoleModel()
 
       buildForm: ()->

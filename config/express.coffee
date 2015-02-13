@@ -9,6 +9,7 @@ cookieParser = require 'cookie-parser'
 bodyParser = require 'body-parser'
 compress = require 'compression'
 methodOverride = require 'method-override'
+multipart = require('connect-multiparty')
 
 mongoStore = require('connect-mongo')(session)
 pkg = require('../package.json')

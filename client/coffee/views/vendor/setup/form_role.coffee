@@ -32,6 +32,13 @@ define([
         $e = $(e.currentTarget)
         console.log 'saveRole'
         console.log @formRole.toJSON()
+        isNew = @formRole.isNew()
+        if isNew
+          console.log 'save new role'
+          @formRole.save()
+        else
+          console.log 'update role'
+
 
       deleteRole: (e)->
         e.preventDefault()
