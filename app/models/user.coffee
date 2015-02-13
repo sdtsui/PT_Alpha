@@ -142,9 +142,9 @@ UserSchema.path('email').validate( (email, fn)->
     fn(true)
 
   if (this.isNew || this.isModified('email'))
-    User.find({ email: email }).exec( (err, users)->
+    User.count({ email: email, provider: {$in: [PROVIDERS.LOCAL, PROVIDERS.ROLE]} }).exec( (err, users)->
       console.log users
-      fn(!err && users.length == 0)
+      fn(!err && users == 0)
     )
   else 
     fn(true)
