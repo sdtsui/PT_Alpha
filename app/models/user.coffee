@@ -6,9 +6,8 @@ Schema   = mongoose.Schema
 ObjectId = Schema.ObjectId
 
 PROVIDERS =
-  FACEBOOK: 'FACEBOOK'
-  LOCAL: 'LOCAL'
-  ROLE: 'ROLE'
+  FACEBOOK: 'facebook'
+  LOCAL: 'local'
 
 ROLES =
   EVENT_MANAGER: 'event manager'
@@ -27,7 +26,7 @@ UserSchema = new Schema(
     type: String
     # required: true
 
-  hashed_password:
+  hashedPassword:
     type: String
     default: ''
 
@@ -39,6 +38,10 @@ UserSchema = new Schema(
     type: String
     enum: _.values(PROVIDERS)
     required: true
+
+  isOwner:
+    type: Boolean
+    default: true
 
   confirmationToken:
     type: String
@@ -80,7 +83,7 @@ UserSchema.virtual('password')
 .set (password)->
   this._password = password
   this.salt = this.makeSalt()
-  this.hashed_password = this.encryptPassword(password)
+  this.hashedPassword = this.encryptPassword(password)
 .get ()->
   return this._password
 
@@ -112,37 +115,37 @@ validatePresenceOf = (value)->
 validateMatchPasswords = (value1, value2)->
   return value1 && value2 && value1 == value2
 
-UserSchema.pre 'save', (next)->
-  if !this.isNew 
-    return next()
-  if !validatePresenceOf(this.password) && !this.skipValidation()
-    return next(new Error('Invalid password'))
+# UserSchema.pre 'save', (next)->
+#   if !this.isNew 
+#     return next()
+#   if !validatePresenceOf(this.password) && !this.skipPassword()
+#     return next(new Error('Invalid password'))
 
-  # if !validateMatchPasswords(this.password, this.passwordConfirmation) && !this.skipValidation()
-  #   return next(new Error('Not matched password'))
+#   # if !validateMatchPasswords(this.password, this.passwordConfirmation) && !this.skipPassword()
+#   #   return next(new Error('Not matched password'))
 
-  return next()
+#   return next()
 
 
 UserSchema.path('name').validate( (name)->
-  if this.skipValidation()
+  if this.skipPassword()
     return true
   return name.length
 , 'Name cannot be blank')
 
 UserSchema.path('email').validate( (email)->
-  if this.skipValidation()
+  if this.skipPassword()
     return true
   return email.length
 , 'Email cannot be blank')
 
 UserSchema.path('email').validate( (email, fn)->
   User = mongoose.model('User')
-  if this.skipValidation()
+  if this.skipPassword()
     fn(true)
 
   if (this.isNew || this.isModified('email'))
-    User.count({ email: email, provider: {$in: [PROVIDERS.LOCAL, PROVIDERS.ROLE]} }).exec( (err, users)->
+    User.count({ email: email, provider: PROVIDERS.LOCAL}).exec( (err, users)->
       console.log users
       fn(!err && users == 0)
     )
@@ -154,7 +157,7 @@ UserSchema.path('email').validate( (email, fn)->
 UserSchema.path('name').validate( (name, fn)->
   that = this
   Venue = mongoose.model('Venue')
-  if this.skipValidation()
+  if this.skipPassword()
     return fn(true)
 
   if that.isNew
@@ -178,7 +181,7 @@ UserSchema.path('name').validate( (name, fn)->
   that = this
   regx = /(http(s?)\:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}((\S)*)$/i
   Venue = mongoose.model('Venue')
-  if this.skipValidation()
+  if this.skipPassword()
     return fn(true)
 
   if that.isNew
@@ -199,16 +202,29 @@ UserSchema.path('name').validate( (name, fn)->
 
 
 
-UserSchema.path('hashed_password').validate( (hashed_password)->
-  if this.skipValidation()
-    return true
-  return hashed_password.length
-, 'Password cannot be blank')
+# UserSchema.path('hashedPassword').validate( (hashedPassword)->
+#   if this.skipPassword()
+#     return true
+#   return hashedPassword.length
+# , 'Password cannot be blank')
+
+
+UserSchema.path('hashedPassword').validate( (hashedPassword, fn)->
+  that = this
+  if this.skipPassword()
+    return fn(true)
+  if !that._password
+    that.invalidate('password', 'can not be blank')
+    return fn(true)
+  if that._password.length < 6
+    that.invalidate('password', 'must be longer')
+  return fn(true)
+, null)
 
 
 UserSchema.methods = 
   authenticate: (plainText)->
-    return this.encryptPassword(plainText) == this.hashed_password
+    return this.encryptPassword(plainText) == this.hashedPassword
 
 
   makeSalt: ()->
@@ -226,9 +242,11 @@ UserSchema.methods =
       return ''
 
 
-  skipValidation: ()->
-    return this.provider != PROVIDERS.LOCAL && this.provider != PROVIDERS.ROLE
+  skipPassword: ()->
+    return !this.isNew || this.provider != PROVIDERS.LOCAL
 
+  skipSignup: ()->
+    return !this.isOwner
 
 UserSchema.statics =
   load: (options, cb)->

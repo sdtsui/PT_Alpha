@@ -19,6 +19,7 @@ module.exports = (app, passport) ->
     user = new User(req.body)
     user.provider = USER_CONFIG.PROVIDERS.LOCAL
     user.save (err)->
+      console.log err
       if err
         json = user.toJSON()
         json.errors = err.errors
