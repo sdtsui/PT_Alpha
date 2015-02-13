@@ -68,7 +68,7 @@ UserSchema = new Schema(
   avatar:
     type: String
 
-  mobile:
+  phone:
     type: String
 
   address:
@@ -77,6 +77,36 @@ UserSchema = new Schema(
   isActive:
     type: Boolean
     default: true
+  notifications:
+    abandonCart:
+      email:
+        type: Boolean
+        default: true
+      phone:
+        type: Boolean
+        default: true
+    newEvent:
+      email:
+        type: Boolean
+        default: true
+      phone:
+        type: Boolean
+        default: true
+    newMessage:
+      email:
+        type: Boolean
+        default: true
+      phone:
+        type: Boolean
+        default: true
+    newProspect:
+      email:
+        type: Boolean
+        default: true
+      phone:
+        type: Boolean
+        default: true
+
 )
 
 UserSchema.virtual('password')
@@ -106,25 +136,6 @@ UserSchema.virtual('venueUrl')
   this._venueUrl = venueUrl
 .get ()->
   return this._venueUrl
-
-
-
-# validatePresenceOf = (value)->
-#   return value && value.length
-
-# validateMatchPasswords = (value1, value2)->
-#   return value1 && value2 && value1 == value2
-
-# UserSchema.pre 'save', (next)->
-#   if !this.isNew 
-#     return next()
-#   if !validatePresenceOf(this.password) && !this.skipPassword()
-#     return next(new Error('Invalid password'))
-
-#   # if !validateMatchPasswords(this.password, this.passwordConfirmation) && !this.skipPassword()
-#   #   return next(new Error('Not matched password'))
-
-#   return next()
 
 
 UserSchema.path('name').validate( (name)->
@@ -240,6 +251,28 @@ UserSchema.methods =
 
   skipSignup: ()->
     return !this.isOwner
+
+  toJSON: ()->
+    obj = this.toObject()
+    delete obj.hashedPassword
+    delete obj.salt
+    delete obj.provider
+    delete obj.isOwner
+    delete obj.confirmationToken
+    delete obj.resetPasswordToken
+    delete obj.facebook
+    obj
+
+  roleJSON: ()->
+    obj = this.toJSON()
+    delete obj.hashedPassword
+    delete obj.salt
+    delete obj.provider
+    delete obj.isOwner
+    delete obj.confirmationToken
+    delete obj.resetPasswordToken
+    delete obj.facebook
+    obj
 
 UserSchema.statics =
   load: (options, cb)->

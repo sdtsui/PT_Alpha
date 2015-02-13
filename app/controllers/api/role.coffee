@@ -38,7 +38,7 @@ module.exports = (app, passport) ->
         console.log e
         return res.status(400).send({message: e})
 
-      res.json(role.toJSON())
+      res.json(role.roleJSON())
 
   router.put '/:id', (req, res)->
     delete req.body.venue
@@ -57,7 +57,6 @@ module.exports = (app, passport) ->
         if err
           return res.status(400).send({message: err})
 
-        obj = role.toJSON()
-        delete obj.hashPassword
+        obj = role.roleJSON()
         #
         res.json(obj)
