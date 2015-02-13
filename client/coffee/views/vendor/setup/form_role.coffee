@@ -34,7 +34,7 @@ define([
         console.log @formRole.toJSON()
         isNew = @formRole.isNew()
         if isNew
-          console.log 'save new role'
+          @formRole.url = '/api/roles'
           @formRole.save()
         else
           @formRole.url = '/api/roles/update'
