@@ -3,7 +3,7 @@ router = express.Router()
 mongoose = require 'mongoose'
 User  = mongoose.model 'User'
 Venue = mongoose.model 'Venue'
-USER_CONFIG = require('../models/user')
+USER_CONFIG = require('../../models/user')
 utils = require('../../../libs/utils')
 
 module.exports = (app, passport) ->
