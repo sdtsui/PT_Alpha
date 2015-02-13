@@ -3,6 +3,7 @@ router = express.Router()
 mongoose = require 'mongoose'
 User  = mongoose.model 'User'
 Venue = mongoose.model 'Venue'
+USER_CONFIG = require('../models/user')
 utils = require('../../../libs/utils')
 
 module.exports = (app, passport) ->
@@ -16,7 +17,7 @@ module.exports = (app, passport) ->
   router.post '/signup', (req, res)->
     console.log req.body
     user = new User(req.body)
-    user.provider = 'local'
+    user.provider = USER_CONFIG.PROVIDERS.LOCAL
     user.save (err)->
       if err
         json = user.toJSON()
@@ -41,7 +42,7 @@ module.exports = (app, passport) ->
         res.json(user.toJSON())
 
   router.post '/login', (req, res)->
-    passport.authenticate( 'local', (err, user, info)->
+    passport.authenticate( USER_CONFIG.PROVIDERS.LOCAL, (err, user, info)->
       if err || !user
         return res.json({errors: "Email or password is not valid"})
 

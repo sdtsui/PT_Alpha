@@ -5,10 +5,10 @@ mongoose = require 'mongoose'
 Schema   = mongoose.Schema
 ObjectId = Schema.ObjectId
 
-AUTH_TYPES = [
-  'facebook'
-  'local'
-]
+PROVIDERS =
+  FACEBOOK: 'FACEBOOK'
+  LOCAL: 'LOCAL'
+  ROLE: 'ROLE'
 
 ROLES =
   EVENT_MANAGER: 'event manager'
@@ -37,8 +37,14 @@ UserSchema = new Schema(
 
   provider:
     type: String
-    enum: AUTH_TYPES
+    enum: _.values(PROVIDERS)
     required: true
+
+  confirmationToken:
+    type: String
+
+  resetPasswordToken:
+    type: String
 
   facebook: {}
   
@@ -221,7 +227,7 @@ UserSchema.methods =
 
 
   skipValidation: ()->
-    return this.provider != 'local'
+    return this.provider != PROVIDERS.LOCAL && this.provider != PROVIDERS.ROLE
 
 
 UserSchema.statics =
@@ -230,3 +236,7 @@ UserSchema.statics =
     this.findOne(options.criteria).select(options.select).exec(cb)
 
 mongoose.model 'User', UserSchema
+
+module.exports = 
+  PROVIDERS: PROVIDERS
+  ROLES: ROLES
