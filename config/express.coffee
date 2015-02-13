@@ -25,6 +25,7 @@ module.exports = (app, config, passport) ->
   app.use bodyParser.urlencoded(
     extended: true
   )
+  app.use multipart()  
   app.use cookieParser()
   app.use compress()
 
