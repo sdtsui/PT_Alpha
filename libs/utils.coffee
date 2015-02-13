@@ -36,3 +36,7 @@ exports.getFormatedUrl = (domain)->
     return null
 
   return url[0]
+
+
+exports.randomKey = ()->
+  return Math.round((new Date().valueOf() * Math.random())) + ''

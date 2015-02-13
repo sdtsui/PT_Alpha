@@ -6,6 +6,7 @@ USER_CONFIG = require('../../models/user')
 extend = require('util')._extend
 utils = require('../../../libs/utils')
 api = require('../../../libs/authentication')
+crypto = require('crypto')
 
 module.exports = (app, passport) ->
   app.use '/api/roles', api.requiresLogin, router
@@ -30,6 +31,7 @@ module.exports = (app, passport) ->
     role = new User(req.body)
     role.provider = USER_CONFIG.PROVIDERS.ROLE
     role.venue = req.user.venue
+    role.password = utils.randomKey()
     role.save (e)->
       if e
         console.log e
