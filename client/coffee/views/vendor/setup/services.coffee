@@ -25,7 +25,7 @@ define([
       className: 'row'
       events:
         'click .addNewService': 'addNewService'
-        'click .menu-list li.item': 'selectService'
+        'click .menu-list li.item a': 'selectService'
 
       addNewService: (e)->
         e.preventDefault()

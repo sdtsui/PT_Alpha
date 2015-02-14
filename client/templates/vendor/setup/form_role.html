@@ -23,7 +23,7 @@
                 <%
                     _.each(ROLES, function(v, r){
                 %>
-                    <option value="<%= r %>"><%= v %></option>
+                    <option value="<%= r %>" <%= r==role.role ? 'selected' : '' %>><%= v %></option>
                 <%
                     });
                 %>
