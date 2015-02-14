@@ -31,8 +31,6 @@ define([
         e.preventDefault()
         e.stopPropagation()
         $e = $(e.currentTarget)
-        console.log 'saveRole'
-        console.log @formRole.toJSON()
         isNew = @formRole.isNew()
         if isNew
           @formRole.url = '/api/roles'
@@ -63,7 +61,6 @@ define([
         @options = options
         @roles = options.roles
         @formRole = options.formRole
-        console.log @formRole.toJSON()
         @initConstant()
 
       initConstant: ()->
@@ -113,7 +110,7 @@ define([
         @$notificationsNewMessageEmail.on 'click', => 
           notifications = @formRole.get('notifications') || {}
           notifications.newMessage ||= {}
-          notifications.newMessage.phone = @$notificationsNewMessageEmail.is(':checked')
+          notifications.newMessage.email = @$notificationsNewMessageEmail.is(':checked')
           @formRole.set notifications: notifications
 
         @$notificationsNewMessagePhone = @$('input[name="notificationsNewMessagePhone"]')
@@ -129,7 +126,7 @@ define([
         @$notificationsNewEventEmail.on 'click', => 
           notifications = @formRole.get('notifications') || {}
           notifications.newEvent ||= {}
-          notifications.newEvent.phone = @$notificationsNewEventEmail.is(':checked')
+          notifications.newEvent.email = @$notificationsNewEventEmail.is(':checked')
           @formRole.set notifications: notifications
 
         @$notificationsNewEventPhone = @$('input[name="notificationsNewEventPhone"]')
@@ -144,7 +141,7 @@ define([
         @$notificationsAbandonCartEmail.on 'click', => 
           notifications = @formRole.get('notifications') || {}
           notifications.abandonCart ||= {}
-          notifications.abandonCart.phone = @$notificationsAbandonCartEmail.is(':checked')
+          notifications.abandonCart.email = @$notificationsAbandonCartEmail.is(':checked')
           @formRole.set notifications: notifications
 
         @$notificationsAbandonCartPhone = @$('input[name="notificationsAbandonCartPhone"]')

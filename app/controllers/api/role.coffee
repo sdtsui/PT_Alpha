@@ -19,7 +19,7 @@ module.exports = (app, passport) ->
       venue: user.venue
       _id: {$ne: user._id}
 
-    User.find cond, 'name email role phone notification', (e, roles)->
+    User.find cond, 'name email role phone notifications', (e, roles)->
       if e
         return res.status(400).send({message: e})
 
