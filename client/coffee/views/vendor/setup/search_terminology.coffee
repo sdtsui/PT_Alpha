@@ -16,15 +16,15 @@ define([
       tagName: 'div'
       className: 'columns large-4 left-col searchTerminology'
       events:
-        'click .cancelRole': 'cancelRole'
+        'click .addNewType': 'addNewType'
         'click .saveRole': 'saveRole'
         'click .deleteRole': 'deleteRole'
 
-      cancelRole: (e)->
+      addNewType: (e)->
         e.preventDefault()
         e.stopPropagation()
         $e = $(e.currentTarget)
-        @$el.remove()
+        name = @$('input[name="query"]').val()
       
       initialize: (options)->
         @options = options
