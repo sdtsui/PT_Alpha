@@ -13,7 +13,7 @@ TerminologySchema = new Schema(
   kind:
     type: String
     required: true
-    enum: _.values(TYPES)
+    enum: _.values(KINDS)
     index: true
 
   name:
