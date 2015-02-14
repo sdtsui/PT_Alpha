@@ -1,14 +1,6 @@
-<div class="form-wrap">
+<div class="form-wrap terminologyPanel">
     <div class="row">
-        <!--controls-->
-        <div class="clean-button-tiny top-cta right">
-            &nbsp; delete venue &nbsp; <i class="fi-trash"></i>
-        </div>
-        <div class="clean-button-tiny top-cta right">
-            &nbsp; save &nbsp; <i class="fi-save"></i>
-        </div>
-        <div class="clean-button-tiny top-cta right">cancel</div>
-        <!--title-->
+        <a href="javascript:;" class="clean-button-tiny top-cta right closeSlideout">close slideout</a>
         <h4>
             TERMINOLOGY
             <small>| Customize Your Venue</small>
@@ -29,7 +21,7 @@
                     });
                 %>
             </div>
-            <div class="clean-button-tiny">Add Room Type</div>
+            <a class="clean-button-tiny addType" data-type="roomType">Add Room Type</a>
             <hr>
             <h6>Course Type</h6>
             <div class="room-tokens clearfix">
@@ -46,7 +38,7 @@
                 %>            
         
             </div>
-            <div class="clean-button-tiny">edit Course Type</div>
+            <a class="clean-button-tiny addType" data-type="courseType">Add Course Type</a>
             <hr>
             <h6>Job Role Type</h6>
             <div class="room-tokens clearfix">
@@ -62,7 +54,7 @@
                     });
                 %>
             </div>
-            <div class="clean-button-tiny">Add Job Role Type</div>
+            <a class="clean-button-tiny addType" data-type="jobRoleType">Add Job Role Type</a>
             <hr>
             <h6>Ammenities</h6>
             <div class="room-tokens clearfix">
@@ -78,7 +70,7 @@
                     });
                 %>
             </div>
-            <div class="clean-button-tiny">Add Ammenities Type</div>
+            <a class="clean-button-tiny addType" data-type="ammenityType">Add Ammenities Type</a>
         </div>
     </div>
 
