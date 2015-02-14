@@ -30,8 +30,22 @@ define([
         @options = options
         @type = options.type
 
+      displayType: ()->
+        switch @type
+          when 'roomType'
+            'room type'
+          when 'courseType'
+            'course type'
+          when 'jobRoleType'
+            'job role type'
+          when 'ammenityType'
+            'ammenity type'
+          else
+            @type
+
+
       render: ()->
-        tpl = _.template(SearchTeminologyTemplate, {_: _})
+        tpl = _.template(SearchTeminologyTemplate, {_: _, displayType: @displayType()})
         @$el.html(tpl)
         @
     )

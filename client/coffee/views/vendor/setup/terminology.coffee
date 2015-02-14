@@ -18,7 +18,6 @@ define([
 
     TerminologySetupView = Backbone.View.extend(
       tagName: 'div'
-      # className: 'sticky'
       events:
         'click .addType': 'addType'
         'click .closeSlideout': 'closeSlideout'
@@ -34,6 +33,7 @@ define([
         e.stopPropagation()
         @$('.searchTerminology').remove()
         @$('.terminologyPanel').removeClass('column large-8')
+        @$('.closeSlideout').hide()
 
       initialize: (options={})->
         that = this
@@ -42,8 +42,10 @@ define([
 
     
       buildSearchHtml: (type)->
+        @$('.searchTerminology').remove()
         view = new SearchTerminologyView({type: type})
         @$('.terminologyPanel').addClass('column large-8')
+        @$('.closeSlideout').show()
         @$el.append(view.render().el)
 
       buildHtml: ()->
