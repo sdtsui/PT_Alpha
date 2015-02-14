@@ -27,6 +27,7 @@ define([
         @$el.remove()
 
       saveRole: (e)->
+        that = this
         e.preventDefault()
         e.stopPropagation()
         $e = $(e.currentTarget)
@@ -35,12 +36,21 @@ define([
         isNew = @formRole.isNew()
         if isNew
           @formRole.url = '/api/roles'
-          @formRole.save()
         else
           @formRole.url = '/api/roles/update'
-          @formRole.save()
-          console.log 'update role'
 
+        @formRole.save @formRole.toJSON(),
+          success: (model, response, options)->
+            if isNew
+              that.roles.add that.formRole
+            msg = new AlertMessage({type: 'success', messages: ["Role was saved successfully."]})
+            that.$el.prepend(msg.render().el)
+
+          error: (model, response, options)->
+            console.log 'errror'
+            console.log response
+            msg = new AlertMessage({messages: ["There are some errors"]})
+            that.$el.prepend(msg.render().el)        
 
       deleteRole: (e)->
         e.preventDefault()
@@ -52,7 +62,8 @@ define([
       initialize: (options)->
         @options = options
         @roles = options.roles
-        @formRole = options.formRole        
+        @formRole = options.formRole
+        console.log @formRole.toJSON()
         @initConstant()
 
       initConstant: ()->
