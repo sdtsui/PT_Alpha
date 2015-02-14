@@ -1,0 +1,7 @@
+<%
+  _.each(roles, function(role){
+%>
+  <li class="item" data-role_id="<%= role._id %>"><%= role.name %></li>
+<%
+    })
+%>
