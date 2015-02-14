@@ -30,6 +30,19 @@ define([
         @options = options
         @type = options.type
 
+      buildSearchResults: (items)->
+        tpl = """
+          <% _.each(items, function(item){%>
+            <li class="item">
+                <%= item.name %> <i class="fi-plus right addItem"></i>
+            </li>
+          <% });%>
+        """
+
+        html = _.template(tpl, {_: _, items: items})
+        @$('.menu-list').html(html)
+
+
       displayType: ()->
         switch @type
           when 'roomType'
@@ -47,6 +60,7 @@ define([
       render: ()->
         tpl = _.template(SearchTeminologyTemplate, {_: _, displayType: @displayType()})
         @$el.html(tpl)
+        @buildSearchResults([])
         @
     )
     return SearchTerminologyView

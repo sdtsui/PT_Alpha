@@ -4,44 +4,11 @@
             <div class="panel clearfix">
                 <label>
                     Add new <%= displayType %>
-                    <input type="search" placeholder="search menu items" ng-model="query" class="ng-valid ng-dirty"></label>
-                <div class="clean-button-tiny right">add</div>
+                    <input name="query" type="search" placeholder="enter <%= displayType %>"></label>
+                <div class="clean-button-tiny right addNewType">add</div>
             </div>
             <ul class="menu-list">
-                <!-- ngRepeat: item in data.menuitems | filter: query -->
-                <li ng-repeat="item in data.menuitems | filter: query" class="item ng-binding ng-scope">
-                    Californian Halibut Sashimi <i class="fi-plus right"></i>
-                </li>
-                <!-- end ngRepeat: item in data.menuitems | filter: query -->
-                <li ng-repeat="item in data.menuitems | filter: query" class="item ng-binding ng-scope">
-                    Pan Roasted Filet of Arctic Char <i class="fi-plus right"></i>
-                </li>
-                <!-- end ngRepeat: item in data.menuitems | filter: query -->
-                <li ng-repeat="item in data.menuitems | filter: query" class="item ng-binding ng-scope">
-                    Pan Roasted Filet of Arctic Char
-                    <i class="fi-plus right"></i>
-                </li>
-                <!-- end ngRepeat: item in data.menuitems | filter: query -->
-                <li ng-repeat="item in data.menuitems | filter: query" class="item ng-binding ng-scope">
-                    Roast Loin of Californian Lamb
-                    <i class="fi-plus right"></i>
-                </li>
-                <!-- end ngRepeat: item in data.menuitems | filter: query -->
-                <li ng-repeat="item in data.menuitems | filter: query" class="item ng-binding ng-scope">
-                    Slow Roasted Pork
-                    <i class="fi-plus right"></i>
-                </li>
-                <!-- end ngRepeat: item in data.menuitems | filter: query -->
-                <li ng-repeat="item in data.menuitems | filter: query" class="item ng-binding ng-scope">
-                    Summer Fruit Gratin
-                    <i class="fi-plus right"></i>
-                </li>
-                <!-- end ngRepeat: item in data.menuitems | filter: query -->
-                <li ng-repeat="item in data.menuitems | filter: query" class="item ng-binding ng-scope">
-                    Raspberry Shortcake
-                    <i class="fi-plus right"></i>
-                </li>
-                <!-- end ngRepeat: item in data.menuitems | filter: query --> </ul>
+            </ul>
         </div>
     </div>
 </div>
