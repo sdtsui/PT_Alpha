@@ -25,12 +25,11 @@ define([
       that = this
       e.preventDefault()
       e.stopPropagation()
-      console.log this.settings
       $.ajax
-        url: '/api/venues/settings'
+        url: '/api/settings'
         method: 'PUT'
         datatype: 'json'
-        data: {settings: that.settings}
+        data: that.settings
         success: (response)->
           that.model = _.clone(that.settings)
           msg = new AlertMessage({type: 'success', messages: ["Settings was updated successfully."]})
@@ -68,7 +67,7 @@ define([
     render: ()->
       that = this
       $.ajax
-        url: '/api/venues/settings'
+        url: '/api/settings'
         method: 'GET'
         datatype: 'json'
         success: (response)->
