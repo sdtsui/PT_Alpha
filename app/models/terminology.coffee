@@ -44,8 +44,4 @@ TerminologySchema.statics =
   store: (options, cb)->
     this.insert({name: options.name, kind: options.kind}).exec(cb)
 
-  search: (options, cb)->
-    options.name ||= ''
-    options.limit ||= 20
-    regx = new RegExp('^'+options.name, 'i')
-    this.find(name: regx, kind: options.kind).limit(options.limit).exec(cb)
+

@@ -13,3 +13,5 @@ module.exports = (app, passport) ->
   router.put "/", (req, res)->
     SettingService.updateSetting(req, res)
 
+
+  
