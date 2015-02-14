@@ -4,10 +4,10 @@ Schema   = mongoose.Schema
 ObjectId = Schema.ObjectId
 
 KINDS =
-  ROOM: 'ROOM'
-  COURSE: 'COURSE'
-  JOB_ROLE: 'JOB_ROLE'
-  AMMENITY: 'AMMENITY'
+  ROOM: 'roomType'
+  COURSE: 'courseType'
+  JOB_ROLE: 'jobRoleType'
+  AMMENITY: 'ammenityType'
 
 TerminologySchema = new Schema(
   kind:
