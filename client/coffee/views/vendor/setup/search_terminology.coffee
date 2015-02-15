@@ -16,8 +16,9 @@ define([
       tagName: 'div'
       className: 'columns large-4 left-col searchTerminology'
       events:
-        'blur .searchQuery': 'searchQuery'
+        'change .searchQuery': 'searchQuery'
         'click .addNewType': 'addNewType'
+        'click i.addItem': 'addItem'
         'click .saveRole': 'saveRole'
         'click .deleteRole': 'deleteRole'
 
@@ -37,13 +38,27 @@ define([
             msg = new AlertMessage({messages: ["There are some errors"]})
             that.$el.prepend(msg.render().el)
 
+      addItem: (e)->
+        e.preventDefault()
+        e.stopPropagation()
+        $e = $(e.currentTarget)
+        name = $e.data('name')
+        $.ajax
+          url: '/api/terminologies/add'
+          method: 'POST'
+          datatype: 'json'
+          data: {name: name, kind: @type}
+          success: (response)->
+            console.log response
+          error: (response)->
+            msg = new AlertMessage({messages: ["There are some errors"]})
+            that.$el.prepend(msg.render().el)
+
       searchQuery: (e)->
         e.preventDefault()
         e.stopPropagation()
         $e = $(e.currentTarget)
         name = @$('input[name="query"]').val()
-        console.log name
-        console.log @type
         @searchTerm(name)
       
       initialize: (options)->
@@ -69,7 +84,7 @@ define([
         tpl = """
           <% _.each(items, function(item){%>
             <li class="item">
-                <%= item.name %> <i class="fi-plus right addItem"></i>
+                <%= item.name %> <i class="fi-plus right addItem" data-name="<%= item.name %>"></i>
             </li>
           <% });%>
         """

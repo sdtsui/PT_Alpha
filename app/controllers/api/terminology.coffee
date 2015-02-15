@@ -13,4 +13,7 @@ module.exports = (app, passport) ->
   router.post "/add", (req, res)->
     TerminologyService.addToVenue(req, res)
 
+  router.delete "/remove", (req, res)->
+    TerminologyService.removeFromVenue(req, res)
+
   

@@ -15,13 +15,13 @@
                 %>
                     <div class="token left">
                         <%= roomType %> &nbsp;
-                        <i class="fi-x"></i>
+                        <i class="fi-x removeTerm" data-name="<%= roomType %>" data-kind="roomType" ></i>
                     </div>                
                 <%
                     });
                 %>
             </div>
-            <a class="clean-button-tiny addType" data-type="roomType">Add Room Type</a>
+            <a class="clean-button-tiny addType" data-kind="roomType">Add Room Type</a>
             <hr>
             <h6>Course Type</h6>
             <div class="room-tokens clearfix">
@@ -31,14 +31,14 @@
                 %>
                     <div class="token left">
                         <%= courseType %> &nbsp;
-                        <i class="fi-x"></i>
+                        <i class="fi-x removeTerm" data-name="<%= courseType %>" data-kind="courseType" ></i>
                     </div>                
                 <%
                     });
                 %>            
         
             </div>
-            <a class="clean-button-tiny addType" data-type="courseType">Add Course Type</a>
+            <a class="clean-button-tiny addType" data-kind="courseType">Add Course Type</a>
             <hr>
             <h6>Job Role Type</h6>
             <div class="room-tokens clearfix">
@@ -48,13 +48,13 @@
                 %>
                     <div class="token left">
                         <%= jobRoleType %> &nbsp;
-                        <i class="fi-x"></i>
+                        <i class="fi-x removeTerm" data-name="<%= jobRoleType %>" data-kind="jobRoleType" ></i>
                     </div>                
                 <%
                     });
                 %>
             </div>
-            <a class="clean-button-tiny addType" data-type="jobRoleType">Add Job Role Type</a>
+            <a class="clean-button-tiny addType" data-kind="jobRoleType">Add Job Role Type</a>
             <hr>
             <h6>Ammenities</h6>
             <div class="room-tokens clearfix">
@@ -64,13 +64,13 @@
                 %>
                     <div class="token left">
                         <%= ammenityType %> &nbsp;
-                        <i class="fi-x"></i>
+                        <i class="fi-x removeTerm" data-name="<%= ammenityType %>" data-kind="ammenityType" ></i>
                     </div>                
                 <%
                     });
                 %>
             </div>
-            <a class="clean-button-tiny addType" data-type="ammenityType">Add Ammenities Type</a>
+            <a class="clean-button-tiny addType" data-kind="ammenityType">Add Ammenities Type</a>
         </div>
     </div>
 

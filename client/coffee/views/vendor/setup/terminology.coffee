@@ -20,13 +20,30 @@ define([
       tagName: 'div'
       events:
         'click .addType': 'addType'
+        'click .removeTerm': 'removeTerm'
         'click .closeSlideout': 'closeSlideout'
 
       addType: (e)->
         e.preventDefault()
         e.stopPropagation()
         $e = $(e.currentTarget)
-        @buildSearchHtml($e.data('type'))
+        @buildSearchHtml($e.data('kind'))
+
+      removeTerm: (e)->
+        e.preventDefault()
+        e.stopPropagation()
+        $e = $(e.currentTarget)
+        console.log $e.data()
+        $.ajax
+          url: '/api/terminologies/remove'
+          method: 'DELETE'
+          datatype: 'json'
+          data: $e.data()
+          success: (response)->
+            console.log response
+          error: (response)->
+            msg = new AlertMessage({messages: ["There are some errors"]})
+            that.$el.prepend(msg.render().el)
 
       closeSlideout: (e)->
         e.preventDefault()

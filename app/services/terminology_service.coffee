@@ -16,7 +16,31 @@ exports.search = (req, res)->
 
     res.json(terms)
 
+exports.removeFromVenue = (req, res)->
+  cond = 
+    venue: req.user.venue
 
+  Setting.findOne cond, (e, setting)->
+    if e
+      return res.status(400).send({message: e})
+
+    if !setting
+      setting = new Setting()
+      setting.venue = req.user.venue
+
+    types = setting[req.body.kind] || []
+
+    existed = types.indexOf(req.body.name)
+    if existed > 0
+      types.splice(existed, 1)
+
+    setting[req.body.kind] = types
+    setting.save (err)->
+      if err
+        return res.status(400).send({message: err})
+
+      storeTerm({kind: req.body.kind, name: req.body.name})
+      res.json(setting.toJSON())
 
 exports.addToVenue = (req, res)->
   cond = 
