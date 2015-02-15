@@ -26,9 +26,17 @@ define([
         e.stopPropagation()
         $e = $(e.currentTarget)
         name = @$('input[name="query"]').val()
-        console.log name
-        console.log @type
-      
+        $.ajax
+          url: '/api/terminologies/add'
+          method: 'POST'
+          datatype: 'json'
+          data: {name: name, kind: @type}
+          success: (response)->
+            console.log response
+          error: (response)->
+            msg = new AlertMessage({messages: ["There are some errors"]})
+            that.$el.prepend(msg.render().el)
+
       searchQuery: (e)->
         e.preventDefault()
         e.stopPropagation()
