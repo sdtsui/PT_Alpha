@@ -20,10 +20,11 @@
         <label>
             Role
             <select name="role">
+                <option value=""></option>
                 <%
-                    _.each(ROLES, function(v, r){
+                    _.each(setting.jobRoleType, function(v){
                 %>
-                    <option value="<%= r %>" <%= r==role.role ? 'selected' : '' %>><%= v %></option>
+                    <option value="<%= v %>" <%= v==role.role ? 'selected' : '' %>><%= v %></option>
                 <%
                     });
                 %>

@@ -43,6 +43,7 @@ define([
 
       initialize: (options)->
         that = this
+        @setting = null
         @options = options 
         @roles = new RolesCollection()
         @formRole = new RoleModel()
@@ -55,10 +56,22 @@ define([
           that.buildRoleItems()
         @roles.on 'remove', (s)->
           that.buildRoleItems()
+        @getSetting()
 
+      getSetting: ()->
+        that = this
+        if !that.setting
+          $.ajax
+            url: '/api/settings'
+            method: 'GET'
+            datatype: 'json'
+            success: (response)->
+              that.setting = response
+            error: (response)->
+              console.log response        
 
       buildForm: ()->
-        view = new FormRoleView({roles: @roles, formRole: @formRole})
+        view = new FormRoleView({roles: @roles, formRole: @formRole, setting: @setting})
         @$('.form-wrap').html view.render().el
 
       buildRoleItems: ()->

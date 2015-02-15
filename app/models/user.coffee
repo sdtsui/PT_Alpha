@@ -9,12 +9,6 @@ PROVIDERS =
   FACEBOOK: 'facebook'
   LOCAL: 'local'
 
-ROLES =
-  EVENT_MANAGER: 'event manager'
-  OWNER: 'owner'
-  EVENT_COORDINATOR: 'event coordinator'
-  GENERAL_MANAGER: 'general manager'
-  PARTNER: 'partner'
 
 UserSchema = new Schema(
   venue: 
@@ -283,4 +277,3 @@ mongoose.model 'User', UserSchema
 
 module.exports = 
   PROVIDERS: PROVIDERS
-  ROLES: ROLES

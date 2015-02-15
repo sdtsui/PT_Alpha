@@ -60,6 +60,7 @@ define([
       initialize: (options)->
         @options = options
         @roles = options.roles
+        @setting = options.setting
         @formRole = options.formRole
         @initConstant()
 
@@ -153,8 +154,9 @@ define([
 
 
       render: ()->
-        tpl = _.template(FormRoleTemplate, {_: _, ROLES: @ROLES, role: @formRole.toJSON()})
+        tpl = _.template(FormRoleTemplate, {_: _, ROLES: @ROLES, role: @formRole.toJSON(), setting: @setting})
         @$el.html(tpl)
+        console.log @setting
         @bindingDom()
         @                
     )
