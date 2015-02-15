@@ -132,8 +132,7 @@
                         <%
                     _.each(TIME_ZONES, function(v, k){
                     %>
-                        <option value="<%= k %>
-                            ">
+                        <option value="<%= k %>" <%= venue.timeZone==k ? 'selected' : '' %> >
                             <%= v %></option>
                         <%
                     })
@@ -145,8 +144,7 @@
                         <%
                     _.each(CURRENCY, function(v, k){
                     %>
-                        <option value="<%= k %>
-                            ">
+                        <option value="<%= k %>" <%= venue.currency==k ? 'selected' : '' %> >
                             <%= v %></option>
                         <%
                     })
@@ -159,7 +157,7 @@
                     _.each(CUISINE_TYPES, function(v, k){
                     %>
                         <option value="<%= k %>
-                            ">
+                            " <%= venue.cuisineType==k ? 'selected' : '' %> >
                             <%= v %></option>
                         <%
                     })

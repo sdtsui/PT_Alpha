@@ -128,16 +128,16 @@ define([
         businessHour.closeTime = @$businessHourClose.val()
         @venue.set 'businessHour': businessHour
 
-      @$timeZone = @$('input[name="timeZone"]')
-      @$timeZone.on 'blur', => 
+      @$timeZone = @$('select[name="timeZone"]')
+      @$timeZone.on 'change', => 
         @venue.set timeZone: @$timeZone.val()
 
-      @$cuisineType = @$('input[name="cuisineType"]')
-      @$cuisineType.on 'blur', => 
+      @$cuisineType = @$('select[name="cuisineType"]')
+      @$cuisineType.on 'change', => 
         @venue.set cuisineType: @$cuisineType.val()
 
-      @$currency = @$('input[name="currency"]')
-      @$currency.on 'blur', => 
+      @$currency = @$('select[name="currency"]')
+      @$currency.on 'change', => 
         @venue.set currency: @$currency.val()
 
     buildHtml: ()->
