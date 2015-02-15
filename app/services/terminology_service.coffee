@@ -31,7 +31,7 @@ exports.removeFromVenue = (req, res)->
     types = setting[req.body.kind] || []
 
     existed = types.indexOf(req.body.name)
-    if existed > 0
+    if existed >= 0
       types.splice(existed, 1)
 
     setting[req.body.kind] = types

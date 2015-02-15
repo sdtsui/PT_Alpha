@@ -30,6 +30,7 @@ define([
         @buildSearchHtml($e.data('kind'))
 
       removeTerm: (e)->
+        that = this
         e.preventDefault()
         e.stopPropagation()
         $e = $(e.currentTarget)
@@ -40,7 +41,8 @@ define([
           datatype: 'json'
           data: $e.data()
           success: (response)->
-            console.log response
+            that.setting = response
+            that.buildHtml()
           error: (response)->
             msg = new AlertMessage({messages: ["There are some errors"]})
             that.$el.prepend(msg.render().el)
@@ -59,8 +61,9 @@ define([
 
     
       buildSearchHtml: (type)->
+        that = this
         @$('.searchTerminology').remove()
-        view = new SearchTerminologyView({type: type})
+        view = new SearchTerminologyView({parent: that, type: type})
         @$('.terminologyPanel').addClass('column large-8')
         @$('.closeSlideout').show()
         @$el.append(view.render().el)
