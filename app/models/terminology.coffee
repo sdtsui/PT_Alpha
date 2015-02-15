@@ -32,16 +32,13 @@ TerminologySchema.path('name').validate( (name, fn)->
     that.invalidate('name', 'cannot be blank')
     return fn(true)
   regx = new RegExp('^'+that.name+'$', 'i')
-  Terminology.count({name: regx, kind: options.kind}).exec (e, num)->
+  Terminology.count({name: regx, kind: that.kind}).exec( (e, num)->
     if num && num > 0
       that.invalidate('name', 'is already existed')
-    return fn(true)
+  )
+  return fn(true)
 
 , null )
 
-
-TerminologySchema.statics = 
-  store: (options, cb)->
-    this.insert({name: options.name, kind: options.kind}).exec(cb)
 
 
