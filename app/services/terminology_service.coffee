@@ -36,10 +36,16 @@ exports.addToVenue = (req, res)->
       types.push req.body.name
 
     setting[req.body.kind] = types
-
     setting.save (err)->
       if err
         return res.status(400).send({message: err})
 
+      storeTerm({kind: req.body.kind, name: req.body.name})
       res.json(setting.toJSON())
-      
+
+storeTerm = (options)->
+  if !options.name || !options.kind
+    return false
+  term = new Terminology({name: options.name, kind: options.kind})
+  term.save()
+  return true
