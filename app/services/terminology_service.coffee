@@ -10,7 +10,7 @@ exports.search = (req, res)->
   kind = req.query.kind || 'jobRoleType'
   limit = req.query.limit ||= 20
   regx = new RegExp('^'+name, 'i')
-  Terminology.find(name: regx, kind: kind).limit(options.limit).exec (e, terms)->
+  Terminology.find({name: regx, kind: kind}).limit(limit).exec (e, terms)->
     if e
       return res.status(400).send({message: e})
 

@@ -16,6 +16,7 @@ define([
       tagName: 'div'
       className: 'columns large-4 left-col searchTerminology'
       events:
+        'blur .searchQuery': 'searchQuery'
         'click .addNewType': 'addNewType'
         'click .saveRole': 'saveRole'
         'click .deleteRole': 'deleteRole'
@@ -25,10 +26,36 @@ define([
         e.stopPropagation()
         $e = $(e.currentTarget)
         name = @$('input[name="query"]').val()
+        console.log name
+        console.log @type
+      
+      searchQuery: (e)->
+        e.preventDefault()
+        e.stopPropagation()
+        $e = $(e.currentTarget)
+        name = @$('input[name="query"]').val()
+        console.log name
+        console.log @type
+        @searchTerm(name)
       
       initialize: (options)->
         @options = options
         @type = options.type
+
+
+      searchTerm: (term)->
+        that = this
+        $.ajax
+          url: '/api/terminologies/search'
+          method: 'GET'
+          datatype: 'json'
+          data: {name: term, kind: @type}
+          success: (response)->
+            console.log response
+            that.buildSearchResults(response)
+          error: (response)->
+            msg = new AlertMessage({messages: ["There are some errors"]})
+            that.$el.prepend(msg.render().el)
 
       buildSearchResults: (items)->
         tpl = """
@@ -60,6 +87,7 @@ define([
       render: ()->
         tpl = _.template(SearchTeminologyTemplate, {_: _, displayType: @displayType()})
         @$el.html(tpl)
+        @$('input[name="query"]').focus()
         @buildSearchResults([])
         @
     )
