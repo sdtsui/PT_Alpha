@@ -10,6 +10,7 @@ RoomSchema = new Schema(
     ref: 'Venue'
     required: true
     index: true
+    
   name:
     type: String
     required: true
