@@ -15,7 +15,7 @@ define([
         countRequired: true
         countValue: 0
       ingredients: []
-      preferences: []
+      dietaryPreferences: []
       isActive: true
     
     url: '/api/menu_item'

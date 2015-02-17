@@ -33,7 +33,7 @@ MenuItemSchema = new Schema(
   ingredients:
     type: Array
 
-  preferences:
+  dietaryPreferences:
     type: Array
 
 
