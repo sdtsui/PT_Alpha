@@ -35,6 +35,7 @@ define([
 
       initialize: (options)->
         @items = new MenuItemsCollection()
+        @items.fetch()
         @formItem = new MenuItemModel()
 
       render: ()->
