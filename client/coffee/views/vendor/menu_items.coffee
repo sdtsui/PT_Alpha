@@ -30,8 +30,12 @@ define([
         @buildItemForm()
 
       buildItemForm: ()->
-        view = new FormMenuItemView()
+        view = new FormMenuItemView({items: @items, formItem: @formItem})
         @$('.form-wrap').html view.render().el
+
+      initialize: (options)->
+        @items = new MenuItemsCollection()
+        @formItem = new MenuItemModel()
 
       render: ()->
         that = this
