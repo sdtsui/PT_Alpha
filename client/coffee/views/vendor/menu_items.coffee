@@ -6,6 +6,7 @@ define([
   'models/menu_item'
   'collections/menu_items'
   'views/shared/alert_message'
+  'views/vendor/menu_items/form_item'
   'text!templates/vendor/menu_items.html'
 ], ($
     _
@@ -14,10 +15,23 @@ define([
     MenuItemModel
     MenuItemsCollection
     AlertMessage
+    FormMenuItemView
     MenuItemsTemplate
   )->
     MenuItemsView = Backbone.View.extend(
       el: '#setupContent'
+      events:
+        'click .addNewMenuItem': 'addNewMenuItem'
+
+      addNewMenuItem: (e)->
+        e.preventDefault()
+        e.stopPropagation()
+        $e = $(e.currentTarget)
+        @buildItemForm()
+
+      buildItemForm: ()->
+        view = new FormMenuItemView()
+        @$('.form-wrap').html view.render().el
 
       render: ()->
         that = this

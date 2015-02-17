@@ -3,7 +3,7 @@ define([
   'underscore'
   'Backbone'
   'models/menu_item'
-], ($, _, Backbone, RoleModel)->
+], ($, _, Backbone, MenuItemModel)->
   MenuItemsCollection = Backbone.Collection.extend(
     model: MenuItemModel,
     initialize: (options)->
