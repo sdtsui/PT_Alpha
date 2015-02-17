@@ -13,16 +13,16 @@
 <div class="columns large-4">
     <label>
         Menu Item Name
-        <input type="text" placeholder="eg My Hotel"></label>
+        <input name="name" type="text" placeholder="eg My Hotel"></label>
     <label>
         Description
         <span class="right">120/200</span>
     </label>
-    <textarea name="" cols="30" rows="4"></textarea>
+    <textarea name="description" cols="30" rows="4"></textarea>
     <div class="row collapse">
         <div class="columns large-3">
             <div class="switch round tiny">
-                <input type="checkbox" id="isActive" checked>
+                <input name="isActive" type="checkbox" id="isActive" checked>
                 <label for="isActive"></label>
             </div>
         </div>
@@ -34,7 +34,7 @@
 <div class="columns large-4">
     <label>
         How is this menu item served? (subcategory)
-        <select>
+        <select name="subcategory">
             <option value="plated">plated</option>
             <option value="family style">family style</option>
             <option value="tray passed">tray passed</option>
@@ -50,13 +50,13 @@
                         <span class="postfix">$</span>
                     </div>
                     <div class="columns large-8">
-                        <input type="text" placeholder="eg 20"></div>
+                        <input name="priceValue" type="text" placeholder="eg 20"></div>
                 </div>
             </div>
         </div>
         <div class="columns large-7">
             <div class="padding1pxsides">
-                <select>
+                <select name="priceUnit">
                     <option value="A">per head</option>
                     <option value="B">per head per hour</option>
                 </select>
@@ -66,7 +66,7 @@
     <div class="row collapse">
         <div class="columns large-3">
             <div class="switch round tiny">
-                <input type="checkbox" id="isRequired" checked>
+                <input name="guestCountRequired" type="checkbox" id="isRequired" checked>
                 <label for="isRequired"></label>
             </div>
         </div>
@@ -74,7 +74,7 @@
             <h6 class="subheader">Guest Count Required</h6>
         </div>
         <div class="columns large-3">
-            <input type="text" placeholder="eg 20"></div>
+            <input name="guestCountValue" type="text" placeholder="eg 20"></div>
     </div>
 </div>
 <div class="columns large-4">
