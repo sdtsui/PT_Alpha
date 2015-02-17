@@ -24,7 +24,7 @@ define([
           'signup': 'signup'
           'signin': 'signin'
           # default action
-          'vendor/setup': 'vendorSetup'
+          'setup': 'vendorSetup'
           'menu-items': 'vendorMenuItem'
           '/'  : 'index'
           ''  : 'index'

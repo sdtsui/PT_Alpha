@@ -3,12 +3,16 @@ define([
   'underscore'
   'Backbone'
   'models/venue'
+  'models/menu_item'
+  'collections/menu_items'
   'views/shared/alert_message'
   'text!templates/vendor/menu_items.html'
 ], ($
     _
     Backbone
     VenueModel
+    MenuItemModel
+    MenuItemsCollection
     AlertMessage
     MenuItemsTemplate
   )->
