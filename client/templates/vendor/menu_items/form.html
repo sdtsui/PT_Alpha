@@ -13,16 +13,16 @@
 <div class="columns large-4">
     <label>
         Menu Item Name
-        <input name="name" type="text" placeholder="eg My Hotel"></label>
+        <input name="name" type="text" placeholder="eg My Hotel" value="<%= item.name %>"></label>
     <label>
         Description
         <span class="right">120/200</span>
     </label>
-    <textarea name="description" cols="30" rows="4"></textarea>
+    <textarea name="description" cols="30" rows="4"><%= item.description %></textarea>
     <div class="row collapse">
         <div class="columns large-3">
             <div class="switch round tiny">
-                <input name="isActive" type="checkbox" id="isActive" checked>
+                <input name="isActive" type="checkbox" id="isActive" <%= item.isActive ? 'checked' : '' %>>
                 <label for="isActive"></label>
             </div>
         </div>
@@ -50,7 +50,7 @@
                         <span class="postfix">$</span>
                     </div>
                     <div class="columns large-8">
-                        <input name="priceValue" type="text" placeholder="eg 20"></div>
+                        <input name="priceValue" type="text" placeholder="eg 20" value="<%= item.price.value %>"></div>
                 </div>
             </div>
         </div>
@@ -66,7 +66,7 @@
     <div class="row collapse">
         <div class="columns large-3">
             <div class="switch round tiny">
-                <input name="guestCountRequired" type="checkbox" id="isRequired" checked>
+                <input name="guestCountRequired" type="checkbox" id="isRequired" <%= item.guest.countRequired ? 'checked' : '' %> >
                 <label for="isRequired"></label>
             </div>
         </div>
@@ -74,7 +74,8 @@
             <h6 class="subheader">Guest Count Required</h6>
         </div>
         <div class="columns large-3">
-            <input name="guestCountValue" type="text" placeholder="eg 20"></div>
+            <input name="guestCountValue" type="text" placeholder="eg 20" value="<%= item.guest.countValue %>">
+        </div>
     </div>
 </div>
 <div class="columns large-4">

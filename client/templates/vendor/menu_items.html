@@ -7,7 +7,6 @@
             <div ng-controller="VenueController">
                 <input type="search" placeholder="find a menu item" ng-model="query">
                 <ul class="menu-list">
-                    <li ng-repeat="item in data.menuitems | filter: query" class="item">{{item.name}}</li>
                 </ul>
             </div>
         </div>
