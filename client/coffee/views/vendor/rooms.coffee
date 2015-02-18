@@ -29,7 +29,7 @@ define([
         @buildRoom()
 
       buildRoom: ()->
-        view = new RoomView({room: null})
+        view = new RoomView({room: ''})
         @$('.vendorRooms').html view.render().el
 
 
