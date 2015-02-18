@@ -1,0 +1,110 @@
+<div class="row">
+    <div class="clean-button-tiny top-cta right deleteMenu">
+        &nbsp; delete menu &nbsp; <i class="fi-trash"></i>
+    </div>
+    <div class="clean-button-tiny top-cta right saveMenu">
+        &nbsp; save &nbsp; <i class="fi-save"></i>
+    </div>
+    <div class="clean-button-tiny top-cta right cancelMenu">cancel</div>
+    <div class="clean-button-tiny top-cta right addCourse">add a course</div>
+    <h4>
+        MENUS
+        <small>| Three Course Seafood Menu</small>
+    </h4>
+    <hr>
+    <div class="column large-3">
+        <div class="row collapse">
+            <div class="columns large-8">
+                <div class="row collapse">
+                    <label>Price per Head</label>
+                    <div class="columns large-5">
+                        <span class="postfix">$</span>
+                    </div>
+                    <div class="columns large-7">
+                        <input name="pricePerHead" type="text" placeholder="eg 24" value="<%= menu.pricePerHead %>"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row collapse">
+            <label>Product Type</label>
+            <div class="columns large-8">
+                <select name="productType">
+                    <option value="banquet">banquet</option>
+                    <option value="reception">reception</option>
+                </select>
+            </div>
+        </div>
+        <div class="row collapse">
+            <div class="columns large-4">
+                <div class="switch round tiny">
+                    <input name="isActive" id="isStatusOn" type="checkbox" <%= menu.isActive ? 'checked' : '' %> >
+                    <label for="isStatusOn"></label>
+                </div>
+            </div>
+            <div class="columns large-8">
+                <h6 class="subheader">
+                    <span id="statusText">menu is active</span>
+                </h6>
+            </div>
+        </div>
+    </div>
+    <div class="columns large-9">
+        <label>
+            menu name
+            <input name="name" type="text" value="<%= menu.name %>"></label>
+        <label>Available for the following rooms:</label>
+        <div class="room-tokens clearfix">
+            <div class="token left">
+                Sophia Room &nbsp;
+                <i class="fi-x"></i>
+            </div>
+            <div class="token left">
+                Redwood Room &nbsp;
+                <i class="fi-x"></i>
+            </div>
+        </div>
+        <div class="clean-button-tiny">edit Rooom Avalability</div>
+        <hr>
+        <div class="course">
+            <h5>
+                <small>
+                    <span class="course-number">FIRST COURSE</span>
+                </small>
+                <span class="course-name">APPETIZER</span>
+                &nbsp; &nbsp; &nbsp; &nbsp;
+                <small>
+                    <span>edit menu items &nbsp; &nbsp; &nbsp;</span>
+                    <span>delete course &nbsp; &nbsp; &nbsp;</span>
+                    <span>edit course name</span>
+                </small>
+            </h5>
+            <div class="clearfix">
+                <div class="clean-button-tiny left">add menu items</div>
+                <div class="clean-button-tiny left">delete course</div>
+                <div class="clean-button-tiny left">edit course name</div>
+            </div>
+            <div class="menu-item">
+                <h6 class="item-name">
+                    Clear Heirloom Tomato Gazpacho
+&nbsp; &nbsp; &nbsp;
+                    <i class="fi-trash"></i>
+                </h6>
+                <h6 class="item-name">Seared Watermelon</h6>
+                <h6 class="item-name">Fresh Caught Clam Chowder</h6>
+            </div>
+            <br></div>
+        <div class="course">
+            <h5>
+                <small>
+                    <span class="course-number">SECOND COURSE</span>
+                </small>
+                <span class="course-name">ENTREE</span>
+            </h5>
+            <div class="menu-item">
+                <h6 class="item-name">Pan Roasted Filet of Arctic Char</h6>
+                <h6 class="item-name">Roast Loin of Californian Lamb</h6>
+                <h6 class="item-name">Fresh Caught Clam Chowder</h6>
+            </div>
+        </div>
+    </div>
+</div>
