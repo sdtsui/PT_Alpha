@@ -3,9 +3,9 @@ define([
   'underscore'
   'Backbone'
   'models/menu'
-], ($, _, Backbone, MenuItemModel)->
+], ($, _, Backbone, MenuModel)->
   MenusCollection = Backbone.Collection.extend(
-    model: MenuItemModel,
+    model: MenuModel,
     initialize: (options)->
       console.log options
     url: '/api/menus'

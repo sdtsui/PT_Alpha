@@ -3,7 +3,7 @@ define([
   'underscore'
   'Backbone'
   'models/venue'
-  'models/menu_item'
+  'models/menu'
   'collections/menus'
   'views/shared/alert_message'
   'views/vendor/menus/form_menu'
@@ -12,8 +12,8 @@ define([
     _
     Backbone
     VenueModel
-    MenuItemModel
-    MenuItemsCollection
+    MenuModel
+    MenusCollection
     AlertMessage
     FormMenuView
     MenuTemplate
@@ -34,20 +34,20 @@ define([
         e.preventDefault()
         e.stopPropagation()
         $e = $(e.currentTarget)
-        @formItem = @menus.get($e.data('menu_id'))
+        @formMenu = @menus.get($e.data('menu_id'))
         console.log $e.data('menu_id')
-        console.log @formItem
+        console.log @formMenu
         @buildItemForm()
 
 
       buildItemForm: ()->
-        view = new FormMenuView({menus: @menus, formItem: @formItem})
+        view = new FormMenuView({menus: @menus, formMenu: @formMenu})
         @$('.form-wrap').html view.render().el
 
       initialize: (options)->
         that = this
-        @menus = new MenuItemsCollection()
-        @formItem = new MenuItemModel()
+        @menus = new MenusCollection()
+        @formMenu = new MenuModel()
         @menus.on 'add', (s)->
           that.buildMenus()
         @menus.on 'remove', (s)->
