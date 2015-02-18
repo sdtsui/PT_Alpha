@@ -45,8 +45,13 @@ define([
         @$('.form-wrap').html view.render().el
 
       initialize: (options)->
+        that = this
         @items = new MenuItemsCollection()
         @formItem = new MenuItemModel()
+        @items.on 'add', (s)->
+          that.buildMenuItems()
+        @items.on 'remove', (s)->
+          that.buildMenuItems()
 
       buildMenuItems: ()->
         that = this

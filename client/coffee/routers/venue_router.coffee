@@ -7,6 +7,7 @@ define([
   'views/auths/signup'
   'views/auths/signin'
   'views/vendor/setup'
+  'views/vendor/menus'
   'views/vendor/menu_items'
 ], (
       $
@@ -17,6 +18,7 @@ define([
       SignupView
       SigninView
       VendorSetupView
+      VendorMenusView
       VendorMenuItemsView
     )->
       AppRouter = Backbone.Router.extend(
@@ -25,7 +27,8 @@ define([
           'signin': 'signin'
           # default action
           'setup': 'vendorSetup'
-          'menu-items': 'vendorMenuItem'
+          'menus': 'vendorMenus'
+          'menu-items': 'vendorMenuItems'
           '/'  : 'index'
           ''  : 'index'
 
@@ -55,9 +58,14 @@ define([
           view = new VendorSetupView()
           view.render()
 
-        vendorMenuItem: ->
+        vendorMenuItems: ->
           @authorizeDom()
           view = new VendorMenuItemsView()
+          view.render()
+
+        vendorMenus: ->
+          @authorizeDom()
+          view = new VendorMenusView()
           view.render()
 
 
