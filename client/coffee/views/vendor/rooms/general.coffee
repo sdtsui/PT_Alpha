@@ -19,11 +19,15 @@ define([
         @room = options.room
         console.log @room
 
+      bindingDom: ()->
+
+
       render: ()->
         that = this
-        tpl = _.template(RoomGeneralTemplate, {_: _})
+        tpl = _.template(RoomGeneralTemplate, {_: _, room: {} })
         console.log tpl
         @$el.html(tpl)
+        @bindingDom()
         @
 
     )
