@@ -33,10 +33,31 @@ define([
         @$el.remove()
 
       saveMenuItem: (e)->
+        that = this
         e.preventDefault()
         e.stopPropagation()
         $e = $(e.currentTarget)
         console.log @formItem.toJSON()
+        isNew = @formItem.isNew()
+        if @formItem.isValid()
+          if isNew
+            @formItem.url = '/api/menu_items/add'
+          else
+            @formItem.url = '/api/menu_items/update'
+
+          @formItem.save @formItem.toJSON(),
+            success: (model, response, options)->
+              if isNew
+                that.items.add that.formItem
+              msg = new AlertMessage({type: 'success', messages: ["Menu item was saved successfully."]})
+              that.$el.prepend(msg.render().el)
+
+            error: (model, response, options)->
+              console.log 'errror'
+              console.log response
+              msg = new AlertMessage({messages: ["There are some errors"]})
+              that.$el.prepend(msg.render().el)        
+
 
       initialize: (options)->
         @formItem = options.formItem
@@ -87,7 +108,7 @@ define([
 
       render: ()->
         that = this
-        tpl = _.template(FormMenuItemsTemplate, {item: @formItem})
+        tpl = _.template(FormMenuItemsTemplate, {_: _, item: that.formItem.toJSON()})
         @$el.html(tpl)
         @bindingDom()
         @

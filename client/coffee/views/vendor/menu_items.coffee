@@ -22,6 +22,7 @@ define([
       el: '#setupContent'
       events:
         'click .addNewMenuItem': 'addNewMenuItem'
+        'click .menu-list li.item a': 'selectMenuItem'
 
       addNewMenuItem: (e)->
         e.preventDefault()
@@ -29,19 +30,48 @@ define([
         $e = $(e.currentTarget)
         @buildItemForm()
 
+      selectMenuItem: (e)->
+        e.preventDefault()
+        e.stopPropagation()
+        $e = $(e.currentTarget)
+        @formItem = @items.get($e.data('item_id'))
+        console.log $e.data('item_id')
+        console.log @formItem
+        @buildItemForm()
+
+
       buildItemForm: ()->
         view = new FormMenuItemView({items: @items, formItem: @formItem})
         @$('.form-wrap').html view.render().el
 
       initialize: (options)->
         @items = new MenuItemsCollection()
-        @items.fetch()
+        # @items.fetch()
         @formItem = new MenuItemModel()
+
+      buildMenuItems: ()->
+        that = this
+
+        tpl = """
+          <% _.each(items, function(item){
+          %>
+            <li class="item" >
+              <a data-item_id="<%= item._id %>"> <%= item.name %></a>
+            </li>
+          <%
+            });
+          %>
+        """
+        html = _.template(tpl, {_: _, items: @items.toJSON()})
+        @$('.menu-list').html(html)
 
       render: ()->
         that = this
         tpl = _.template(MenuItemsTemplate, {})
         @$el.html(tpl)
+        that.items.fetch 
+          success: (collections, response, options)->
+            that.buildMenuItems()
         @
 
     )
