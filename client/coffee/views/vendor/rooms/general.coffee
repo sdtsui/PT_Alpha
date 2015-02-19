@@ -24,8 +24,7 @@ define([
 
       render: ()->
         that = this
-        tpl = _.template(RoomGeneralTemplate, {_: _, room: {} })
-        console.log tpl
+        tpl = _.template(RoomGeneralTemplate, {_: _, room: @room.toJSON() })
         @$el.html(tpl)
         @bindingDom()
         @
