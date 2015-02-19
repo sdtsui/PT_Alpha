@@ -33,7 +33,7 @@ define([
         @room = options.room
 
       buildGeneral: ()->
-        view = new RoomGeneralView({})
+        view = new RoomGeneralView({room: @room})
         @$('.form-wrap').html view.render().el
 
       buildLayouts: ()->

@@ -2,12 +2,16 @@ define([
   'jq'
   'underscore'
   'Backbone'
+  'models/room'
+  'collections/rooms'
   'views/shared/alert_message'
   'views/vendor/rooms/room'
   'text!templates/vendor/rooms.html'
 ], ($
     _
     Backbone
+    RoomModel
+    RoomsCollection
     AlertMessage
     RoomView
     VendorRoomsTemplate
@@ -26,12 +30,16 @@ define([
         e.stopPropagation()
         $e = $(e.currentTarget)
         console.log 'aaaa'
-        @buildRoom()
+        @buildRoom(@formRoom)
 
-      buildRoom: ()->
-        view = new RoomView({room: ''})
+      buildRoom: (room)->
+        view = new RoomView({room: room})
         @$('.vendorRooms').html view.render().el
 
+
+      initialize: (options)->
+        @rooms = new RoomsCollection()
+        @formRoom = new RoomModel()
 
       render: ()->
         that = this
