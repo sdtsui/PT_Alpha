@@ -26,7 +26,7 @@ exports.add = (req, res)->
 exports.update = (req, res)->
 
   cond = 
-    venue = req.user.venue
+    venue: req.user.venue
     _id: req.body._id
 
   Room.findOne cond, (e, room)->
