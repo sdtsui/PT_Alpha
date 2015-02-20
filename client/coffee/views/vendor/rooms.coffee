@@ -22,15 +22,24 @@ define([
 
       events:
         'click .addNewRoom': 'addNewRoom'
+        'click .menu-list li.item a': 'selectRoom'
 
       addNewRoom: (e)->
         e.preventDefault()
         e.stopPropagation()
         $e = $(e.currentTarget)
-        @buildRoom(@formRoom)
+        @formRoom = new RoomModel()
+        @buildRoom()
 
-      buildRoom: (room)->
-        view = new RoomView({room: room, rooms: @rooms})
+      selectRoom: (e)->
+        e.preventDefault()
+        e.stopPropagation()
+        $e = $(e.currentTarget)
+        @formRoom = @rooms.get $e.data('room_id')
+        @buildRoom()
+
+      buildRoom: ()->
+        view = new RoomView({room: @formRoom, rooms: @rooms})
         @$('.vendorRooms').html view.render().el
 
 
@@ -39,11 +48,34 @@ define([
         @rooms.fetch()
         @formRoom = new RoomModel()
 
+      buildRoomsList: ()->
+        that = this
+        @rooms.fetch
+          success: (collections, response, options)->
+            that.buildRooms()
+
+      buildRooms: ()->
+        that = this
+
+        tpl = """
+          <% _.each(rooms, function(room){
+          %>
+            <li class="item" >
+              <a data-room_id="<%= room._id %>"> <%= room.name %></a>
+            </li>
+          <%
+            });
+          %>
+        """
+        html = _.template(tpl, {_: _, rooms: @rooms.toJSON()})
+        @$('.menu-list').html(html)
+
       render: ()->
         that = this
         console.log that
         tpl = _.template(VendorRoomsTemplate, {})
         @$el.html(tpl)
+        @buildRoomsList()
         @
 
     )
