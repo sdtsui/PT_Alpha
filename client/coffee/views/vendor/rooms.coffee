@@ -18,8 +18,6 @@ define([
   )->
 
     VendorRoomsView = Backbone.View.extend(
-      # tagName: 'div'
-      # className: 'sticky'
       el: '#setupContent'
 
       events:
@@ -32,7 +30,7 @@ define([
         @buildRoom(@formRoom)
 
       buildRoom: (room)->
-        view = new RoomView({room: room})
+        view = new RoomView({room: room, rooms: @rooms})
         @$('.vendorRooms').html view.render().el
 
 

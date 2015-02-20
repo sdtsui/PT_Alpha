@@ -27,10 +27,30 @@ define([
 
 
       saveRoom: (e)->
+        that = this
         e.preventDefault()
         e.stopPropagation()
         $e = $(e.currentTarget)
         console.log @formRoom.toJSON()
+
+        isNew = @formRoom.isNew()
+        if isNew
+          @formRoom.url = '/api/rooms/add'
+        else
+          @formRoom.url = '/api/rooms/update'
+
+        @formRoom.save @formRoom.toJSON(),
+          success: (model, response, options)->
+            if isNew
+              that.rooms.add that.formRoom
+            msg = new AlertMessage({type: 'success', messages: ["Room was saved successfully."]})
+            that.$el.prepend(msg.render().el)
+
+          error: (model, response, options)->
+            console.log 'errror'
+            console.log response
+            msg = new AlertMessage({messages: ["There are some errors"]})
+            that.$el.prepend(msg.render().el)        
 
       deleteRoom: (e)->
         e.preventDefault()
@@ -41,6 +61,7 @@ define([
 
       initialize: (options)->
         @room = options.room
+        @rooms = options.rooms
         @formRoom = @room
         console.log @room
         @initConstant()
@@ -79,11 +100,11 @@ define([
         @$name.on 'blur', => 
           @formRoom.set name: @$name.val()
 
-        @$roomType = @$('input[name="roomType"]')
+        @$roomType = @$('select[name="roomType"]')
         @$roomType.on 'change', => 
           @formRoom.set roomType: @$roomType.val()
 
-        @$roomSizeValue = @$('select[name="roomSizeValue"]')
+        @$roomSizeValue = @$('input[name="roomSizeValue"]')
         @$roomSizeValue.on 'change', => 
           roomSize = @formRoom.get('roomSize') || {}
           roomSize.value = @$roomSizeValue.val()
@@ -98,7 +119,6 @@ define([
         @$description = @$('textarea[name="description"]')
         @$description.on 'blur', => 
           @formRoom.set description: @$description.val()
-
 
         @$isActive = @$('input[name="isActive"]')
         @$isActive.on 'click', => 

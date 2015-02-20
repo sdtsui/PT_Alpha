@@ -31,9 +31,10 @@ define([
 
       initialize: (options)->
         @room = options.room
+        @rooms = options.rooms
 
       buildGeneral: ()->
-        view = new RoomGeneralView({room: @room})
+        view = new RoomGeneralView({room: @room, rooms: @rooms})
         @$('.form-wrap').html view.render().el
 
       buildLayouts: ()->
