@@ -13,9 +13,13 @@
         </label>
         <label>Room Type
             <select name="roomType">
-                <option value="private">private</option>
-                <option value="public">public</option>
-                <option value="semi-private">semi-private</option>
+                <%
+                    _.each(ROOM_TYPES, function(v,k){
+                %>
+                    <option value="<%= k %>" <%= k==room.roomType ? 'selected' : '' %>><%= v %></option>
+                <%    
+                    })
+                %>
             </select>
         </label>
         <div class="row collapse">
@@ -25,8 +29,13 @@
             </div>
             <div class="columns large-8">
                 <select name="roomSizeUnit">
-                    <option value="sf">square feet</option>
-                    <option value="sm">square meters</option>
+                    <%
+                        _.each(ROOM_SIZE_UNITS, function(v,k){
+                    %>
+                        <option value="<%= k %>" <%= (room.roomSize && k==room.roomSize.unit) ? 'selected' : '' %>><%= v %></option>
+                    <%    
+                        })
+                    %>
                 </select>
             </div>
         </div>
@@ -78,7 +87,7 @@
                         <div class="columns large-4"><span class="postfix">$</span>
                         </div>
                         <div class="columns large-8">
-                            <input name="rateDay" type="text" placeholder="eg 4000" value="<%= room.rate.day%>">
+                            <input name="rateDay" type="number" placeholder="eg 4000" value="<%= room.rate.day%>">
                         </div>
                     </div>
                 </div>
@@ -90,7 +99,7 @@
                         <div class="columns large-4"><span class="postfix">$</span>
                         </div>
                         <div class="columns large-8">
-                            <input name="rateNight" type="text" placeholder="eg 2000" value="<%= room.rate.night %>" >
+                            <input name="rateNight" type="number" placeholder="eg 2000" value="<%= room.rate.night %>" >
                         </div>
                     </div>
                 </div>
@@ -104,7 +113,7 @@
                         <div class="columns large-4"><span class="postfix">$</span>
                         </div>
                         <div class="columns large-8">
-                            <input name="feeRental" type="text" placeholder="eg 4000" value="<%= room.fee.rental%>" >
+                            <input name="feeRental" type="number" placeholder="eg 4000" value="<%= room.fee.rental%>" >
                         </div>
                     </div>
                 </div>
@@ -116,7 +125,7 @@
                         <div class="columns large-4"><span class="postfix">$</span>
                         </div>
                         <div class="columns large-8">
-                            <input name="feeCleaning" type="text" placeholder="eg 2000" value="<%= room.fee.cleaning %>" >
+                            <input name="feeCleaning" type="number" placeholder="eg 2000" value="<%= room.fee.cleaning %>" >
                         </div>
                     </div>
                 </div>
@@ -129,14 +138,20 @@
                     <div class="columns large-4"><span class="postfix">$</span>
                     </div>
                     <div class="columns large-8">
-                        <input name="overageValue" type="text" placeholder="eg 2000" value="<%= room.overage.value %>" >
+                        <input name="overageValue" type="number" placeholder="eg 2000" value="<%= room.overage.value %>" >
                     </div>
                 </div>
             </div>
             <div class="columns large-6">
                 <select name="overageUnit">
-                    <option value="30">every 30 minutes</option>
-                    <option value="60">every 60 minutes</option>
+                    <%
+                        _.each(OVERAGE_UNITS, function(v,k){
+                    %>
+                        <option value="<%= k %>" <%= (room.overage && k==room.overage.unit) ? 'selected' : '' %>><%= v %></option>
+
+                    <%    
+                        })
+                    %>
                 </select>
             </div>
         </div>
@@ -145,23 +160,38 @@
         <h5 class="subheader">RULES</h5>
         <label>House Rules
             <select name="houseRule" >
-                <option value="pacific">Pacific Standard Time</option>
-                <option value="easter">Eastern Standard Time</option>
-                <option value="central">Central Standard Time</option>
+                <%
+                    _.each(HOUSE_RULES, function(v,k){
+                %>
+                    <option value="<%= k %>" <%= k==room.houseRule ? 'selected' : '' %>><%= v %></option>
+
+                <%    
+                    })
+                %>
             </select>
         </label>
         <label>Cancellation Policy
-            <select>
-                <option value="pacific">Pacific Standard Time</option>
-                <option value="easter">Eastern Standard Time</option>
-                <option value="central">Central Standard Time</option>
+            <select name="cancelPolicy">
+                <%
+                    _.each(CANCELLATIONS, function(v,k){
+                %>
+                    <option value="<%= k %>" <%= k==room.cancelPolicy ? 'selected' : '' %>><%= v %></option>
+
+                <%    
+                    })
+                %>
             </select>
         </label>
         <label>Lead Time
-            <select name="cancelPolicy">
-                <option value="3 days">3 days</option>
-                <option value="7 days">1 week</option>
-                <option value="14 days">2 weeks</option>
+            <select name="leadTime">
+                <%
+                    _.each(LEAD_TIMES, function(v,k){
+                %>
+                    <option value="<%= k %>" <%= k==room.leadTime ? 'selected' : '' %>><%= v %></option>
+
+                <%    
+                    })
+                %>
             </select>
         </label>
     </div>
