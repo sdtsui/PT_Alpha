@@ -63,7 +63,7 @@ define([
 
       render: ()->
         that = this
-        tpl = _.template(RoomTemplate, {_: _})
+        tpl = _.template(RoomTemplate, {_: _, room: @room})
         @$el.html(tpl)
         @buildGeneral()
         @

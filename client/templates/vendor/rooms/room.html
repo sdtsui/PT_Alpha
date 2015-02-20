@@ -3,13 +3,17 @@
         <div class="menu-wrap menu-secondary">
             <ul>
                 <li class="active">General</li>
-                <li >Layouts</li>
-                <li>Revenue Management</li>
-                <li>Amenities</li>
-                <li>Services</li>
-                <li>Menu</li>
-                <li>Images</li>
-                <li>Marketing</li>
+                <%
+                    if(!room.isNew()){
+                %>
+                    <li >Layouts</li>
+                    <li>Revenue Management</li>
+                    <li>Amenities</li>
+                    <li>Services</li>
+                    <li>Menu</li>
+                    <li>Images</li>
+                    <li>Marketing</li>
+                <% } %>
             </ul>
         </div>
     </div>
