@@ -29,7 +29,6 @@ define([
         e.preventDefault()
         e.stopPropagation()
         $e = $(e.currentTarget)
-        console.log 'aaaa'
         @buildRoom(@formRoom)
 
       buildRoom: (room)->
@@ -39,6 +38,7 @@ define([
 
       initialize: (options)->
         @rooms = new RoomsCollection()
+        @rooms.fetch()
         @formRoom = new RoomModel()
 
       render: ()->
