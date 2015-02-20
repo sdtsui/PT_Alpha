@@ -43,7 +43,37 @@ define([
         @room = options.room
         @formRoom = @room
         console.log @room
+        @initConstant()
 
+      initConstant: ()->
+        @ROOM_TYPES =
+          private: 'private'
+          public: 'public'
+          semiprivate: 'semi-private'
+
+        @HOUSE_RULES =
+          pacific: "Pacific Standard Time"
+          easter: "Eastern Standard Time"
+          central: "Central Standard Time"
+
+        @CANCELLATIONS =
+          pacific: "Pacific Standard Time"
+          easter: "Eastern Standard Time"
+          central: "Central Standard Time"
+
+        @LEAD_TIMES =
+          3: '3 days'
+          7: '1 week'
+          14: '2 weeks'
+
+        @OVERAGE_UNITS =
+          30: 'every 30 minutes'
+          60: 'every 60 minutes'      
+
+        @ROOM_SIZE_UNITS =
+          sf: 'square feet'
+          sm: 'square meters'
+           
       bindingDom: ()->
         @$name = @$('input[name="name"]')
         @$name.on 'blur', => 
@@ -130,7 +160,16 @@ define([
 
       render: ()->
         that = this
-        tpl = _.template(RoomGeneralTemplate, {_: _, room: @room.toJSON() })
+        tpl = _.template(RoomGeneralTemplate,
+          _: _
+          room: @room.toJSON()
+          ROOM_TYPES: @ROOM_TYPES
+          HOUSE_RULES: @HOUSE_RULES
+          CANCELLATIONS: @CANCELLATIONS
+          LEAD_TIMES: @LEAD_TIMES
+          OVERAGE_UNITS: @OVERAGE_UNITS
+          ROOM_SIZE_UNITS: @ROOM_SIZE_UNITS
+        )
         @$el.html(tpl)
         @bindingDom()
         @
