@@ -35,7 +35,8 @@ define([
         e.preventDefault()
         e.stopPropagation()
         $e = $(e.currentTarget)
-
+        $e.closest('ul').find('li').removeClass('active')
+        $e.closest('li').addClass('active')
         switch $e.data('nav')
           when 'general'
             @buildGeneral()
@@ -58,31 +59,31 @@ define([
 
       buildGeneral: ()->
         view = new RoomGeneralView({room: @room, rooms: @rooms})
-        @$('.form-wrap').html view.render().el
+        @$('.roomContent').html view.render().el
 
       buildLayouts: ()->
         view = new RoomLayoutsView({})
-        @$('.form-wrap').html view.render().el
+        @$('.roomContent').html view.render().el
 
       buildRevenue: ()->
         view = new RoomRevenueView({})
-        @$('.form-wrap').html view.render().el
+        @$('.roomContent').html view.render().el
 
       buildAmenities: ()->
         view = new RoomAmenitiesView({})
-        @$('.form-wrap').html view.render().el
+        @$('.roomContent').html view.render().el
 
       buildServices: ()->
         view = new RoomServicesView({})
-        @$('.form-wrap').html view.render().el
+        @$('.roomContent').html view.render().el
 
       buildMenus: ()->
         view = new RoomMenusView({})
-        @$('.form-wrap').html view.render().el
+        @$('.roomContent').html view.render().el
 
       buildMarketing: ()->
         view = new RoomMarketingView({})
-        @$('.form-wrap').html view.render().el
+        @$('.roomContent').html view.render().el
 
       render: ()->
         that = this
