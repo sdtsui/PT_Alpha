@@ -5,7 +5,7 @@ ObjectId = Schema.ObjectId
 
 
 RoomLayoutSchema = new Schema(
-  venue: 
+  room: 
     type: ObjectId
     ref: 'Room'
     required: true

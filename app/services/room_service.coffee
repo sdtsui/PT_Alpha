@@ -2,6 +2,7 @@ extend = require('util')._extend
 
 mongoose = require 'mongoose'
 Room = mongoose.model 'Room'
+RoomLayout = mongoose.model 'RoomLayout'
 
 
 exports.getAll = (req, res)->
@@ -42,4 +43,36 @@ exports.update = (req, res)->
 
       res.json(room)
 
+exports.roomAuthorize = (req, res, next)->
+  roomId = req.body.room || req.query.room
+  if !roomId
+    return res.status(400).send({message: 'not found room'})
+  Room.findOne {venue: req.user.venue, _id: roomId}, (e, room)->
+    if e
+      return res.status(400).send({message: e})
 
+    req.room = room
+    return next()
+
+exports.getLayouts = (req, res)->
+
+  RoomLayout.find({venue: req.user.venue}).exec (e, layouts)->
+    if e
+      return res.status(400).send({message: e})
+
+    res.json(layouts)
+
+exports.addLayout = (req, res)->
+  delete req.body._id
+  delete req.body.venue
+  layout = new RoomLayout(req.body)
+
+  layout.save (err)->
+    if err
+      return res.status(400).send({message: e})
+
+    res.json(layout)
+
+exports.updateLayout = (req, res)->
+  cond = 
+    venue

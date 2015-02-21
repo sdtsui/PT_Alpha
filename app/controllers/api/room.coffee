@@ -16,3 +16,13 @@ module.exports = (app, passport) ->
   router.put '/update', (req, res)->
     RoomService.update(req, res)
 
+
+  router.get '/layouts', RoomService.roomAuthorize, (req, res)->
+    RoomService.getLayouts(req, res)
+
+  router.post '/layouts/add', (req, res)->
+    RoomService.addLayout(req, res)
+
+  router.put '/layouts/update', (req, res)->
+    RoomService.updateLayout(req, res)
+
