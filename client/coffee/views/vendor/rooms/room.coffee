@@ -62,27 +62,27 @@ define([
         @$('.roomContent').html view.render().el
 
       buildLayouts: ()->
-        view = new RoomLayoutsView({})
+        view = new RoomLayoutsView({room: @room})
         @$('.roomContent').html view.render().el
 
       buildRevenue: ()->
-        view = new RoomRevenueView({})
+        view = new RoomRevenueView({room: @room})
         @$('.roomContent').html view.render().el
 
       buildAmenities: ()->
-        view = new RoomAmenitiesView({})
+        view = new RoomAmenitiesView({room: @room})
         @$('.roomContent').html view.render().el
 
       buildServices: ()->
-        view = new RoomServicesView({})
+        view = new RoomServicesView({room: @room})
         @$('.roomContent').html view.render().el
 
       buildMenus: ()->
-        view = new RoomMenusView({})
+        view = new RoomMenusView({room: @room})
         @$('.roomContent').html view.render().el
 
       buildMarketing: ()->
-        view = new RoomMarketingView({})
+        view = new RoomMarketingView({room: @room})
         @$('.roomContent').html view.render().el
 
       render: ()->

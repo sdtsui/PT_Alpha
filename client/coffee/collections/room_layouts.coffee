@@ -7,8 +7,11 @@ define([
   RoomLayoutsCollection = Backbone.Collection.extend(
     model: RoomLayoutModel,
     initialize: (options)->
-      console.log options
-    url: '/api/rooms/'
+      @room = options.room
+    url: ()->
+      that = this
+      console.log that
+      return "/api/rooms/layouts?room=#{that.room}"
   )
   return RoomLayoutsCollection
 )

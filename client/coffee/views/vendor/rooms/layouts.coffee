@@ -2,11 +2,15 @@ define([
   'jq'
   'underscore'
   'Backbone'
+  'models/room_layout'
+  'collections/room_layouts'
   'views/shared/alert_message'
   'text!templates/vendor/rooms/layouts.html'
 ], ($
     _
     Backbone
+    RoomLayoutModel
+    RoomLayoutsCollection
     AlertMessage
     RoomLayoutsTemplate
   )->
@@ -17,7 +21,9 @@ define([
 
       initialize: (options)->
         @room = options.room
-        
+        console.log @room
+        @layouts = new RoomLayoutsCollection({room: @room.id})
+        @layouts.fetch()
 
       render: ()->
         that = this
