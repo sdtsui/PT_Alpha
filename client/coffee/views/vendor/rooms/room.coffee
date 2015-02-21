@@ -27,7 +27,30 @@ define([
     RoomView = Backbone.View.extend(
       tagName: 'div'
       className: 'row'
+      
+      events:
+        'click .menu-wrap.menu-secondary li a': 'switchMenu'
 
+      switchMenu: (e)->
+        e.preventDefault()
+        e.stopPropagation()
+        $e = $(e.currentTarget)
+
+        switch $e.data('nav')
+          when 'general'
+            @buildGeneral()
+          when 'layouts'
+            @buildLayouts()
+          when 'revenue'
+            @buildRevenue()
+          when 'amenities'
+            @buildAmenities()
+          when 'services'
+            @buildServices
+          when 'menu'
+            @buildMenus()
+          when 'marketing'
+            @buildMarketing()
 
       initialize: (options)->
         @room = options.room
