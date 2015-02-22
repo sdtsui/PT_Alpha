@@ -29,7 +29,7 @@ define([
         e.stopPropagation()
         $e = $(e.currentTarget)
         console.log $e
-        @formLayout = new RoomLayoutModel()
+        @formLayout = new RoomLayoutModel({room: @room.id})
         @buildFormLayout()
 
       selectLayout: (e)->
@@ -70,7 +70,7 @@ define([
         console.log @room
         @layouts = new RoomLayoutsCollection({room: @room.id})
         @layouts.fetch()
-        @formLayout = new RoomLayoutModel()
+        @formLayout = new RoomLayoutModel({room: @room.id})
 
       render: ()->
         that = this
