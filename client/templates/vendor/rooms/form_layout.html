@@ -1,0 +1,64 @@
+<div class="silo">
+    <div class="form-wrap">
+        <!-- venue-->
+        <div class="row">
+            <div class="clean-button-tiny top-cta right">&nbsp; delete layout &nbsp;<i class="fi-trash"></i>
+            </div>
+            <div class="clean-button-tiny top-cta right">
+                &nbsp; save &nbsp;<i class="fi-save"></i>
+            </div>
+            <div class="clean-button-tiny top-cta right">cancel</div>
+            <h4>ROOM <small>| Sophia Room Theater Layout</small></h4>
+            <hr>
+            <div class="columns large-6">
+                <label>Layout Name
+                    <input name="name" type="text" placeholder="eg My Hotel">
+                </label>
+                <label>Product Type
+                    <select name="productType">
+                        <option value="banquet">banquet</option>
+                        <option value="reception">reception</option>
+                    </select>
+                </label>
+                <div class="row collapse">
+                    <div class="columns large-6">
+                        <div class="padding1pxsides">
+                            <label>Maximum Guests
+                                <input name="maxGuest" type="text" placeholder="eg 24">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="columns large-6">
+                        <div class="padding1pxsides">
+                            <label>Minimum Hours
+                                <input name="minHour" type="text" placeholder="eg 3">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <label>Description
+                    <textarea name="description" rows="4" placeholder=""></textarea>
+                </label>
+            </div>
+            <div class="columns large-6">
+                <div class="row collapse">
+                    <div class="columns large-3">
+                        <div class="switch round tiny">
+                            <input name="isActive" type="checkbox" id="islayoutactive" checked="">
+                            <label for="islayoutactive"></label>
+                        </div>
+                    </div>
+                    <div class="columns large-9">
+                        <h6 class="subheader">Layout is active</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="columns small-12">
+                <p>This layout has 3 images. Select the hero image.</p>
+                <p>{return images for this layout. user simply clicks on desired images to select as hero}</p>
+            </div>
+        </div>
+    </div>
+</div>
