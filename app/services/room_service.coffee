@@ -71,7 +71,7 @@ exports.addLayout = (req, res)->
   layout.room = req.room.id
   layout.save (err)->
     if err
-      return res.status(400).send({message: e})
+      return res.status(400).send({message: err})
 
     res.json(layout)
 
