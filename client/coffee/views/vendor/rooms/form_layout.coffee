@@ -60,6 +60,12 @@ define([
       initialize: (options)->
         @formLayout = options.formLayout
         @layouts = options.layouts
+        @initConstant()
+
+      initConstant: ()->
+        @PRODUCT_TYPES =
+          banquet: 'banquet'
+          reception: 'reception'
 
       bindingDom: ()->
         @$name = @$('input[name="name"]')
@@ -82,9 +88,13 @@ define([
         @$description.on 'change', => 
           @formLayout.set description: @$description.val()        
 
+        @$isActive = @$('input[name="isActive"]')
+        @$isActive.on 'click', => 
+          @formLayout.set isActive: @$isActive.is(':checked')
+
       render: ()->
         that = this
-        tpl = _.template(FormLayoutTemplate, {_: _, layout: @formLayout.toJSON()})
+        tpl = _.template(FormLayoutTemplate, {_: _, layout: @formLayout.toJSON(), PRODUCT_TYPES: @PRODUCT_TYPES})
         @$el.html(tpl)
         @bindingDom()
         @

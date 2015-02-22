@@ -66,11 +66,15 @@ define([
         @$('.menu-list').html(html)
 
       initialize: (options)->
+        that = this
         @room = options.room
         console.log @room
         @layouts = new RoomLayoutsCollection({room: @room.id})
-        @layouts.fetch()
         @formLayout = new RoomLayoutModel({room: @room.id})
+        @layouts.on 'add', (s)->
+          that.buildLayouts()
+        @layouts.on 'remove', (s)->
+          that.buildLayouts()
 
       render: ()->
         that = this

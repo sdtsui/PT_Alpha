@@ -12,39 +12,45 @@
             <hr>
             <div class="columns large-6">
                 <label>Layout Name
-                    <input name="name" type="text" placeholder="eg My Hotel">
+                    <input name="name" type="text" placeholder="eg My Hotel" value="<%= layout.name %>" >
                 </label>
                 <label>Product Type
                     <select name="productType">
-                        <option value="banquet">banquet</option>
-                        <option value="reception">reception</option>
+                        <%
+                            _.each(PRODUCT_TYPES, function(v,k){
+
+                        %>
+                            <option <%= k==layout.productType ? 'selected' : '' %> value="<%= k %>"> <%= v %> </option>
+                        <%
+                                })
+                        %>
                     </select>
                 </label>
                 <div class="row collapse">
                     <div class="columns large-6">
                         <div class="padding1pxsides">
                             <label>Maximum Guests
-                                <input name="maxGuest" type="text" placeholder="eg 24">
+                                <input name="maxGuest" type="text" placeholder="eg 24" value="<%= layout.maxGuest %>" >
                             </label>
                         </div>
                     </div>
                     <div class="columns large-6">
                         <div class="padding1pxsides">
                             <label>Minimum Hours
-                                <input name="minHour" type="text" placeholder="eg 3">
+                                <input name="minHour" type="text" placeholder="eg 3" value="<%= layout.minHour %>">
                             </label>
                         </div>
                     </div>
                 </div>
                 <label>Description
-                    <textarea name="description" rows="4" placeholder=""></textarea>
+                    <textarea name="description" rows="4" placeholder=""><%= layout.description %> </textarea>
                 </label>
             </div>
             <div class="columns large-6">
                 <div class="row collapse">
                     <div class="columns large-3">
                         <div class="switch round tiny">
-                            <input name="isActive" type="checkbox" id="islayoutactive" checked="">
+                            <input name="isActive" type="checkbox" id="islayoutactive" <%= layout.isActive ? 'checked' : '' %>>
                             <label for="islayoutactive"></label>
                         </div>
                     </div>
