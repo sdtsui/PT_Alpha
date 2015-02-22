@@ -56,7 +56,7 @@ exports.roomAuthorize = (req, res, next)->
 
 exports.getLayouts = (req, res)->
 
-  RoomLayout.find({venue: req.user.venue}).exec (e, layouts)->
+  RoomLayout.find({room: req.room._id}).exec (e, layouts)->
     if e
       return res.status(400).send({message: e})
 
@@ -64,9 +64,11 @@ exports.getLayouts = (req, res)->
 
 exports.addLayout = (req, res)->
   delete req.body._id
-  delete req.body.venue
+  delete req.body.room
+  console.log 'roommmmmmm'
+  console.log req.room
   layout = new RoomLayout(req.body)
-
+  layout.room = req.room.id
   layout.save (err)->
     if err
       return res.status(400).send({message: e})
@@ -75,4 +77,17 @@ exports.addLayout = (req, res)->
 
 exports.updateLayout = (req, res)->
   cond = 
-    venue
+    room: req.room._id
+    _id: req.body._id
+
+  RoomLayout.findOne cond, (e, layout)->
+    if e || !layout
+      return res.status(400).send({message: 'not found layout'})
+
+    delete req.body.room
+    delete req.body._id
+    layout = extend(layout, req.body)
+    layout.save (err)->
+      if err
+        return res.status(400).send({message: err})
+      res.json(layout)
