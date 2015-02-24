@@ -1,5 +1,5 @@
 define([
-  'jquery'
+  'jq'
   'underscore'
   'Backbone'
   'models/service'
@@ -103,11 +103,20 @@ define([
         @$isActive.on 'click', => 
           @formService.set isActive: @$isActive.is(':checked')
 
+      jsValidate: ()->
+        $(document).foundation
+          abide:
+            live_validate : true
+            validate_on_blur : true
+            focus_on_invalid : true
+            error_labels: true
+            timeout : 1000
 
       render: ()->
         tpl = _.template(FormServicesTemplate, {_: _, service: @formService.toJSON(), UNIT_METHODS: @UNIT_METHODS})
         @$el.html(tpl)
         @bindingDom()
+        @jsValidate()
         @        
 
     )

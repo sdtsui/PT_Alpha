@@ -1,5 +1,5 @@
 define([
-  'jquery'
+  'jq'
   'underscore'
   'Backbone'
   'models/service'

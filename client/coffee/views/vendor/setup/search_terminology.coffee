@@ -27,6 +27,8 @@ define([
         e.stopPropagation()
         $e = $(e.currentTarget)
         name = @$('input[name="query"]').val()
+        if !name 
+          return
         @addItemInServer(name)
 
       addItem: (e)->
