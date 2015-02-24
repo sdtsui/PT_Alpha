@@ -192,6 +192,7 @@ define([
         )
         @$el.html(tpl)
         @bindingDom()
+        $.abideValidate()
         @
 
     )
