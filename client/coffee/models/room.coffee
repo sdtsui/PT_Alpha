@@ -6,7 +6,7 @@ define([
     idAttribute: "_id"
     defaults:
       name: ''
-      roomType: ''
+      roomType: 'private'
       roomSize:
         value: 0
         unit: ''        
