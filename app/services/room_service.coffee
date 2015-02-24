@@ -43,6 +43,17 @@ exports.update = (req, res)->
 
       res.json(room)
 
+exports.remove = (req, res)->
+
+  cond = 
+    venue: req.user.venue
+    _id: req.body._id
+
+  Room.remove cond, (e, room)->
+    if e
+      return res.status(400).send({message: 'not found room'})
+    res.json({message: 'ok'})
+
 exports.roomAuthorize = (req, res, next)->
   roomId = req.body.room || req.query.room
   if !roomId
