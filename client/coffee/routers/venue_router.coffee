@@ -57,32 +57,33 @@ define([
           $('#backbone-app').html(view.render().el)
 
         vendorSetup: ->
-          @authorizeDom()
+          @authorizeDom('setup')
           view = new VendorSetupView()
           view.render()
 
         vendorRooms: ->
-          @authorizeDom()
+          @authorizeDom('rooms')
           view = new VendorRoomsView()
           view.render()
 
         vendorMenuItems: ->
-          @authorizeDom()
+          @authorizeDom('menu-items')
           view = new VendorMenuItemsView()
           view.render()
 
         vendorMenus: ->
-          @authorizeDom()
+          @authorizeDom('menus')
           view = new VendorMenusView()
           view.render()
 
 
-        authorizeDom: ->
+        authorizeDom: (activeClass)->
+          activeClass ||= null
           if ! PrivateTable.getCurrentUser()
             window.location = "/#/signin"
             return
           
-          $('#backbone-app').html(AuthorizedLayoutView.render().el)
+          $('#backbone-app').html(AuthorizedLayoutView.render({activeClass: activeClass}).el)
       )
 
       return{

@@ -12,10 +12,12 @@ define([
 
     initialize: (options)->
 
-
-    render: ->
+    render: (opts)->
+      activeClass = opts.activeClass || 'setup'
       tpl = _.template(AuthorizedLayoutTemplate, {})
       @$el.html(tpl)
+      @$('.inline-list > li').removeClass('active')
+      @$(".inline-list .nav-#{activeClass}").addClass('active')
       @$('#topnav').html TopnavView.render().el
       @
   )
