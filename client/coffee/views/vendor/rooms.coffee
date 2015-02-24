@@ -28,10 +28,8 @@ define([
         e.preventDefault()
         e.stopPropagation()
         $e = $(e.currentTarget)
-        console.log 'xxxxx'
         @formRoom = new RoomModel()
         @buildRoom()
-        console.log $@('.menu-list li')
         @$('li.item').removeClass('active')
 
       selectRoom: (e)->
