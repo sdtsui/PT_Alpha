@@ -26,3 +26,6 @@ module.exports = (app, passport) ->
   router.put '/layouts/update', RoomService.roomAuthorize, (req, res)->
     RoomService.updateLayout(req, res)
 
+  router.delete '/layouts/destroy', RoomService.roomAuthorize, (req, res)->
+    RoomService.deleteLayout(req, res)
+

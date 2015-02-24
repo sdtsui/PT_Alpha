@@ -65,8 +65,6 @@ exports.getLayouts = (req, res)->
 exports.addLayout = (req, res)->
   delete req.body._id
   delete req.body.room
-  console.log 'roommmmmmm'
-  console.log req.room
   layout = new RoomLayout(req.body)
   layout.room = req.room.id
   layout.save (err)->
@@ -91,3 +89,14 @@ exports.updateLayout = (req, res)->
       if err
         return res.status(400).send({message: err})
       res.json(layout)
+
+exports.deleteLayout = (req, res)->
+  cond = 
+    room: req.room._id
+    _id: req.body._id
+
+  RoomLayout.remove cond, (e, layout)->
+    if e || !layout
+      return res.status(400).send({message: "Not found layout."})
+
+    res.json({message: 'ok'})

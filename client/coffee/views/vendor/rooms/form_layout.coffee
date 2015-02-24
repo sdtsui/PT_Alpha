@@ -51,9 +51,23 @@ define([
             that.$el.prepend(msg.render().el)        
 
       deleteLayout: (e)->
+        that = this
         e.preventDefault()
         e.stopPropagation()
         $e = $(e.currentTarget)
+
+        isNew = @formLayout.isNew()
+        if !isNew
+          $.ajax
+            url: '/api/rooms/layouts/destroy'
+            method: 'DELETE'
+            datatype: 'json'
+            data: that.formLayout.toJSON()
+            success: (response)->
+              that.layouts.remove that.formLayout
+            error: (response)->
+              console.log response     
+
         @$el.remove()
 
 
@@ -69,7 +83,7 @@ define([
 
       bindingDom: ()->
         @$name = @$('input[name="name"]')
-        @$name.on 'blur', => 
+        @$name.on 'change', => 
           @formLayout.set name: @$name.val()
 
         @$productType = @$('select[name="productType"]')
