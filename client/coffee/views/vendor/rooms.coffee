@@ -28,15 +28,20 @@ define([
         e.preventDefault()
         e.stopPropagation()
         $e = $(e.currentTarget)
+        console.log 'xxxxx'
         @formRoom = new RoomModel()
         @buildRoom()
+        console.log $@('.menu-list li')
+        @$('li.item').removeClass('active')
 
       selectRoom: (e)->
         e.preventDefault()
         e.stopPropagation()
         $e = $(e.currentTarget)
         @formRoom = @rooms.get $e.data('room_id')
+        $e.closest('ul').find('li').removeClass('active')
         @buildRoom()
+        $e.closest('li').addClass('active')
 
       buildRoom: ()->
         view = new RoomView({room: @formRoom, rooms: @rooms})

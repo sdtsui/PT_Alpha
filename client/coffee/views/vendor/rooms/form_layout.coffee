@@ -105,12 +105,13 @@ define([
         @$isActive = @$('input[name="isActive"]')
         @$isActive.on 'click', => 
           @formLayout.set isActive: @$isActive.is(':checked')
-
+  
       render: ()->
         that = this
         tpl = _.template(FormLayoutTemplate, {_: _, layout: @formLayout.toJSON(), PRODUCT_TYPES: @PRODUCT_TYPES})
         @$el.html(tpl)
         @bindingDom()
+        $.abideValidate()
         @
 
     )
