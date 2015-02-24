@@ -32,7 +32,7 @@ TagSchema.path('name').validate( (name, fn)->
     that.invalidate('name', 'cannot be blank')
     return fn(true)
   regx = new RegExp('^'+that.name+'$', 'i')
-  Tag.count({name: regx, kind: that.kind}).exec( (e, num)->
+  Tag.count({name: regx, taggable: that.taggable}).exec( (e, num)->
     if num && num > 0
       that.invalidate('name', 'is already existed')
   )
