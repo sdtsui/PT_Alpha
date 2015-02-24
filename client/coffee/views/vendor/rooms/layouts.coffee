@@ -80,6 +80,7 @@ define([
         that = this
         tpl = _.template(RoomLayoutsTemplate, {_: _})
         @$el.html(tpl)
+        @buildFormLayout()
         @buildLayoutsList()
         @
 

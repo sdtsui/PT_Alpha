@@ -3,14 +3,14 @@ _ = require('lodash')
 Schema   = mongoose.Schema
 ObjectId = Schema.ObjectId
 
-KINDS =
-  ROOM: 'roomType'
-  COURSE: 'courseType'
-  JOB_ROLE: 'jobRoleType'
+TAGGABLES =
+  ROOM_TYPE: 'roomType'
+  COURSE_TYPE: 'courseType'
+  JOB_ROLE_TYPE: 'jobRoleType'
   AMMENITY: 'ammenityType'
 
 TagSchema = new Schema(
-  kind:
+  taggable:
     type: String
     required: true
     index: true
