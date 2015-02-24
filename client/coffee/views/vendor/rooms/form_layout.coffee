@@ -59,7 +59,7 @@ define([
         isNew = @formLayout.isNew()
         if !isNew
           $.ajax
-            url: '/api/rooms/layouts/destroy'
+            url: '/api/rooms/layouts/remove'
             method: 'DELETE'
             datatype: 'json'
             data: that.formLayout.toJSON()

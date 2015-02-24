@@ -17,7 +17,7 @@ define([
       events:
         'click .cancelRoom': 'cancelRoom'
         'click .saveRoom': 'saveRoom'
-        'click .deleteRoom': 'deleteRoom'
+        # 'click .deleteRoom': 'deleteRoom'
 
       cancelRoom: (e)->
         e.preventDefault()

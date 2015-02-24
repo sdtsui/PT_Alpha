@@ -30,6 +30,7 @@ define([
       
       events:
         'click .menu-wrap.menu-secondary li a': 'switchMenu'
+        'click .deleteRoom': 'deleteRoom'
 
       switchMenu: (e)->
         e.preventDefault()
@@ -52,6 +53,25 @@ define([
             @buildMenus()
           when 'marketing'
             @buildMarketing()
+
+      deleteRoom: (e)->
+        that = this
+        e.preventDefault()
+        e.stopPropagation()
+        $e = $(e.currentTarget)
+        @$el.remove()
+        isNew = @room.isNew()
+        if !isNew
+          $.ajax
+            url: '/api/rooms/remove'
+            method: 'DELETE'
+            datatype: 'json'
+            data: that.room.toJSON()
+            success: (response)->
+              that.rooms.remove that.room
+            error: (response)->
+              console.log response     
+
 
       initialize: (options)->
         @room = options.room
