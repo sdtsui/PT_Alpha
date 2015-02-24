@@ -3,18 +3,15 @@ extend = require('util')._extend
 mongoose = require 'mongoose'
 Setting = mongoose.model 'Setting'
 Terminology = mongoose.model 'Terminology'
-
+TagService = require('./tag_service')
 
 exports.search = (req, res)->
   name = req.query.name || ''
   kind = req.query.kind || 'jobRoleType'
   limit = req.query.limit ||= 20
-  regx = new RegExp('^'+name, 'i')
-  Terminology.find({name: regx, kind: kind}).limit(limit).exec (e, terms)->
-    if e
-      return res.status(400).send({message: e})
 
-    res.json(terms)
+  TagService.search {name: name, taggable: kind, limit: limit}, (tags)->
+    res.json(tags)
 
 exports.removeFromVenue = (req, res)->
   cond = 
@@ -39,7 +36,7 @@ exports.removeFromVenue = (req, res)->
       if err
         return res.status(400).send({message: err})
 
-      storeTerm({kind: req.body.kind, name: req.body.name})
+      TagService.addNew({name: req.body.name, taggable: req.body.kind})
       res.json(setting.toJSON())
 
 exports.addToVenue = (req, res)->
@@ -64,12 +61,6 @@ exports.addToVenue = (req, res)->
       if err
         return res.status(400).send({message: err})
 
-      storeTerm({kind: req.body.kind, name: req.body.name})
+      TagService.addNew({name: req.body.name, taggable: req.body.kind})
       res.json(setting.toJSON())
 
-storeTerm = (options)->
-  if !options.name || !options.kind
-    return false
-  term = new Terminology({name: options.name, kind: options.kind})
-  term.save()
-  return true
