@@ -44,9 +44,15 @@ define([
 
 
       initialize: (options)->
+        that = this
         @rooms = new RoomsCollection()
         @rooms.fetch()
         @formRoom = new RoomModel()
+        @rooms.on 'add', (s)->
+          that.buildRooms()
+        @rooms.on 'remove', (s)->
+          console.log that.rooms
+          that.buildRooms()
 
       buildRoomsList: ()->
         that = this
