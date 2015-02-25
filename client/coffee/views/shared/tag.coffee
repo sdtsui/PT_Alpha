@@ -43,7 +43,7 @@ define([
           url: '/api/tags/search'
           method: 'GET'
           datatype: 'json'
-          data: {name: term, kind: @type}
+          data: {name: term, taggable: @type}
           success: (response)->
             that.buildSearchResults(response)
           error: (response)->

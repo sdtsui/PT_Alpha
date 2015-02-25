@@ -11,4 +11,4 @@ module.exports = (app, passport) ->
     name = req.query.name || req.body.name || ''
     taggable = req.query.taggable || ''
     TagService.search {name: name, taggable: taggable}, (tags)->
-      res.json(tag)
+      res.json(tags)
