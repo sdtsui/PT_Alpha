@@ -28,7 +28,8 @@ define([
         if !query
           return
         console.log 'addNewTag'
-
+        @addTermToServer(query)
+        
       addItem: (e)->
         e.preventDefault()
         e.stopPropagation()
@@ -62,6 +63,19 @@ define([
             msg = new AlertMessage({messages: ["There are some errors"]})
             that.$el.prepend(msg.render().el)
 
+      addTermToServer: (term)->
+        that = this
+        $.ajax
+          url: '/api/tags/add'
+          method: 'POST'
+          datatype: 'json'
+          data: {name: term, taggable: that.taggable}
+          success: (response)->
+            console.log response
+          error: (response)->
+            msg = new AlertMessage({messages: ["There are some errors"]})
+            that.$el.prepend(msg.render().el)
+
       buildSearchResults: (items)->
         tpl = """
           <% _.each(items, function(item){%>
@@ -90,6 +104,7 @@ define([
 
 
       render: ()->
+        $('.tagSlideout').remove()
         tpl = _.template(TagTemplate, {_: _, displayType: @displayType()})
         @$el.html(tpl)
         @$('input[name="query"]').focus()
