@@ -23,6 +23,8 @@ define([
         'click .saveMenuItem': 'saveMenuItem'
         'click .addIngredient': 'addIngredient'
         'click .addPreference': 'addPreference'
+        'click .ingredient-tokens .removeTag': 'removeIng'
+        'click .preference-tokens .removeTag': 'removePref'
         'click .closeSlideout': 'closeSlideout'
 
       deleteMenuItem: (e)->
@@ -51,6 +53,32 @@ define([
           taggable: 'dietaryPreferences'
         @buildTagPanel(args)
 
+      removeIng: (e)->
+        that = this
+        e.preventDefault()
+        e.stopPropagation()
+        $e = $(e.currentTarget)
+        ingredients = that.formItem.get('ingredients') || []
+        existed = ingredients.indexOf($e.data('name'))
+        console.log existed
+        if existed >= 0
+          ingredients.splice(existed,1)
+        that.formItem.set ingredients: ingredients
+        that.$('.ingredient-tokens').html that.buildTagTokensHtml(ingredients)
+
+
+      removePref: (e)->
+        that = this
+        e.preventDefault()
+        e.stopPropagation()
+        $e = $(e.currentTarget)
+        dietaryPreferences = that.formItem.get('dietaryPreferences') || []
+        existed = dietaryPreferences.indexOf($e.data('name'))
+        if existed >= 0 
+          dietaryPreferences.splice(existed,1)
+        that.formItem.set dietaryPreferences: dietaryPreferences
+        that.$('.preference-tokens').html that.buildTagTokensHtml(dietaryPreferences)
+
       closeSlideout: (e)->
         e.preventDefault()
         e.stopPropagation()
@@ -70,12 +98,12 @@ define([
         that = this
         switch options.taggable
           when 'dietaryPreferences'
-            dietaryPreferences = that.formItem.get('dietaryPreferences') ||= []
+            dietaryPreferences = that.formItem.get('dietaryPreferences') || []
             dietaryPreferences.push options.name
             that.formItem.set dietaryPreferences: dietaryPreferences
             that.$('.preference-tokens').html that.buildTagTokensHtml(dietaryPreferences)
           when 'ingredients'
-            ingredients = that.formItem.get('ingredients') ||= []
+            ingredients = that.formItem.get('ingredients') || []
             ingredients.push options.name
             that.formItem.set ingredients: ingredients
             that.$('.ingredient-tokens').html that.buildTagTokensHtml(ingredients)
