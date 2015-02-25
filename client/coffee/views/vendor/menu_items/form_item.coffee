@@ -70,13 +70,15 @@ define([
         that = this
         switch options.taggable
           when 'dietaryPreferences'
-            that.formItem.dietaryPreferences ||= []
-            that.formItem.dietaryPreferences.push options.name
-            that.$('.preference-tokens').html that.buildTagTokensHtml(that.formItem.dietaryPreferences)
+            dietaryPreferences = that.formItem.get('dietaryPreferences') ||= []
+            dietaryPreferences.push options.name
+            that.formItem.set dietaryPreferences: dietaryPreferences
+            that.$('.preference-tokens').html that.buildTagTokensHtml(dietaryPreferences)
           when 'ingredients'
-            that.formItem.ingredients ||= []
-            that.formItem.ingredients.push options.name
-            that.$('.ingredient-tokens').html that.buildTagTokensHtml(that.formItem.ingredients)
+            ingredients = that.formItem.get('ingredients') ||= []
+            ingredients.push options.name
+            that.formItem.set ingredients: ingredients
+            that.$('.ingredient-tokens').html that.buildTagTokensHtml(ingredients)
 
       buildTagTokensHtml: (tags)->
         tpl = """
