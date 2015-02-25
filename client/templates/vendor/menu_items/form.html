@@ -91,13 +91,22 @@
     <div class="columns large-4">
         <h6 class="dietary">Ingredients</h6>
         <div class="ingredient-tokens clearfix">
-
+            <% _.each(item.ingredients, function(name){%>
+                <div class="token left">
+                    <%= name %> &nbsp; <i class="fi-x removeTag" data-name="<%= name %>"></i>
+                </div>            
+            <% }); %>
         </div>
         <div class="clean-button-tiny">
             <a class="addIngredient">Add Ingredients</a>
         </div>
         <h6 class="dietary">Dietary Preferences</h6>
         <div class="preference-tokens clearfix">
+            <% _.each(item.dietaryPreferences, function(name){%>
+                <div class="token left">
+                    <%= name %> &nbsp; <i class="fi-x removeTag" data-name="<%= name %>"></i>
+                </div>            
+            <% }); %>
         </div>
         <div class="clean-button-tiny">
             <a class="addPreference">Add Dietary Preferences</a>
