@@ -28,7 +28,6 @@ define([
         if !query
           return
         @addTermToServer(query)
-        console.log  @parent.afterAddTag
         if @parent.afterAddTag && typeof @parent.afterAddTag == 'function'
           @parent.afterAddTag({name: query, taggable: @taggable})
         
@@ -38,8 +37,6 @@ define([
         e.preventDefault()
         e.stopPropagation()
         $e = $(e.currentTarget)
-        console.log 'addItem'
-        console.log  @parent.afterAddTag
         if @parent.afterAddTag && typeof @parent.afterAddTag == 'function'
           @parent.afterAddTag({name: $e.data('name'), taggable: @taggable})
 
