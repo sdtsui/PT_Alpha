@@ -23,6 +23,7 @@ define([
         'click .saveMenuItem': 'saveMenuItem'
         'click .addIngredient': 'addIngredient'
         'click .addPreference': 'addPreference'
+        'click .closeSlideout': 'closeSlideout'
 
       deleteMenuItem: (e)->
         e.preventDefault()
@@ -41,9 +42,16 @@ define([
         e.stopPropagation()
         $e = $(e.currentTarget)
 
+      closeSlideout: (e)->
+        e.preventDefault()
+        e.stopPropagation()
+        $e = $(e.currentTarget)
+        @$('.formItem').removeClass('column large-8')
+        @$('.tagSlideout').remove()
+
       buildTagPanel: (options)->
         that = this
-        view = new TagView({parent: that, type: 'a'})
+        view = new TagView({parent: that, taggable: 'roleType'})
         @$el.append(view.render().el)
         @$('.formItem').addClass('column large-8')
         

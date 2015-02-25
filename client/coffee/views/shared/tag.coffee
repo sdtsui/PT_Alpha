@@ -14,10 +14,20 @@ define([
     TagView = Backbone.View.extend(
 
       tagName: 'div'
-      className: 'columns large-4 left-col searchTerminology'
+      className: 'columns large-4 left-col tagSlideout'
       events:
         'change .searchQuery': 'searchQuery'
         'click i.addItem': 'addItem'
+        'click .addNewTag': 'addNewTag'
+
+      addNewTag: (e)->
+        e.preventDefault()
+        e.stopPropagation()
+        $e = $(e.currentTarget)
+        query = @$('input[name="query"]').val()
+        if !query
+          return
+        console.log 'addNewTag'
 
       addItem: (e)->
         e.preventDefault()
@@ -30,11 +40,13 @@ define([
         e.stopPropagation()
         $e = $(e.currentTarget)
         name = @$('input[name="query"]').val()
+        if !name
+          return
         @searchTerm(name)
       
       initialize: (options)->
         @options = options
-        @type = options.type
+        @taggable = options.taggable
         @parent = options.parent
 
       searchTerm: (term)->
@@ -43,7 +55,7 @@ define([
           url: '/api/tags/search'
           method: 'GET'
           datatype: 'json'
-          data: {name: term, taggable: @type}
+          data: {name: term, taggable: that.taggable}
           success: (response)->
             that.buildSearchResults(response)
           error: (response)->
@@ -64,7 +76,7 @@ define([
 
 
       displayType: ()->
-        switch @type
+        switch @taggable
           when 'roomType'
             'room type'
           when 'courseType'
@@ -74,7 +86,7 @@ define([
           when 'ammenityType'
             'ammenity type'
           else
-            @type
+            @taggable
 
 
       render: ()->
