@@ -27,14 +27,21 @@ define([
         query = @$('input[name="query"]').val()
         if !query
           return
-        console.log 'addNewTag'
         @addTermToServer(query)
+        console.log  @parent.afterAddTag
+        if @parent.afterAddTag && typeof @parent.afterAddTag == 'function'
+          @parent.afterAddTag({name: query, taggable: @taggable})
         
+        @$('input[name="query"]').val('')
+
       addItem: (e)->
         e.preventDefault()
         e.stopPropagation()
         $e = $(e.currentTarget)
         console.log 'addItem'
+        console.log  @parent.afterAddTag
+        if @parent.afterAddTag && typeof @parent.afterAddTag == 'function'
+          @parent.afterAddTag({name: $e.data('name'), taggable: @taggable})
 
       searchQuery: (e)->
         e.preventDefault()

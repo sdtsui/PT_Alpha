@@ -65,12 +65,36 @@ define([
         @$el.append(view.render().el)
         @$('.formItem').addClass('column large-8')
         @$('.closeSlideout').show()
-        
+
+      afterAddTag: (options)->
+        that = this
+        switch options.taggable
+          when 'dietaryPreferences'
+            that.formItem.dietaryPreferences ||= []
+            that.formItem.dietaryPreferences.push options.name
+            that.$('.preference-tokens').html that.buildTagTokensHtml(that.formItem.dietaryPreferences)
+          when 'ingredients'
+            that.formItem.ingredients ||= []
+            that.formItem.ingredients.push options.name
+            that.$('.ingredient-tokens').html that.buildTagTokensHtml(that.formItem.ingredients)
+
+      buildTagTokensHtml: (tags)->
+        tpl = """
+          <% _.each(tags, function(name){ %>
+            <div class="token left">
+                <%= name %> &nbsp; <i class="fi-x removeTag" data-name="<%= name %>"></i>
+            </div>
+          <% }) %>
+        """
+        html = _.template(tpl, {_: _, tags: tags})
+        return html
+
       cancelMenuItem: (e)->
         e.preventDefault()
         e.stopPropagation()
         $e = $(e.currentTarget)
         @$el.remove()
+
 
       saveMenuItem: (e)->
         that = this
