@@ -4,12 +4,14 @@ define([
   'Backbone'
   'models/menu_item'
   'views/shared/alert_message'
+  'views/shared/tag'
   'text!templates/vendor/menu_items/form.html'
 ], ($
     _
     Backbone
     MenuItemModel
     AlertMessage
+    TagView
     FormMenuItemsTemplate
   )->
     FormMenuItemsView = Backbone.View.extend(
@@ -19,6 +21,8 @@ define([
         'click .deleteMenuItem': 'deleteMenuItem'
         'click .cancelMenuItem': 'cancelMenuItem'
         'click .saveMenuItem': 'saveMenuItem'
+        'click .addIngredient': 'addIngredient'
+        'click .addPreference': 'addPreference'
 
       deleteMenuItem: (e)->
         e.preventDefault()
@@ -26,6 +30,23 @@ define([
         $e = $(e.currentTarget)
         @$el.remove()
 
+      addIngredient: (e)->
+        e.preventDefault()
+        e.stopPropagation()
+        $e = $(e.currentTarget)
+        @buildTagPanel({})
+
+      addPreference: (e)->
+        e.preventDefault()
+        e.stopPropagation()
+        $e = $(e.currentTarget)
+
+      buildTagPanel: (options)->
+        that = this
+        view = new TagView({parent: that, type: 'a'})
+        @$el.append(view.render().el)
+        @$('.formItem').addClass('column large-8')
+        
       cancelMenuItem: (e)->
         e.preventDefault()
         e.stopPropagation()
