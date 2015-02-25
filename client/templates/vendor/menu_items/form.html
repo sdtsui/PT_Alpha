@@ -32,10 +32,9 @@
     <label>
         How is this menu item served? (subcategory)
         <select name="subcategory">
-            <option value="plated">plated</option>
-            <option value="family style">family style</option>
-            <option value="tray passed">tray passed</option>
-            <option value="station">station</option>
+            <% _.each(SUBCATEGORIES, function(v,k){ %>
+                <option value="<%= k %>" <%= item.subcategory && k==item.subcategory ? 'selected' : '' %> ><%= v %></option>
+            <%})%>
         </select>
     </label>
     <div class="row collapse">
@@ -47,15 +46,16 @@
                         <span class="postfix">$</span>
                     </div>
                     <div class="columns large-8">
-                        <input name="priceValue" type="text" placeholder="eg 20" value="<%= item.price.value %>"></div>
+                        <input name="priceValue" type="number" placeholder="eg 20" value="<%= item.price.value %>"></div>
                 </div>
             </div>
         </div>
         <div class="columns large-7">
             <div class="padding1pxsides">
                 <select name="priceUnit">
-                    <option value="A">per head</option>
-                    <option value="B">per head per hour</option>
+                    <% _.each(PRICE_UNITS, function(v,k){ %>
+                        <option value="<%= k %>" <%= item.price && k==item.price.unit ? 'selected' : '' %> ><%= v %></option>
+                    <%})%>
                 </select>
             </div>
         </div>
@@ -95,7 +95,9 @@
             <i class="fi-x"></i>
         </div>
     </div>
-    <div class="clean-button-tiny">Add Ingredients</div>
+    <div class="clean-button-tiny">
+        <a class="addIngredient"> Add Ingredients</a>
+    </div>
     <h6 class="dietary">Dietary Preferences</h6>
     <div class="room-tokens clearfix">
         <div class="token left">
@@ -107,7 +109,9 @@
             <i class="fi-x"></i>
         </div>
     </div>
-    <div class="clean-button-tiny">Add Dietary Preferences</div>
+    <div class="clean-button-tiny">
+        <a class="addPreference">Add Dietary Preferences</a>
+    </div>
 </div>
 <hr>
 <div class="clean-button-tiny top-cta right">

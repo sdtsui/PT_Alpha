@@ -62,6 +62,17 @@ define([
       initialize: (options)->
         @formItem = options.formItem
         @items = options.items
+        @initConstant()
+
+      initConstant: ()->
+        @SUBCATEGORIES =
+          "plated" : 'plated'
+          "family style" : 'family style'
+          "tray passed" : 'tray passed'
+          "station" : 'station'
+        @PRICE_UNITS =
+          A: 'per head'
+          B: 'per head per hour'      
 
       bindingDom: ()->
         @$name = @$('input[name="name"]')
@@ -108,7 +119,7 @@ define([
 
       render: ()->
         that = this
-        tpl = _.template(FormMenuItemsTemplate, {_: _, item: that.formItem.toJSON()})
+        tpl = _.template(FormMenuItemsTemplate, {_: _, item: that.formItem.toJSON(), SUBCATEGORIES: @SUBCATEGORIES, PRICE_UNITS: @PRICE_UNITS})
         @$el.html(tpl)
         @bindingDom()
         @
