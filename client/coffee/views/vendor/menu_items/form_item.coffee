@@ -32,15 +32,24 @@ define([
         @$el.remove()
 
       addIngredient: (e)->
+        that = this
         e.preventDefault()
         e.stopPropagation()
         $e = $(e.currentTarget)
-        @buildTagPanel({})
+        args = 
+          parent: that
+          taggable: 'ingredients'
+        @buildTagPanel(args)
 
       addPreference: (e)->
+        that = this
         e.preventDefault()
         e.stopPropagation()
         $e = $(e.currentTarget)
+        args = 
+          parent: that
+          taggable: 'dietaryPreferences'
+        @buildTagPanel(args)
 
       closeSlideout: (e)->
         e.preventDefault()
@@ -48,12 +57,14 @@ define([
         $e = $(e.currentTarget)
         @$('.formItem').removeClass('column large-8')
         @$('.tagSlideout').remove()
+        @$('.closeSlideout').hide()
 
       buildTagPanel: (options)->
         that = this
-        view = new TagView({parent: that, taggable: 'roleType'})
+        view = new TagView(options)
         @$el.append(view.render().el)
         @$('.formItem').addClass('column large-8')
+        @$('.closeSlideout').show()
         
       cancelMenuItem: (e)->
         e.preventDefault()
