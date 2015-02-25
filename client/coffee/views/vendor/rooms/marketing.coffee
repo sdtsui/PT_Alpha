@@ -43,7 +43,22 @@ define([
           marketing.splice(existed,1)
         that.room.set marketing: marketing
         that.$('.room-tokens').html that.buildTagTokensHtml(marketing)
+        @updateRoom()
 
+      updateRoom: ()->
+        that = this
+        @room.url = '/api/rooms/update'
+
+        @room.save @room.toJSON(),
+          success: (model, response, options)->
+            msg = new AlertMessage({type: 'success', messages: ["Marketing tag was saved successfully."]})
+            that.$el.prepend(msg.render().el)
+
+          error: (model, response, options)->
+            console.log 'errror'
+            console.log response
+            msg = new AlertMessage({messages: ["There are some errors"]})
+            that.$el.prepend(msg.render().el)               
 
       closeSlideout: (e)->
         e.preventDefault()
@@ -59,6 +74,7 @@ define([
         marketing.push(options.name)
         @room.set marketing: marketing
         @$('.room-tokens').html that.buildTagTokensHtml(marketing)
+        @updateRoom()
 
       initialize: (options)->
         @room = options.room

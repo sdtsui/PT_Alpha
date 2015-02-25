@@ -4,7 +4,10 @@
         <div class="clean-button-tiny top-cta right closeSlideout" style="display: none;">
             &nbsp; close slideout &nbsp; <i class="fi-times"></i>
         </div>
-        <h4>ROOM <small>| Sophia Room Tags</small></h4>
+        <h4>ROOM 
+            <small><%= room.name ? ('| '+room.name) : '' %></small>
+
+        </h4>
         <hr>
         <div class="columns large-12">
             <h6>Tags</h6>
