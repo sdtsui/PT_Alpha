@@ -22,23 +22,38 @@ TagSchema = new Schema(
 
 )
 
-mongoose.model 'Tag', TagSchema
-
-
 TagSchema.path('name').validate( (name, fn)->
   Tag = mongoose.model('Tag')
-  that = this
-  if !that.name
-    that.invalidate('name', 'cannot be blank')
-    return fn(true)
-  regx = new RegExp('^'+that.name+'$', 'i')
-  Tag.count({name: regx, taggable: that.taggable}).exec( (e, num)->
-    if num && num > 0
-      that.invalidate('name', 'is already existed')
-  )
-  return fn(true)
+  if !this.isNew
+    fn(true)
 
-, null )
+  if (this.isNew || this.isModified('name'))
+    regx = new RegExp('^'+name+'$', 'i')
+    Tag.count({ name: regx, taggable: this.taggable }).exec( (err, tags)->
+      fn(!err && tags == 0)
+    )
+  else 
+    fn(true)
+, 'Name already exists')
 
+# TagSchema.path('name').validate( (name, fn)->
+#   that = this
+#   Tag = mongoose.model('Tag')
+#   if !name
+#     that.invalidate('name', 'cannot be blank')
+#     return fn(true)
+#   if this.isNew  
+#     regx = new RegExp('^'+name+'$', 'i')
+#     console.log this
+#     Tag.count({ name: regx}).exec( (e, tags)->
+#       console.log tags
+#       if tags && tags > 0
+#         that.invalidate('name', 'is already existed')
+#     )
+#   fn(true)
+# , null)
+
+
+mongoose.model 'Tag', TagSchema
 
 

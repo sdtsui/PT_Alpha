@@ -8,7 +8,10 @@ exports.addNew = (options)->
     return false
 
   tag = new Tag({name: options.name, taggable: options.taggable})
-  tag.save()
+  tag.save (err)->
+    console.log 'xxxxxxxxxxaaaa'
+    console.log err
+  console.log 'xxxxxxx'
   return true
 
 exports.search = (options, cb)->
