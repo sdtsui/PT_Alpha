@@ -20,6 +20,7 @@ define([
       initialize: (options)->
         @room = options.room
         @services = new ServicesCollection()
+        @services.url = '/api/services'
 
       buildHtml: ()->
         that = this

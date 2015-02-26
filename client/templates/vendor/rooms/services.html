@@ -1,68 +1,35 @@
 <div class="form-wrap">
-    <!-- venue-->
     <div class="row">
-        <div class="clean-button-tiny top-cta right">&nbsp; delete room &nbsp;<i class="fi-trash"></i>
-        </div>
-        <div class="clean-button-tiny top-cta right">
-            &nbsp; save &nbsp;<i class="fi-save"></i>
-        </div>
-        <div class="clean-button-tiny top-cta right">cancel</div>
-        <h4>ROOM
-            <small><%= room.name ? ('| '+room.name) : '' %></small>
+        <h4>
+            ROOM
+            <small>
+                <%= room.name ? ('| '+room.name) : '' %></small>
 
         </h4>
         <hr>
+        <%
+            _.each(services, function(service){
+        %>
         <div class="row services-wrap">
             <div class="columns large-3">
                 <div class="row collapse">
-                    <div class="columns large-5">
+                    <div class="columns large-8">
                         <div class="switch round tiny">
-                            <input type="checkbox" id="ispobactive" checked="">
-                            <label for="ispobactive"></label>
+                            <input type="checkbox" id="ischefactive<%= service._id %>
+                            ">
+                            <label for="ischefactive<%= service._id %>"></label>
                         </div>
                     </div>
-                    <div class="columns large-7">
-                        <h6 class="subheader">active    </h6>
-                    </div>
+                    <div class="columns large-4"></div>
                 </div>
             </div>
-            <div class="columns large-9"><img src="assets/images/image.png"><span>Premium Open Bar</span>
+            <div class="columns large-9">
+                <img src="assets/images/image.png">
+                <span>
+                    <%= service.name %></span>
             </div>
         </div>
-        <div class="row services-wrap">
-            <div class="columns large-3">
-                <div class="row collapse">
-                    <div class="columns large-5">
-                        <div class="switch round tiny">
-                            <input type="checkbox" id="ischefactive">
-                            <label for="ischefactive"></label>
-                        </div>
-                    </div>
-                    <div class="columns large-7">
-                        <h6 class="subheader">not active</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="columns large-9"><img src="assets/images/image.png"><span>Chef Station</span>
-            </div>
-        </div>
-        <div class="row services-wrap">
-            <div class="columns large-3">
-                <div class="row collapse">
-                    <div class="columns large-5">
-                        <div class="switch round tiny">
-                            <input type="checkbox" id="iscakeactive" checked="">
-                            <label for="iscakeactive"></label>
-                        </div>
-                    </div>
-                    <div class="columns large-7">
-                        <h6 class="subheader">active    </h6>
-                    </div>
-                </div>
-            </div>
-            <div class="columns large-9"><img src="assets/images/image.png"><span>Cake Service</span>
-            </div>
-        </div>
-        <p>NOTE: all services for the venue should appear here</p>
-    </div>
+        <%
+            });
+        %></div>
 </div>
