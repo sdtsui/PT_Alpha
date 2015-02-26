@@ -56,11 +56,8 @@ define([
           success: (collections, response, options)->
             that.buildServiceItems()
         @services.on 'add', (s)->
-          console.log s
           that.buildServiceItems()
         @services.on 'remove', (s)->
-          console.log 'remove'
-          console.log s
           that.buildServiceItems()
 
       buildServiceItems: ()->

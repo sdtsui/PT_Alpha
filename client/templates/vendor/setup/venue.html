@@ -37,12 +37,12 @@
                 <div>
                     <label>
                         url
-                        <input name="url" type="text" placeholder="eg www.name.com" value="<%= venue.url %>"></label>
+                        <input name="url" type="text" placeholder="eg www.name.com" value="<%= venue.url %>" pattern="domain"></label>
                 </div>
                 <div>
                     <label>
                         Email
-                        <input required name="email" type="text" placeholder="eg joe@name.com" value="<%= venue.email %>"></label>
+                        <input required name="email" type="text" placeholder="eg joe@name.com" value="<%= venue.email %>" pattern="email"></label>
                 </div>
             </div>
             <div class="columns large-4">
@@ -66,7 +66,7 @@
                                 Tax Rate
                                 <div class="row collapse">
                                     <div class="columns large-8">
-                                        <input name="tax" type="number" placeholder="eg 9.00%" value="<%= venue.tax %>" min="0" max="100"></div>
+                                        <input name="tax" type="number" placeholder="eg 9.00%" value="<%= venue.tax %>" min="0" max="100" pattern="integer"></div>
                                     <div class="columns large-4">
                                         <span class="postfix">%</span>
                                     </div>
@@ -80,7 +80,7 @@
                                 Gratuity
                                 <div class="row collapse">
                                     <div class="columns large-8">
-                                        <input name="gratuity" type="number" placeholder="eg 22.0" value="<%= venue.gratuity %>" min="0"></div>
+                                        <input name="gratuity" type="number" placeholder="eg 22.0" value="<%= venue.gratuity %>" min="0"  max="100" pattern="integer"></div>
                                     <div class="columns large-4">
                                         <span class="postfix">%</span>
                                     </div>
