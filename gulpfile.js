@@ -56,7 +56,7 @@ gulp.task('clean', function (cb) {
 gulp.task('copy', function () {
     var dirs = [
             './client/**/*.*',
-            '!./client/assets/coffee/**/*.*',
+            '!./client/coffee/**/*.*',
             '!./client/assets/{scss,js,images,coffee}/**/*.*'
           ];
 
