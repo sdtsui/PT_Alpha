@@ -28,7 +28,7 @@ define([
         e.preventDefault()
         e.stopPropagation()
         $e = $(e.currentTarget)
-        @buildItemForm()
+        @buildMenuForm()
 
       selectMenu: (e)->
         e.preventDefault()
@@ -37,10 +37,10 @@ define([
         @formMenu = @menus.get($e.data('menu_id'))
         console.log $e.data('menu_id')
         console.log @formMenu
-        @buildItemForm()
+        @buildMenuForm()
 
 
-      buildItemForm: ()->
+      buildMenuForm: ()->
         view = new FormMenuView({menus: @menus, formMenu: @formMenu})
         @$('.form-wrap').html view.render().el
 
@@ -76,6 +76,7 @@ define([
         that.menus.fetch 
           success: (collections, response, options)->
             that.buildMenus()
+        @buildMenuForm()
         @
 
     )

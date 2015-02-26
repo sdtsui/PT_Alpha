@@ -85,6 +85,7 @@ define([
         tpl = _.template(VendorRoomsTemplate, {})
         @$el.html(tpl)
         @buildRoomsList()
+        @buildRoom()
         @
 
     )

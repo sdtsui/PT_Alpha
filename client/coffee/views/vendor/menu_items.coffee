@@ -76,6 +76,7 @@ define([
         that.items.fetch 
           success: (collections, response, options)->
             that.buildMenuItems()
+        @buildItemForm()
         @
 
     )
