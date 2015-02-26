@@ -58,8 +58,19 @@ RoomSchema = new Schema(
   leadTime:
     type: String
   
+  # marketing tags
   marketing:
     type: Array
+
+  amenities:
+    type: Array
+
+  services:
+    type: Array
+
+  menus:
+    type: Array
+
 )
 
 

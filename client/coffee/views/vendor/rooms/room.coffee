@@ -38,6 +38,8 @@ define([
         $e = $(e.currentTarget)
         $e.closest('ul').find('li').removeClass('active')
         $e.closest('li').addClass('active')
+        console.log 'switchMenu'
+        console.log $e.data('nav')
         switch $e.data('nav')
           when 'general'
             @buildGeneral()
@@ -48,7 +50,7 @@ define([
           when 'amenities'
             @buildAmenities()
           when 'services'
-            @buildServices
+            @buildServices()
           when 'menu'
             @buildMenus()
           when 'marketing'
