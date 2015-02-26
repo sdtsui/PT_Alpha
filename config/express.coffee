@@ -9,7 +9,7 @@ cookieParser = require 'cookie-parser'
 bodyParser = require 'body-parser'
 compress = require 'compression'
 methodOverride = require 'method-override'
-multipart = require('connect-multiparty')
+# multipart = require('connect-multiparty')
 
 mongoStore = require('connect-mongo')(session)
 pkg = require('../package.json')
@@ -26,7 +26,7 @@ module.exports = (app, config, passport) ->
   app.use bodyParser.urlencoded(
     extended: true
   )
-  app.use multipart()  
+  # app.use multipart()  
   app.use cookieParser()
   app.use compress()
 

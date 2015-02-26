@@ -23,6 +23,7 @@ require.config(
     parsleyjs: 'parsley.min'
     underscore: 'underscore.min'
     Backbone: 'backbone.min'
+    Dropzone: 'dropzone.min'
     # 'backbone.validation': 'backbone-validation.min'
     text: 'require-text.min'
     Templates: './templates'
