@@ -6,7 +6,6 @@ define([
   'models/room'
   'collections/rooms'
   'views/shared/alert_message'
-  # 'views/shared/fileupload'
   'text!templates/vendor/images.html'
 ], ($
     _
@@ -15,7 +14,6 @@ define([
     RoomModel
     RoomsCollection
     AlertMessage
-    # FileUploadView
     VendorImagesTemplate
   )->
     Dropzone = window.Dropzone

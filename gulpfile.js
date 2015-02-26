@@ -43,6 +43,7 @@ var foundationJS = [
 
 // these files are css from plugins
 var pluginsCSS = [
+    'client/assets/scss/dropzone.css',
     'public/components/side-comments/release/side-comments.css',
     'public/components/side-comments/release/themes/default-theme.css'
 ];
