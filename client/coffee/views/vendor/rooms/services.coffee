@@ -16,6 +16,34 @@ define([
       tagName: 'div'
       className: 'row'
 
+      events:
+        'click .toggleService': 'toggleService'
+
+      toggleService: (e)->
+        $e = $(e.currentTarget)
+        services = @room.get('services') || []
+        existed = services.indexOf($e.data('id'))
+        if existed >=0
+          services.splice(existed, 1)
+        else
+          services.push $e.data('id')
+
+        @room.set services: services
+        @updateRoom()
+
+      updateRoom: ()->
+        that = this
+        @room.url = '/api/rooms/update'
+
+        @room.save @room.toJSON(),
+          success: (model, response, options)->
+            console.log 'updated success'
+          error: (model, response, options)->
+            console.log 'error'
+            console.log response
+            msg = new AlertMessage({messages: ["There are some errors"]})
+            that.$el.prepend(msg.render().el)        
+
 
       initialize: (options)->
         @room = options.room

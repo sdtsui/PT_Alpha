@@ -15,8 +15,7 @@
                 <div class="row collapse">
                     <div class="columns large-8">
                         <div class="switch round tiny">
-                            <input type="checkbox" id="ischefactive<%= service._id %>
-                            ">
+                            <input class="toggleService" data-id="<%= service._id %>" type="checkbox" id="ischefactive<%= service._id %>" <%= (room.services && room.services.indexOf(service._id) >=0) ? 'checked' : '' %> >
                             <label for="ischefactive<%= service._id %>"></label>
                         </div>
                     </div>
