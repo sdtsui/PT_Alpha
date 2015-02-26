@@ -7,6 +7,7 @@ define([
   'views/auths/signup'
   'views/auths/signin'
   'views/vendor/setup'
+  'views/vendor/images'
   'views/vendor/rooms'
   'views/vendor/menus'
   'views/vendor/menu_items'
@@ -19,6 +20,7 @@ define([
       SignupView
       SigninView
       VendorSetupView
+      VendorImagesView
       VendorRoomsView
       VendorMenusView
       VendorMenuItemsView
@@ -29,6 +31,7 @@ define([
           'signin': 'signin'
           # default action
           'setup': 'vendorSetup'
+          'images': 'vendorImages'
           'rooms': 'vendorRooms'
           'menus': 'vendorMenus'
           'menu-items': 'vendorMenuItems'
@@ -59,6 +62,11 @@ define([
         vendorSetup: ->
           @authorizeDom('setup')
           view = new VendorSetupView()
+          view.render()
+
+        vendorImages: ->
+          @authorizeDom('images')
+          view = new VendorImagesView()
           view.render()
 
         vendorRooms: ->
