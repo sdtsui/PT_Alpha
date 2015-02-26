@@ -2,11 +2,13 @@ define([
   'jq'
   'underscore'
   'Backbone'
+  'collections/services'
   'views/shared/alert_message'
   'text!templates/vendor/rooms/services.html'
 ], ($
     _
     Backbone
+    ServicesCollection
     AlertMessage
     RoomServicesTemplate
   )->
@@ -17,12 +19,18 @@ define([
 
       initialize: (options)->
         @room = options.room
-        
+        @services = new ServicesCollection()
+
+      buildHtml: ()->
+        that = this
+        tpl = _.template(RoomServicesTemplate, {_: _, room: @room.toJSON(), services: @services.toJSON()})
+        @$el.html(tpl)
 
       render: ()->
         that = this
-        tpl = _.template(RoomServicesTemplate, {_: _})
-        @$el.html(tpl)
+        that.services.fetch 
+          success: (collections, response, options)->
+            that.buildHtml()        
         @
 
     )
