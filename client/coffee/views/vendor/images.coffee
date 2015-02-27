@@ -3,16 +3,12 @@ define([
   'underscore'
   'Backbone'
   'dropzone'
-  'models/room'
-  'collections/rooms'
   'views/shared/alert_message'
   'text!templates/vendor/images.html'
 ], ($
     _
     Backbone
     dropzone
-    RoomModel
-    RoomsCollection
     AlertMessage
     VendorImagesTemplate
   )->
