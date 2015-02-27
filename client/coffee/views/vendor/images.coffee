@@ -21,12 +21,22 @@ define([
       el: '#setupContent'
 
       events:
-        'click .addNewRoom': 'addNewRoom'
+        'click .uploadImages': 'uploadImages'
         'click .menu-list li.item a': 'selectRoom'
+
+      uploadImages: (e)->
+        e.preventDefault()
+        e.stopPropagation()
+        $e = $(e.currentTarget)
+        console.log 'uploadImages'
+        @fileUpload.processQueue()
+        console.log 'processQueue'
+        console.log @fileUpload
 
       initialize: (options)->
         @getS3Policy()
-
+        @s3Config = null 
+        @fileUpload = null
       getS3Policy: ()->
         that = this
         $.ajax
@@ -36,10 +46,12 @@ define([
           data: {}
           success: (response)->
             console.log 'response'
-            console.log response
+            that.s3Config = response
+            if that.fileUpload
+              that.fileUpload.options.url = "http://#{response.bucket}.s3.amazonaws.com"
             that.populateS3Form(response)
           error: (response)->
-            console.log response    
+            console.log response
 
       populateS3Form: (conf)->
         @$('input[name="key"]').val()
@@ -57,13 +69,18 @@ define([
           maxThumbnailFilesize: 8
           thumbnailWidth: 250
           thumbnailHeight: 150
-          url: 'http://rentme-dev.s3.amazonaws.com'
-          autoProcessQueue: true
+          url: '/'
+          autoProcessQueue: false
           acceptedMimeTypes: "image/bmp,image/gif,image/jpg,image/jpeg,image/png"
-          # accept: (file, done)->
-          #   console.log file
-          #   console.log 'accept'
-        @fileupload = new Dropzone( '#s3Dropzone', options)
+          complete: (file, done)->
+            console.log 'complete'
+            console.log file
+            console.log done
+          success: (file, done)->
+            console.log 'success'
+            console.log file
+            console.log done
+        @fileUpload = new Dropzone( '#s3Dropzone', options)
 
       render: ()->
         that = this
