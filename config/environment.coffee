@@ -11,6 +11,7 @@ config =
     port: 3000
     db: process.env.MONGOLAB_URI || 'mongodb://localhost/pt_dev'
     AWS:
+      bucket: ''
       secretKey: ''
       accessId: ''
       

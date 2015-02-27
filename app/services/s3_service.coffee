@@ -6,17 +6,16 @@ config = require('../../config/environment')
 exports.getS3Policy = (req, res) ->
   expiration = moment().add('hours', 24).toDate()
 
-  policy = {
-    'expiration': expiration,
+  policy =
+    'expiration': expiration
     'conditions': [
-      {'bucket': 'pt_dev'},
-      ['starts-with', '$key', 'aaaaa' + '/'],
-      {'acl': 'public-read'},
-      {'success_action_status': '201'},
-      ['starts-with', '$Content-Type', ''],
+      {'bucket': config.AWS.bucket}
+      ['starts-with', '$key', 'aaaaa' + '/']
+      {'acl': 'public-read'}
+      {'success_action_status': '201'}
+      ['starts-with', '$Content-Type', '']
       ['content-length-range', 0, 5242880]
     ]
-  }
 
   policy_document = new Buffer(JSON.stringify(policy)).toString('base64')
 
@@ -29,4 +28,5 @@ exports.getS3Policy = (req, res) ->
     policy: policy_document
     signature: signature
     expiration: expiration
+    accessId: config.AWS.accessId
   res.json(pl)
