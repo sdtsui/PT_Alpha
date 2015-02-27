@@ -4,7 +4,7 @@ moment = require('moment')
 config = require('../../config/environment')
 
 exports.getS3Policy = (req, res) ->
-  expiration = moment().add('hours', 24).toDate()
+  expiration = moment().add('hours', 1).toDate()
   console.log 'getS3Policy'
   console.log config
   policy =
@@ -13,7 +13,7 @@ exports.getS3Policy = (req, res) ->
       ["starts-with", "$utf8", ""]
       {'bucket': config.AWS.bucket}
       ["starts-with", "$key", ""]
-      {'acl': 'private'}
+      {'acl': 'public-read'}
       {'success_action_status': '201'}
       ['starts-with', '$Content-Type', '']
       ['content-length-range', 0, 5242880]
