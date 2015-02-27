@@ -22,7 +22,18 @@ define([
 
       events:
         'click .uploadImages': 'uploadImages'
+        'click .toggleDropzone': 'toggleDropzone'
         'click .menu-list li.item a': 'selectRoom'
+
+      toggleDropzone: (e)->
+        e.preventDefault()
+        e.stopPropagation()
+        $e = $(e.currentTarget)
+        @$('#s3Dropzone').toggle()
+        if @$('#s3Dropzone').is(':visible')
+          $e.text('hide dropzone')
+        else
+          $e.text('show dropzone')
 
       uploadImages: (e)->
         e.preventDefault()
@@ -52,7 +63,7 @@ define([
             console.log response
 
       populateS3Form: (conf)->
-        @$('input[name="key"]').val()
+        @$('input[name="key"]').val("uploads/#{PrivateTable.getCurrentUser().venue}/${filename}")
         @$('input[name="acl"]').val()
         @$('input[name="policy"]').val(conf.policy)
         @$('input[name="signature"]').val(conf.signature)
