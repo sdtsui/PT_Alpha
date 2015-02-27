@@ -25,6 +25,20 @@ define([
         'click .menu-list li.item a': 'selectRoom'
 
       initialize: (options)->
+        @getS3Policy()
+
+      getS3Policy: ()->
+        that = this
+        $.ajax
+          url: '/api/s3/policy'
+          method: 'GET'
+          datatype: 'json'
+          data: {}
+          success: (response)->
+            console.log 'response'
+            console.log response
+          error: (response)->
+            console.log response    
 
       buildFileUpload: ()->
         @fileupload = new Dropzone( '.dropzone',
