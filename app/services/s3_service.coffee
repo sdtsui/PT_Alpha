@@ -12,7 +12,6 @@ exports.getS3Policy = (req, res) ->
     'conditions': [
       ["starts-with", "$utf8", ""]
       {'bucket': config.AWS.bucket}
-      # ['starts-with', '$key', 'uploads/${filename}']
       ["starts-with", "$key", ""]
       {'acl': 'private'}
       {'success_action_status': '201'}
@@ -28,6 +27,7 @@ exports.getS3Policy = (req, res) ->
   signature = hmac.digest('base64')
 
   pl = 
+    bucket: config.AWS.bucket
     policy: policy_document
     signature: signature
     expiration: expiration
