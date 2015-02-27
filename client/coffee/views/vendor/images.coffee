@@ -28,15 +28,13 @@ define([
         e.preventDefault()
         e.stopPropagation()
         $e = $(e.currentTarget)
-        console.log 'uploadImages'
         @fileUpload.processQueue()
-        console.log 'processQueue'
-        console.log @fileUpload
 
       initialize: (options)->
         @getS3Policy()
         @s3Config = null 
         @fileUpload = null
+
       getS3Policy: ()->
         that = this
         $.ajax
@@ -61,6 +59,7 @@ define([
         @$('input[name="AWSAccessKeyId"]').val(conf.accessId)
 
       buildFileUpload: ()->
+        that = this
         options = 
           paramname: 'pic'
           maxfiles: 5
@@ -76,18 +75,22 @@ define([
             console.log 'complete'
             console.log file
             xml = $.parseXML(done)
-            console.log done
-          success: (file, done)->
-            console.log 'success'
-            console.log file
-            $xml = $($.parseXML(done))
-            that.uploadToServer(file, xml)
+          success: (file, response)->
+            $xml = $($.parseXML(response))
+            that.uploadToServer(file, $xml)
             
         @fileUpload = new Dropzone( '#s3Dropzone', options)
 
       uploadToServer: (file, xml)->
         console.log file
-        console.log url
+        console.log xml
+        params = 
+          fileName: file.name
+          fileType: file.type
+          fileSize: file.size
+          filePath: xml.find('Key').text()
+          fileUrl: xml.find('Location').text()
+        console.log params
 
       render: ()->
         that = this

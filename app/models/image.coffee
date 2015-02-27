@@ -24,6 +24,12 @@ ImageSchema = new Schema(
   filePath:
     type: String
 
+  fileUrl:
+    type: String
+
+  url:
+    type: String
+
   tags:
     type: [String] 
 )
