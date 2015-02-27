@@ -5,13 +5,16 @@ config = require('../../config/environment')
 
 exports.getS3Policy = (req, res) ->
   expiration = moment().add('hours', 24).toDate()
-
+  console.log 'getS3Policy'
+  console.log config
   policy =
     'expiration': expiration
     'conditions': [
+      ["starts-with", "$utf8", ""]
       {'bucket': config.AWS.bucket}
-      ['starts-with', '$key', 'aaaaa' + '/']
-      {'acl': 'public-read'}
+      # ['starts-with', '$key', 'uploads/${filename}']
+      ["starts-with", "$key", ""]
+      {'acl': 'private'}
       {'success_action_status': '201'}
       ['starts-with', '$Content-Type', '']
       ['content-length-range', 0, 5242880]
