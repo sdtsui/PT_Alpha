@@ -37,16 +37,33 @@ define([
           success: (response)->
             console.log 'response'
             console.log response
+            that.populateS3Form(response)
           error: (response)->
             console.log response    
 
+      populateS3Form: (conf)->
+        @$('input[name="key"]').val()
+        @$('input[name="acl"]').val()
+        @$('input[name="policy"]').val(conf.policy)
+        @$('input[name="signature"]').val(conf.signature)
+        @$('input[name="AWSAccessKeyId"]').val(conf.accessId)
+
       buildFileUpload: ()->
-        @fileupload = new Dropzone( '.dropzone',
-            url: '/api/images/upload'
-            method: 'POST'
-            parallelUploads: 1
-            autoProcessQueue: false
-          )
+        options = 
+          paramname: 'pic'
+          maxfiles: 5
+          parallelUploads: 1
+          maxFilesize: 30
+          maxThumbnailFilesize: 8
+          thumbnailWidth: 250
+          thumbnailHeight: 150
+          url: 'http://rentme-dev.s3.amazonaws.com'
+          autoProcessQueue: true
+          acceptedMimeTypes: "image/bmp,image/gif,image/jpg,image/jpeg,image/png"
+          # accept: (file, done)->
+          #   console.log file
+          #   console.log 'accept'
+        @fileupload = new Dropzone( '#s3Dropzone', options)
 
       render: ()->
         that = this

@@ -9,10 +9,20 @@
     </div>
     <div class="row collapse">
         <div class="columns large-12">
-            <div class="dropzone">
-                <h5 class="subheader">DROPZONE</h5>
-                <h6>Drag and Drop Images Here</h6>
-            </div>
+            <form id="s3Dropzone" class="dropzone">
+                <div>
+                    <h5 class="subheader">DROPZONE</h5>
+                    <h6>Drag and Drop Images Here</h6>
+                      <input name="key" type="hidden" value="uploads/${filename}">
+                      <input name="acl" type="hidden" value="private">
+                      <input name="policy" type="hidden" value="#encoded policy goes here#">
+                      <input name="signature" type="hidden" value="">
+                      <input name="content-type" type="hidden" value="application/octet-stream">
+                      <input name="AWSAccessKeyId" type="hidden" value="">
+                      <input name="success_action_status" type="hidden" value="200">
+
+                </div>
+            </form>
         </div>
     </div>
     <div class="row collapse">
