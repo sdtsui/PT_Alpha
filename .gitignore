@@ -6,3 +6,4 @@ npm-debug.log
 .ruby-version
 .ruby-gemset
 public
+config/env/development.coffee
