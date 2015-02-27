@@ -19,4 +19,4 @@ config =
   test: require('./env/test')
   production: require('./env/production')
 
-module.exports = extend(config[env], config.defaults)
+module.exports = extend(config.defaults, config[env])
