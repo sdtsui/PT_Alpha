@@ -10,7 +10,10 @@ config =
       name: 'privatetable'
     port: 3000
     db: process.env.MONGOLAB_URI || 'mongodb://localhost/pt_dev'
-
+    AWS:
+      secretKey: ''
+      accessId: ''
+      
   development: require('./env/development')
   test: require('./env/test')
   production: require('./env/production')
