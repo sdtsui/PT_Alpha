@@ -48,7 +48,7 @@ define([
             console.log 'response'
             that.s3Config = response
             if that.fileUpload
-              that.fileUpload.options.url = "http://#{response.bucket}.s3.amazonaws.com"
+              that.fileUpload.options.url = "https://#{response.bucket}.s3.amazonaws.com"
             that.populateS3Form(response)
           error: (response)->
             console.log response
@@ -75,12 +75,19 @@ define([
           complete: (file, done)->
             console.log 'complete'
             console.log file
+            xml = $.parseXML(done)
             console.log done
           success: (file, done)->
             console.log 'success'
             console.log file
-            console.log done
+            $xml = $($.parseXML(done))
+            that.uploadToServer(file, xml)
+            
         @fileUpload = new Dropzone( '#s3Dropzone', options)
+
+      uploadToServer: (file, xml)->
+        console.log file
+        console.log url
 
       render: ()->
         that = this
