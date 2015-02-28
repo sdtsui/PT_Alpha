@@ -25,10 +25,12 @@ define([
 
       initialize: (options)->
         @options = options
+        @image = options.image
+        console.log @image
         
       render: ()->
         that = this
-        tpl = _.template(ImageTemplate, {})
+        tpl = _.template(ImageTemplate, {_: _, image: @image.toJSON()})
         @$el.html(tpl)
         @
 

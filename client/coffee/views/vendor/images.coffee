@@ -3,6 +3,8 @@ define([
   'underscore'
   'Backbone'
   'dropzone'
+  'models/image'
+  'collections/images'
   'views/shared/alert_message'
   'views/vendor/images/list'
   'text!templates/vendor/images.html'
@@ -10,6 +12,8 @@ define([
     _
     Backbone
     dropzone
+    ImageModel
+    ImagesCollection
     AlertMessage
     ListImagesView
     VendorImagesTemplate
@@ -43,9 +47,12 @@ define([
         @getS3Policy()
         @s3Config = null 
         @fileUpload = null
+        @images = new ImagesCollection()
+        @images.url = '/api/images'
+        @images.fetch()
 
       listImages: ()->
-        view = new ListImagesView({})
+        view = new ListImagesView({images: @images})
         @$('.listImages').html view.render().el
 
       getS3Policy: ()->
@@ -95,15 +102,24 @@ define([
         @fileUpload = new Dropzone( '#s3Dropzone', options)
 
       uploadToServer: (file, xml)->
-        console.log file
-        console.log xml
+        that = this
         params = 
           fileName: file.name
           fileType: file.type
           fileSize: file.size
           filePath: xml.find('Key').text()
           fileUrl: xml.find('Location').text()
-        console.log params
+        image = new ImageModel(params)
+        image.url = "/api/images/upload"
+        image.save image.toJSON(),
+          success: (model, response, options)->
+            console.log model
+            that.images.unshift(image)
+            that.listImages()
+          error: (model, response, options)->
+            msg = new AlertMessage({messages: ["There are some errors"]})
+            that.$el.prepend(msg.render().el)        
+
 
       render: ()->
         that = this

@@ -4,7 +4,7 @@ api = require('../../../libs/authentication')
 ImageService = require('../../services/image_service')
 
 module.exports = (app, passport) ->
-  app.use '/api/menus', api.requiresLogin, router
+  app.use '/api/images', api.requiresLogin, router
 
 
   router.get "/", (req, res)->
