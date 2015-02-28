@@ -95,18 +95,17 @@ define([
         that = this
         options = 
           paramname: 'pic'
-          maxfiles: 5
-          parallelUploads: 1
-          maxFilesize: 30
+          maxfiles: 10
+          parallelUploads: 10
+          maxFilesize: 5
           maxThumbnailFilesize: 8
           thumbnailWidth: 250
           thumbnailHeight: 150
           url: '/'
           autoProcessQueue: false
-          acceptedMimeTypes: "image/bmp,image/gif,image/jpg,image/jpeg,image/png"
+          addRemoveLinks: true
+          acceptedMimeTypes: "image/*"
           complete: (file, done)->
-            console.log 'complete'
-            console.log file
             xml = $.parseXML(done)
           success: (file, response)->
             $xml = $($.parseXML(response))
