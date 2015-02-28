@@ -7,6 +7,9 @@ Image = mongoose.model 'Image'
 exports.all = (req, res)->
   cond = 
     venue: req.user.venue
+  if req.query && req.query.term
+    cond.tags = {'$all': req.query.term}
+    
   Image.find cond, (e, images)->
     if e
       return res.json([])

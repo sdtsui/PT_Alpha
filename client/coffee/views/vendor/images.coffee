@@ -26,6 +26,28 @@ define([
         'click .uploadImages': 'uploadImages'
         'click .toggleDropzone': 'toggleDropzone'
         'click .menu-list li.item a': 'selectRoom'
+        'blur .searchImages': 'doSearch'
+        'keypress .searchImages': 'keySearch'
+
+      doSearch: (e)->
+        e.preventDefault()
+        e.stopPropagation()
+        $e = $(e.currentTarget)
+        query = $e.val()
+        if !query 
+          return
+        @searchImages(query)
+
+      
+      keySearch: (e)->
+        if e.which != 13
+          return
+        $e = $(e.currentTarget)
+        query = $e.val()
+        if !query 
+          return
+        @searchImages(query)
+
 
       toggleDropzone: (e)->
         e.preventDefault()
@@ -57,7 +79,7 @@ define([
       searchImages: (query=null)->
         that = this
         @images.url = '/api/images'
-        if !query
+        if !!query
           @images.url = "/api/images?term=#{query}"
 
         @images.fetch
