@@ -4,12 +4,14 @@ define([
   'Backbone'
   'dropzone'
   'views/shared/alert_message'
+  'views/vendor/images/list'
   'text!templates/vendor/images.html'
 ], ($
     _
     Backbone
     dropzone
     AlertMessage
+    ListImagesView
     VendorImagesTemplate
   )->
     Dropzone = window.Dropzone
@@ -41,6 +43,10 @@ define([
         @getS3Policy()
         @s3Config = null 
         @fileUpload = null
+
+      listImages: ()->
+        view = new ListImagesView({})
+        @$('.listImages').html view.render().el
 
       getS3Policy: ()->
         that = this
@@ -104,6 +110,7 @@ define([
         tpl = _.template(VendorImagesTemplate, {})
         @$el.html(tpl)
         @buildFileUpload()
+        @listImages()
         @
 
     )
