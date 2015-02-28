@@ -57,6 +57,9 @@ define([
       searchImages: (query=null)->
         that = this
         @images.url = '/api/images'
+        if !query
+          @images.url = "/api/images?term=#{query}"
+
         @images.fetch
           success: (model, response, options)->
             that.listImages()
