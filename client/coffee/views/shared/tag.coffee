@@ -14,11 +14,19 @@ define([
     TagView = Backbone.View.extend(
 
       tagName: 'div'
-      className: 'columns large-4 left-col tagSlideout'
+      className: 'columns large-4 left-col boxTag'
       events:
         'change .searchQuery': 'searchQuery'
         'click i.addItem': 'addItem'
         'click .addNewTag': 'addNewTag'
+        'click .closeTagBox': 'closeTagBox'
+
+      closeTagBox: (e)->
+        e.preventDefault()
+        e.stopPropagation()
+        $e = $(e.currentTarget)
+        @$el.remove()
+        $('.dualTagBox').removeClass('column large-8')
 
       addNewTag: (e)->
         e.preventDefault()
@@ -109,10 +117,11 @@ define([
 
 
       render: ()->
-        $('.tagSlideout').remove()
+        $('.boxTag').remove()
         tpl = _.template(TagTemplate, {_: _, displayType: @displayType()})
         @$el.html(tpl)
         @$('input[name="query"]').focus()
+        $('.dualTagBox').addClass('column large-8')
         @buildSearchResults([])
         @
     )
