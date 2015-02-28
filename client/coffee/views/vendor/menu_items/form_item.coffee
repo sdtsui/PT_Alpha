@@ -25,7 +25,6 @@ define([
         'click .addPreference': 'addPreference'
         'click .ingredient-tokens .removeTag': 'removeIng'
         'click .preference-tokens .removeTag': 'removePref'
-        'click .closeSlideout': 'closeSlideout'
 
       deleteMenuItem: (e)->
         e.preventDefault()
@@ -79,20 +78,12 @@ define([
         that.formItem.set dietaryPreferences: dietaryPreferences
         that.$('.preference-tokens').html that.buildTagTokensHtml(dietaryPreferences)
 
-      closeSlideout: (e)->
-        e.preventDefault()
-        e.stopPropagation()
-        $e = $(e.currentTarget)
-        @$('.formItem').removeClass('column large-8')
-        @$('.tagSlideout').remove()
-        @$('.closeSlideout').hide()
 
       buildTagPanel: (options)->
         that = this
         view = new TagView(options)
         @$el.append(view.render().el)
-        @$('.formItem').addClass('column large-8')
-        @$('.closeSlideout').show()
+
 
       afterAddTag: (options)->
         that = this

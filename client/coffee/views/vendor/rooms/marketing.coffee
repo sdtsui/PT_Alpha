@@ -19,7 +19,6 @@ define([
       events:
         'click .addTag': 'addTag'
         'click .room-tokens .removeTag': 'removeTag'
-        'click .closeSlideout': 'closeSlideout'
 
       addTag: (e)->
         that = this
@@ -28,8 +27,6 @@ define([
         $e = $(e.currentTarget)
         view = new TagView({parent: that, taggable: 'marketing'})
         @$el.append(view.render().el)
-        @$('.form-wrap').addClass('column large-8')
-        @$('.closeSlideout').show()
 
       removeTag: (e)->
         that = this
@@ -60,13 +57,6 @@ define([
             msg = new AlertMessage({messages: ["There are some errors"]})
             that.$el.prepend(msg.render().el)               
 
-      closeSlideout: (e)->
-        e.preventDefault()
-        e.stopPropagation()
-        $e = $(e.currentTarget)
-        @$('.form-wrap').removeClass('column large-8')
-        @$('.tagSlideout').remove()
-        @$('.closeSlideout').hide()
 
       afterAddTag: (options)->
         that = this
