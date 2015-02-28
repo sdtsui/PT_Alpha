@@ -92,8 +92,7 @@ define([
         view = new TagView(options)
         that.tagView = view
         $('.listImages').append(view.render().el)
-        $('.listImages .list-images').addClass('column large-8')
-        $('.closeSlideout').show()
+
 
       updateImage: ()->
         isNew = @image.isNew()

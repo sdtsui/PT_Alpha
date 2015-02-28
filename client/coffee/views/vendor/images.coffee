@@ -34,8 +34,6 @@ define([
         e.stopPropagation()
         $e = $(e.currentTarget)
         query = $e.val()
-        if !query 
-          return
         @searchImages(query)
 
       
@@ -44,8 +42,6 @@ define([
           return
         $e = $(e.currentTarget)
         query = $e.val()
-        if !query 
-          return
         @searchImages(query)
 
 

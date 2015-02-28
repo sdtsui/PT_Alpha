@@ -20,7 +20,7 @@ define([
   )->
     ListImagesView = Backbone.View.extend(
       tagName: 'div'
-      className: 'list-images'
+      className: 'list-images dualTagBox'
       events:
         'click .uploadImages': 'uploadImages'
         'click .toggleDropzone': 'toggleDropzone'
