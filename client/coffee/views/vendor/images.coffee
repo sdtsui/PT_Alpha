@@ -48,12 +48,22 @@ define([
         @s3Config = null 
         @fileUpload = null
         @images = new ImagesCollection()
-        @images.url = '/api/images'
-        @images.fetch()
+
 
       listImages: ()->
         view = new ListImagesView({images: @images})
         @$('.listImages').html view.render().el
+
+      searchImages: (query=null)->
+        that = this
+        @images.url = '/api/images'
+        @images.fetch
+          success: (model, response, options)->
+            that.listImages()
+          error: (model, response, options)->
+            msg = new AlertMessage({messages: ["There are some errors"]})
+            that.$el.prepend(msg.render().el)        
+
 
       getS3Policy: ()->
         that = this
@@ -126,7 +136,7 @@ define([
         tpl = _.template(VendorImagesTemplate, {})
         @$el.html(tpl)
         @buildFileUpload()
-        @listImages()
+        @searchImages()
         @
 
     )

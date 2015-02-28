@@ -19,14 +19,26 @@ define([
     ListImagesView = Backbone.View.extend(
       tagName: 'tr'
       events:
-        'click .uploadImages': 'uploadImages'
-        'click .toggleDropzone': 'toggleDropzone'
+        'click .removeImage': 'removeImage'
+        'click .addTag': 'addTag'
         'click .menu-list li.item a': 'selectRoom'
+
+      removeImage: (e)->
+        e.preventDefault()
+        e.stopPropagation()
+        $e = $(e.currentTarget)
+        @$el.remove()
+        console.log 'removeImage'
+      
+      addTag: (e)->
+        e.preventDefault()
+        e.stopPropagation()
+        $e = $(e.currentTarget)
+        console.log 'addTag'
 
       initialize: (options)->
         @options = options
         @image = options.image
-        console.log @image
         
       render: ()->
         that = this

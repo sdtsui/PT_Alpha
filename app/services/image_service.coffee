@@ -4,10 +4,14 @@ mongoose = require 'mongoose'
 Image = mongoose.model 'Image'
 
 
-exports.all = ()->
+exports.all = (req, res)->
+  cond = 
+    venue: req.user.venue
+  Image.find cond, (e, images)->
+    if e
+      return res.json([])
 
-  console.log 'aaa'
-  res.json({success: 'ok'})
+    res.json(images)
 
 exports.upload = (req, res)->
   delete req.body.venue
