@@ -13,3 +13,6 @@ module.exports = (app, passport) ->
   router.post '/upload', (req, res)->
     ImageService.upload(req, res)
 
+  router.delete '/remove', (req, res)->
+    ImageService.remove(req, res)
+
