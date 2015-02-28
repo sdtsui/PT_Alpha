@@ -6,9 +6,12 @@ define([
     idAttribute: "_id"
     defaults:
       name: ''
-      pricePerHead: ''
+      price:
+        value: 0
+        unit: ''
       productType: ''
-    
+      isActive: true
+      
     url: '/api/menu_item'
 
     initialize: (options)->

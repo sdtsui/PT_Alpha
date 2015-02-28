@@ -15,8 +15,11 @@ MenuSchema = new Schema(
     type: String
     required: true
 
-  pricePerHead:
-    type: Number
+  price:
+    value:
+      type: Number
+    unit:
+      type: String
 
   productType:
     type: String
