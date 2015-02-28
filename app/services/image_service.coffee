@@ -10,7 +10,7 @@ exports.all = (req, res)->
   if req.query && req.query.term
     cond.tags = {'$all': req.query.term}
     
-  Image.find cond, (e, images)->
+  Image.find(cond).limit(20).exec (e, images)->
     if e
       return res.json([])
 
