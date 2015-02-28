@@ -16,3 +16,6 @@ module.exports = (app, passport) ->
   router.delete '/remove', (req, res)->
     ImageService.remove(req, res)
 
+  router.put '/update', (req, res)->
+    ImageService.update(req, res)
+

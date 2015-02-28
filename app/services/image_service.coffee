@@ -26,4 +26,29 @@ exports.upload = (req, res)->
     res.json(image)
 
 
+exports.remove = (req, res)->
 
+  cond = 
+    venue: req.user.venue
+    _id: req.body._id
+
+  Image.remove cond, (e, image)->
+    if e
+      return res.status(400).send({message: 'not found image'})
+    res.json({message: 'ok'})
+
+
+exports.update = (req, res)->
+  cond = 
+    venue: req.user.venue
+    _id: req.body._id
+  Image.findOne cond, (e, image)->
+    delete  req.body.venue
+    delete req.body._id
+    image = extend(image, req.body)
+
+    image.save (e)->
+      if e
+        return res.status(400).send({message: e.errors})
+
+      res.json(image.toJSON())    
