@@ -3,6 +3,14 @@ rootPath = path.normalize __dirname + '/..'
 extend = require('util')._extend
 env      = process.env.NODE_ENV || 'development'
 
+envDevelopment = {}
+if env == 'development'
+  envDevelopment = require('./env/development')
+if env == 'test'
+  envTest = require('./env/test')
+if env == 'production'
+  envProduction = require('./env/production')
+
 config =
   defaults:
     root: rootPath
@@ -15,8 +23,8 @@ config =
       secretKey: process.env.S3_ACCESS_KEY
       accessId: process.env.S3_ACCESS_KEY_ID
 
-  development: require('./env/development')
-  test: require('./env/test')
-  production: require('./env/production')
+  development: envDevelopment
+  test: envTest
+  production: envProduction
 
 module.exports = extend(config.defaults, config[env])
