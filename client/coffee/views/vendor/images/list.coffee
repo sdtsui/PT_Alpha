@@ -28,15 +28,19 @@ define([
 
       initialize: (options)->
         @options = options
-        
+        @images = options.images
+
       buildListImages: ()->
-        view = new ImageView({})
-        @$('tbody').append(view.render().el)
+        that = this
+        that.images.forEach (image)->
+          view = new ImageView({image: image})
+          that.$('tbody').append(view.render().el)
       
       render: ()->
         that = this
         tpl = _.template(ListImagesTemplate, {})
         @$el.html(tpl)
+        @buildListImages()
         @
 
     )
