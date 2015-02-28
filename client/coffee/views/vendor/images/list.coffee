@@ -33,12 +33,12 @@ define([
       buildListImages: ()->
         that = this
         that.images.forEach (image)->
-          view = new ImageView({image: image})
+          view = new ImageView({image: image, images: that.images})
           that.$('tbody').append(view.render().el)
       
       render: ()->
         that = this
-        tpl = _.template(ListImagesTemplate, {})
+        tpl = _.template(ListImagesTemplate, {images: that.images.toJSON()})
         @$el.html(tpl)
         @buildListImages()
         @

@@ -99,12 +99,14 @@ define([
         switch options.taggable
           when 'dietaryPreferences'
             dietaryPreferences = that.formItem.get('dietaryPreferences') || []
-            dietaryPreferences.push options.name
+            if dietaryPreferences.indexOf(options.name) < 0
+              dietaryPreferences.push options.name
             that.formItem.set dietaryPreferences: dietaryPreferences
             that.$('.preference-tokens').html that.buildTagTokensHtml(dietaryPreferences)
           when 'ingredients'
             ingredients = that.formItem.get('ingredients') || []
-            ingredients.push options.name
+            if ingredients.indexOf(options.name) < 0
+              ingredients.push options.name
             that.formItem.set ingredients: ingredients
             that.$('.ingredient-tokens').html that.buildTagTokensHtml(ingredients)
 
