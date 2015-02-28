@@ -11,10 +11,10 @@ config =
     port: 3000
     db: process.env.MONGOLAB_URI || 'mongodb://localhost/pt_dev'
     AWS:
-      bucket: ''
-      secretKey: ''
-      accessId: ''
-      
+      bucket: process.env.S3_BUCKET
+      secretKey: process.env.AWS_SECRET_ACCESS_KEY
+      accessId: process.env.AWS_ACCESS_KEY_ID
+
   development: require('./env/development')
   test: require('./env/test')
   production: require('./env/production')
