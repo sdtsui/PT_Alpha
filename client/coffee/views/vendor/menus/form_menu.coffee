@@ -102,7 +102,13 @@ define([
 
       render: ()->
         that = this
-        tpl = _.template(FormMenuTemplate, {_: _, menu: that.formMenu.toJSON(), PRODUCT_TYPES: @PRODUCT_TYPES, PRICE_UNITS: @PRICE_UNITS})
+        tpl = _.template(FormMenuTemplate, {
+                _: _
+                isNew: that.formMenu.isNew()
+                menu: that.formMenu.toJSON()
+                PRODUCT_TYPES: @PRODUCT_TYPES
+                PRICE_UNITS: @PRICE_UNITS
+              })
         @$el.html(tpl)
         @bindingDom()
         @
