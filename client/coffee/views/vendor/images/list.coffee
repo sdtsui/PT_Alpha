@@ -20,7 +20,7 @@ define([
   )->
     ListImagesView = Backbone.View.extend(
       tagName: 'div'
-      className: 'columns large-12'
+      className: 'list-images'
       events:
         'click .uploadImages': 'uploadImages'
         'click .toggleDropzone': 'toggleDropzone'

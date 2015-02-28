@@ -53,6 +53,7 @@ define([
         @options = options
         @taggable = options.taggable
         @parent = options.parent
+        @placeholder = options.placeholder
 
       searchTerm: (term)->
         that = this
@@ -104,7 +105,7 @@ define([
           when 'ammenityType'
             'ammenity type'
           else
-            @taggable
+            (@placeholder || @taggable)
 
 
       render: ()->
