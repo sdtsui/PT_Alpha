@@ -10,11 +10,13 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td colspan="4">
-                    There are no images
-                </td>
-            </tr>
+            <% if(images.length == 0 ){ %>
+                <tr>
+                    <td colspan="4">
+                        There are no images
+                    </td>
+                </tr>
+            <% } %>
             
         </tbody>
     </table>
