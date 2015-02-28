@@ -4,12 +4,14 @@ define([
   'Backbone'
   'models/menu'
   'views/shared/alert_message'
+  'views/vendor/menus/menu_courses'
   'text!templates/vendor/menus/form.html'
 ], ($
     _
     Backbone
     MenuModel
     AlertMessage
+    MenuCoursesView
     FormMenuTemplate
   )->
     FormMenuItemsView = Backbone.View.extend(
@@ -64,6 +66,13 @@ define([
         @menus = options.menus
         @initConstant()
 
+      buildListCourses: ()->
+        if @formMenu.isNew()
+          return
+        view = new MenuCoursesView({})
+        @$('.listCourses').html view.render().el
+
+
       initConstant: ()->
         @PRODUCT_TYPES =
           "banquet" : 'banquet'
@@ -99,7 +108,6 @@ define([
           @formMenu.set isActive: @$isActive.is(':checked')
 
 
-
       render: ()->
         that = this
         tpl = _.template(FormMenuTemplate, {
@@ -111,6 +119,8 @@ define([
               })
         @$el.html(tpl)
         @bindingDom()
+        @buildListCourses()
+
         @
 
     )
