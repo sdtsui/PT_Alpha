@@ -39,6 +39,7 @@ define([
         e.preventDefault()
         e.stopPropagation()
         $e = $(e.currentTarget)
+        console.log @formMenu
         course = new MenuCourseModel({menu: @formMenu})
         view = new CourseView({course: course})
         @$('.listCourses').prepend view.render().el
