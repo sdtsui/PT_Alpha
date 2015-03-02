@@ -3,17 +3,21 @@ define([
   'underscore'
   'Backbone'
   'models/menu'
+  'models/menu_course'
+  'collections/menu_courses'
   'views/shared/alert_message'
   'views/vendor/menus/menu_courses'
-  'views/vendor/menus/form_course'
+  'views/vendor/menus/course'
   'text!templates/vendor/menus/form.html'
 ], ($
     _
     Backbone
     MenuModel
+    MenuCourseModel
+    MenuCoursesCollection
     AlertMessage
     MenuCoursesView
-    FormCourseView
+    CourseView
     FormMenuTemplate
   )->
     FormMenuItemsView = Backbone.View.extend(
@@ -35,7 +39,8 @@ define([
         e.preventDefault()
         e.stopPropagation()
         $e = $(e.currentTarget)
-        view = new FormCourseView({menu: @formMenu})
+        course = new MenuCourseModel({menu: @formMenu})
+        view = new CourseView({course: course})
         @$('.listCourses').prepend view.render().el
 
         
