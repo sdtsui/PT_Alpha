@@ -11,7 +11,9 @@ define([
     url: '/api/courses'
 
     initialize: (options)->
-      console.log 'new MenuCourseModel'
+      that = this
+      if options && options.menu
+        that.set menu: options.menu.get('_id')
 
   )
 
