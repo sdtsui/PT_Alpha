@@ -1,20 +1,20 @@
-<form>
+<div class="row">
   <div class="row collapse">
     <div class="columns large-6">
-      <label>
-        Enter the name of the course
-        <input type="text" name="name" value="<%= course.name %>" ></label>
-      
+      <h4>
+      <%= course.name %>
+      </h4>
     </div>
-    
     <div class="columns large-6">
-      <label>&nbsp;</label>
+      <a class="">add menu item</a>
       &nbsp;
-      <a class="saveCourse">save</a>
+      <a>edit course name</a>
       &nbsp;
-      <a class="cancelCourse">cancel</a>
+      <a>delete course</a>
     </div>
-
   </div>
 
-</form>
+  <div class="row collapse menu-items">
+    you have no menu items for this course
+  </div>
+</div>

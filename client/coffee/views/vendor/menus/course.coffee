@@ -37,9 +37,7 @@ define([
 
         @course.save @course.toJSON(),
           success: (model, response, options)->
-            msg = new AlertMessage({type: 'success', messages: ["Menu course was saved successfully."]})
-            that.$el.prepend(msg.render().el)
-
+            that.displayHtml()
           error: (model, response, options)->
             console.log 'errror'
             console.log response
