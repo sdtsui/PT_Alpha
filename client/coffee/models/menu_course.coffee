@@ -8,12 +8,12 @@ define([
       name: ''
       menuItems: []
       
-    url: '/api/courses'
-
     initialize: (options)->
       that = this
-      if options && options.menu
-        that.set menu: options.menu.get('_id')
+      if that.isNew() && options && options.menu
+        that.set menu: options.menu.id
+
+      that
 
   )
 

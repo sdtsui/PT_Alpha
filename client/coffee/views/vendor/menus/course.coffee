@@ -4,6 +4,7 @@ define([
   'Backbone'
   'models/menu_course'
   'views/shared/alert_message'
+  'text!templates/vendor/menus/form_course.html'
   'text!templates/vendor/menus/course.html'
 ], ($
     _
@@ -11,6 +12,7 @@ define([
     MenuCourseModel
     AlertMessage
     FormCourseTemplate
+    CourseTemplate
   )->
     MenuCoursesView = Backbone.View.extend(
       tagName: 'div'
@@ -20,11 +22,31 @@ define([
         'click .cancelCourse': 'cancelCourse'
 
       saveCourse: (e)->
+        that = this
         e.preventDefault()
         e.stopPropagation()
         $e = $(e.currentTarget)
         console.log @course.toJSON()
         
+        isNew = @course.isNew()
+        if isNew
+          @course.url = "/api/menu_courses/add"
+        else
+          @course.url = "/api/menu_courses/update"
+
+
+        @course.save @course.toJSON(),
+          success: (model, response, options)->
+            msg = new AlertMessage({type: 'success', messages: ["Menu course was saved successfully."]})
+            that.$el.prepend(msg.render().el)
+
+          error: (model, response, options)->
+            console.log 'errror'
+            console.log response
+            msg = new AlertMessage({messages: ["There are some errors"]})
+            that.$el.prepend(msg.render().el)        
+
+
       cancelCourse: (e)->
         e.preventDefault()
         e.stopPropagation()
@@ -35,9 +57,10 @@ define([
       initialize: (options)->
         @options = options
         @course = options.course
+        @holder = @course.clone()
 
       bindingDom: ()->
-        @$name = @$('input[name="name"')
+        @$name = @$('input[name="name"]')
         @$name.on 'blur', =>
           @course.set name: @$name.val()
 
@@ -50,15 +73,24 @@ define([
                 course: @course.toJSON()
               })
         @$el.html(tpl)
-        @bindingDom()     
+        @bindingDom()
+
+      displayHtml: ()->
+        that = this
+        tpl = _.template(CourseTemplate, {
+                _: _
+                course: @course.toJSON()
+              })
+        @$el.html(tpl)
 
       buildHtml: ()->
-
-      render: ()->
         if @course.isNew()
           @buildFormHtml()
         else
-          @buildHtml()
+          @displayHtml()
+
+      render: ()->
+        @buildHtml()
         @
 
     )
