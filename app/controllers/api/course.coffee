@@ -4,7 +4,7 @@ api = require('../../../libs/authentication')
 MenuCourseService = require('../../services/menu_course_service')
 
 module.exports = (app, passport) ->
-  app.use '/api/menu_courses', api.requiresLogin, router
+  app.use '/api/menu_courses', api.requiresLogin, MenuCourseService.menuAuthorize, router
 
 
   router.get "/", (req, res)->

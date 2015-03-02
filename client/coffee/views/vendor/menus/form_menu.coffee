@@ -41,9 +41,7 @@ define([
         $e = $(e.currentTarget)
         console.log @formMenu
         course = new MenuCourseModel({menu: @formMenu})
-        view = new CourseView({course: course})
-        @$('.listCourses').prepend view.render().el
-
+        @buildCourse(course)
         
       cancelMenu: (e)->
         e.preventDefault()
@@ -81,13 +79,28 @@ define([
       initialize: (options)->
         @formMenu = options.formMenu
         @menus = options.menus
+        @courses = new MenuCoursesCollection()
         @initConstant()
 
       buildListCourses: ()->
+        that = this
         if @formMenu.isNew()
           return
-        view = new MenuCoursesView({})
-        @$('.listCourses').html view.render().el
+        @courses.url = "/api/menu_courses?menu=#{@formMenu.get('id')}"
+
+        @courses.fetch 
+          success: (model, response, options)->
+            that.courses.forEach (course)->
+              that.buildCourse(course)
+
+          error: (model, response, options)->
+            msg = new AlertMessage({messages: ["There are some errors"]})
+            that.$el.prepend(msg.render().el)        
+
+
+      buildCourse: (course)->
+        view = new CourseView({course: course})
+        @$('.listCourses').prepend view.render().el
 
 
       initConstant: ()->

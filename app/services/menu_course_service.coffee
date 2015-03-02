@@ -3,8 +3,20 @@ extend = require('util')._extend
 mongoose = require 'mongoose'
 MenuCourse = mongoose.model 'MenuCourse'
 
+exports.menuAuthorize = (req, res, next)->
+  menuId = req.body.menu || req.query.menu
+  if !menuId
+    return res.status(400).send({message: 'not found menu'})
+  Menu.findOne {venue: req.user.venue, _id: menuId}, (e, menu)->
+    if e
+      return res.status(400).send({message: e})
+
+    req.menu = menu
+    return next()
+
+
 exports.all = (req, res)->
-  MenuCourse.find({venue: req.user.venue}).exec (e, courses)->
+  MenuCourse.find({menu: req.menu._id}).exec (e, courses)->
     if e
       return res.status(400).send({message: e})
 
@@ -12,10 +24,10 @@ exports.all = (req, res)->
 
 
 exports.add = (req, res)->
-  delete  req.body.venue
+  delete  req.body.menu
   delete req.body._id
   course = new MenuCourse(req.body)
-  course.venue = req.user.venue
+  course.menu = req.menu._id
 
   course.save (err)->
     if err
@@ -25,10 +37,10 @@ exports.add = (req, res)->
 
 exports.update = (req, res)->
   cond = 
-    venue: req.user.venue
+    menu: req.menu._id
     _id: req.body._id
   MenuCourse.findOne cond, (e, course)->
-    delete  req.body.venue
+    delete  req.body.menu
     delete req.body._id
     course = extend(course, req.body)
 
