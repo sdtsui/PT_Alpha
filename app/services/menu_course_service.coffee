@@ -1,13 +1,17 @@
 extend = require('util')._extend
 
 mongoose = require 'mongoose'
+Menu = mongoose.model 'Menu'
 MenuCourse = mongoose.model 'MenuCourse'
 
 exports.menuAuthorize = (req, res, next)->
   menuId = req.body.menu || req.query.menu
   if !menuId
     return res.status(400).send({message: 'not found menu'})
-  Menu.findOne {venue: req.user.venue, _id: menuId}, (e, menu)->
+  cond = 
+    venue: req.user.venue
+    _id: menuId
+  Menu.findOne cond, (e, menu)->
     if e
       return res.status(400).send({message: e})
 

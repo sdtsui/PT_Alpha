@@ -86,7 +86,7 @@ define([
         that = this
         if @formMenu.isNew()
           return
-        @courses.url = "/api/menu_courses?menu=#{@formMenu.get('id')}"
+        @courses.url = "/api/menu_courses?menu=#{@formMenu.get('_id')}"
 
         @courses.fetch 
           success: (model, response, options)->
