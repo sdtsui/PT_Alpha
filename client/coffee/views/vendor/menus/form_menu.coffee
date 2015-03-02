@@ -5,6 +5,7 @@ define([
   'models/menu'
   'views/shared/alert_message'
   'views/vendor/menus/menu_courses'
+  'views/vendor/menus/form_course'
   'text!templates/vendor/menus/form.html'
 ], ($
     _
@@ -12,6 +13,7 @@ define([
     MenuModel
     AlertMessage
     MenuCoursesView
+    FormCourseView
     FormMenuTemplate
   )->
     FormMenuItemsView = Backbone.View.extend(
@@ -21,6 +23,7 @@ define([
         'click .deleteMenu': 'deleteMenu'
         'click .cancelMenu': 'cancelMenu'
         'click .saveMenu': 'saveMenu'
+        'click .addCourse': 'addCourse'
 
       deleteMenu: (e)->
         e.preventDefault()
@@ -28,6 +31,14 @@ define([
         $e = $(e.currentTarget)
         @$el.remove()
 
+      addCourse: (e)->
+        e.preventDefault()
+        e.stopPropagation()
+        $e = $(e.currentTarget)
+        view = new FormCourseView({menu: @formMenu})
+        @$('.listCourses').prepend view.render().el
+
+        
       cancelMenu: (e)->
         e.preventDefault()
         e.stopPropagation()
