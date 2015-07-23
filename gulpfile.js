@@ -238,7 +238,7 @@ gulp.task('build', function () {
 
 // launch gulp tasks
 gulp.task('default', ['build', 'develop', 'watch'], function () {
-    startExpress();
+    // startExpress();
     console.log('**************\nserver listening @ 3000\n**************');
 
 });
