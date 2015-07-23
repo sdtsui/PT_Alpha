@@ -81,10 +81,11 @@ gulp.task('styles', function () {
             message: "Styles task complete <%= file.relative %>!"
         }));
     
-    gulp.src('./client/assets/scss/app.scss')
-        .pipe(sass({
-            style: 'expanded',
-        }))
+        // gulp.src('./client/assets/scss/app.scss')
+        //     .pipe(sass({
+        //         style: 'expanded',
+        //     }))
+    return sass('./client/assets/scss/app.scss', {style: 'expanded'})
         .on('error', function (e) {
             console.log(e);
         })
@@ -141,7 +142,7 @@ gulp.task('scripts', function () {
     return gulp.src('./client/assets/js/**/*.js')
         .pipe(jshint('.jshintrc'))
         .pipe(jshint.reporter('default'))
-        // .pipe(concat('app.js'))
+        .pipe(concat('app.js'))
         .pipe(gulp.dest('./public/assets/js'))
         .pipe(rename({
             suffix: '.min'
@@ -237,7 +238,7 @@ gulp.task('build', function () {
 
 // launch gulp tasks
 gulp.task('default', ['build', 'develop', 'watch'], function () {
-    // startExpress();
+    startExpress();
     console.log('**************\nserver listening @ 3000\n**************');
 
 });
